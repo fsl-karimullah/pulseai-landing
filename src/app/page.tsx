@@ -173,20 +173,35 @@ function DeepDiveFeatures() {
     {
       title: "Akurasi Tinggi dengan Teknologi RAG",
       desc: "Ucapkan selamat tinggal pada chatbot bodoh yang hanya mengandalkan kata kunci. PulseAI menggunakan Retrieval-Augmented Generation (RAG) untuk membaca, memahami, dan memproses PDF, dokumen katalog, atau website Anda. Hasilnya? AI merespons layaknya karyawan terbaik Anda yang tahu segalanya tentang produk.",
-      image: "bg-emerald-100", // placeholder class
-      reversed: false
+      image: "/rag_accuracy.png",
+      reversed: false,
+      usps: [
+        "Memahami konteks dokumen secara mendalam",
+        "Jawaban berbasis data real-time dari PDF Anda",
+        "Minimasi kesalahan informasi atau halusinasi AI"
+      ]
     },
     {
       title: "Lead Generation Otomatis 24/7",
       desc: "Biarkan AI yang melakukan prospecting. PulseAI dirancang untuk tidak hanya menjawab pertanyaan, tapi juga memandu percakapan menuju konversi. AI dapat mengumpulkan nama, nomor telepon, dan kebutuhan spesifik pelanggan, lalu menyimpannya langsung ke sistem Anda.",
-      image: "bg-blue-100", // placeholder class
-      reversed: true
+      image: "/lead_gen.png",
+      reversed: true,
+      usps: [
+        "Kualifikasi prospek secara otomatis 24/7",
+        "Pengumpulan data leads yang terstruktur",
+        "Peningkatan rasio konversi hingga 3x lipat"
+      ]
     },
     {
       title: "Integrasi Widget Website",
       desc: "Tampilkan chatbot Anda di website dengan widget yang cantik dan responsif. Berikan pengalaman layanan pelanggan yang instan tanpa perlu coding yang rumit.",
-      image: "bg-purple-100", // placeholder class
-      reversed: false
+      image: "/widget_demo.png",
+      reversed: false,
+      usps: [
+        "Instalasi instan hanya dengan satu baris kode",
+        "Desain responsif & elegan di semua perangkat",
+        "Ringan & tidak memperlambat loading website"
+      ]
     }
   ];
 
@@ -209,15 +224,14 @@ function DeepDiveFeatures() {
               className={`flex flex-col md:flex-row items-center gap-12 ${feature.reversed ? 'md:flex-row-reverse' : ''}`}
             >
               <motion.div variants={fadeInUp} className="w-full md:w-1/2">
-                {/* Image Placeholder */}
-                <div className={`w-full aspect-[4/3] rounded-3xl ${feature.image} border border-slate-200 shadow-lg relative overflow-hidden flex items-center justify-center`}>
-                  <div className="w-3/4 h-3/4 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/50 flex flex-col items-center justify-center p-6 text-center shadow-sm">
-                    <div className="w-16 h-16 bg-white rounded-full mb-4 shadow-sm flex items-center justify-center">
-                      <div className="w-8 h-8 bg-emerald-500 rounded-full"></div>
-                    </div>
-                    <div className="w-3/4 h-4 bg-slate-200 rounded mb-2"></div>
-                    <div className="w-1/2 h-4 bg-slate-200 rounded"></div>
-                  </div>
+                <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </motion.div>
               <motion.div variants={fadeInUp} className="w-full md:w-1/2">
@@ -225,10 +239,10 @@ function DeepDiveFeatures() {
                 <h3 className="text-3xl font-extrabold text-slate-900 mb-6 leading-tight">{feature.title}</h3>
                 <p className="text-lg text-slate-600 leading-relaxed mb-8">{feature.desc}</p>
                 <ul className="space-y-4">
-                  {[1, 2, 3].map((item) => (
-                    <li key={item} className="flex items-center text-slate-700 font-medium">
+                  {feature.usps.map((usp, j) => (
+                    <li key={j} className="flex items-center text-slate-700 font-medium">
                       <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                      Keunggulan detail mengenai fitur ini {item}
+                      {usp}
                     </li>
                   ))}
                 </ul>
