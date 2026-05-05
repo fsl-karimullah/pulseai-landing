@@ -104,15 +104,18 @@ function Hero() {
 }
 
 function TrustBar() {
+  const industries = ["FinTech", "E-Commerce", "HealthCare", "SaaS", "Real Estate"];
   return (
     <section className="py-12 border-y border-slate-200 bg-white">
       <div className="container mx-auto px-4 text-center">
         <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8">Modern AI Solution for Every Industry</p>
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          {[1, 2, 3, 4, 5].map((item) => (
+          {industries.map((item) => (
             <div key={item} className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-slate-300 rounded-md"></div>
-              <span className="text-xl font-bold text-slate-400">Brand {item}</span>
+              <div className="w-8 h-8 bg-emerald-100 rounded-md flex items-center justify-center">
+                <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" /></svg>
+              </div>
+              <span className="text-xl font-bold text-slate-400">{item}</span>
             </div>
           ))}
         </div>
