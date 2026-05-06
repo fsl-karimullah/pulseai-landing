@@ -49,6 +49,12 @@ function Navbar() {
         </nav>
         <div className="flex items-center gap-4">
           <Link
+            href="https://dashboard.pulseai.biz.id"
+            className="text-sm font-semibold text-slate-600 hover:text-emerald-600 transition-colors"
+          >
+            Login
+          </Link>
+          <Link
             href="https://wa.me/6287826563459"
             target="_blank"
             className="text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg"
@@ -91,10 +97,10 @@ function Hero() {
               <svg className="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
             </Link>
             <Link
-              href="http://localhost:3001"
+              href="https://dashboard.pulseai.biz.id"
               className="inline-flex items-center justify-center h-14 px-8 text-lg font-bold text-slate-700 bg-white border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50 rounded-full transition-all shadow-sm"
             >
-              Lihat Demo
+              Login Dashboard
             </Link>
           </motion.div>
         </motion.div>
@@ -278,14 +284,14 @@ function Pricing() {
       ),
       features: [
         "Unlimited Pesan / bulan",
-        "Free PDF Documents Upload",
+        "3 Dokumen PDF Upload",
         "Branding Kustom (Tanpa Logo)",
         "Integrasi Widget Web",
         "Support Teknis 24/7 Setiap Hari"
       ],
       cta: "Pilih Paket Starter",
       popular: false,
-      href: "https://wa.me/6287826563459"
+      href: "https://dashboard.pulseai.biz.id"
     },
     {
       name: "Paket Pro",
@@ -298,7 +304,7 @@ function Pricing() {
       ),
       features: [
         "Unlimited Pesan / bulan",
-        "Free PDF Documents Upload",
+        "3 Dokumen PDF Upload",
         "Branding Kustom (Tanpa Logo)",
         "Integrasi Widget Web",
         "Support Teknis 24/7 Setiap Hari"
@@ -306,7 +312,7 @@ function Pricing() {
       cta: "Ambil Penawaran Terbaik",
       popular: true,
       badge: "BEST VALUE",
-      href: "https://wa.me/6287826563459"
+      href: "https://dashboard.pulseai.biz.id"
     },
     {
       name: "Paket Full Scale",
@@ -319,14 +325,14 @@ function Pricing() {
       ),
       features: [
         "Unlimited Pesan / bulan",
-        "Free PDF Documents Upload",
+        "3 Dokumen PDF Upload",
         "Branding Kustom (Tanpa Logo)",
         "Integrasi Widget Web",
         "Support Teknis 24/7 Setiap Hari"
       ],
       cta: "Go Full Scale",
       popular: false,
-      href: "https://wa.me/6287826563459"
+      href: "https://dashboard.pulseai.biz.id"
     }
   ];
 
@@ -628,7 +634,7 @@ function FinalPitch() {
           <motion.p variants={fadeInUp} className="text-xl text-emerald-100 mb-12 max-w-2xl mx-auto">
             Mulai sekarang juga. Setup sistem AI Anda dalam hitungan menit tanpa perlu kemampuan coding sedikitpun.
           </motion.p>
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="https://wa.me/6287826563459"
               target="_blank"
@@ -636,6 +642,13 @@ function FinalPitch() {
             >
               Book a demo
               <svg className="w-6 h-6 ml-3 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </Link>
+            <Link
+              href="https://wa.me/6287826563459"
+              target="_blank"
+              className="inline-flex items-center justify-center h-16 px-10 text-xl font-bold text-white border-2 border-white/20 hover:bg-white/10 rounded-full transition-all"
+            >
+              Tanya Produk
             </Link>
           </motion.div>
         </motion.div>
