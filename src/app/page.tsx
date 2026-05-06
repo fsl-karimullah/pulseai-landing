@@ -266,141 +266,171 @@ function DeepDiveFeatures() {
 }
 
 function Pricing() {
-  const [isAnnual, setIsAnnual] = useState(false);
-
   const tiers = [
     {
-      name: "Starter",
-      price: "Gratis",
-      period: "",
-      desc: "Coba PulseAI secara gratis tanpa kartu kredit.",
-      features: ["1 Chatbot Agent", "1 Dokumen PDF (Max 2MB)", "100 Pesan / bulan", "Web Widget Integration"],
-      cta: "Book a demo",
+      name: "Paket Starter",
+      duration: "Durasi 1 Bulan",
+      price: "Rp 69.000",
+      monthlyPrice: "Rp 69.000/bulan",
+      desc: "Solusi cerdas untuk automasi bisnis jangka pendek.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      ),
+      features: [
+        "Unlimited Pesan / bulan",
+        "Free PDF Documents Upload",
+        "Branding Kustom (Tanpa Logo)",
+        "Integrasi Widget Web",
+        "Support Teknis 24/7 Setiap Hari"
+      ],
+      cta: "Pilih Paket Starter",
       popular: false,
       href: "https://wa.me/6287826563459"
     },
     {
-      name: "Business Plan",
-      originalPrice: isAnnual ? "Rp 1.188.000" : "Rp 499.000",
-      price: isAnnual ? "Rp 949k" : "Rp 99k",
-      period: isAnnual ? "/tahun" : "/bulan",
-      savings: isAnnual ? "Hemat Rp 239.000" : null,
-      desc: "Fokus pada Akurasi Data Dokumen untuk pertumbuhan bisnis.",
+      name: "Paket Pro",
+      duration: "Durasi 3 Bulan",
+      price: "Rp 149.000",
+      monthlyPrice: "Hanya ~Rp 49.700/bulan",
+      desc: "Penawaran terbaik untuk stabilitas bisnis Anda.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M12 3l1.912 5.886 6.182.023-4.991 3.65 1.895 5.892L12 14.83l-5.001 3.621 1.895-5.892-4.991-3.65 6.182-.023L12 3z"/></svg>
+      ),
       features: [
-        "1 Chatbot Agent", 
-        "Up to 10 Dokumen PDF", 
-        "2,000 Pesan / bulan", 
-        "Custom Branding (No Logo)", 
-        "Web Widget Integration", 
-        "Prioritas Support"
+        "Unlimited Pesan / bulan",
+        "Free PDF Documents Upload",
+        "Branding Kustom (Tanpa Logo)",
+        "Integrasi Widget Web",
+        "Support Teknis 24/7 Setiap Hari"
       ],
-      cta: "Book a demo",
+      cta: "Ambil Penawaran Terbaik",
       popular: true,
+      badge: "BEST VALUE",
       href: "https://wa.me/6287826563459"
     },
     {
-      name: "Enterprise",
-      price: "Kustom",
-      period: "",
-      desc: "Solusi kustom untuk kebutuhan korporasi skala besar.",
-      features: ["Unlimited PDFs", "High Volume Messaging", "Dedicated Infrastructure", "API Access", "Priority Support"],
-      cta: "Book a demo",
+      name: "Paket Full Scale",
+      duration: "Durasi 12 Bulan",
+      price: "Rp 249.000",
+      monthlyPrice: "Hanya ~Rp 20.750/bulan",
+      desc: "Investasi maksimal untuk efisiensi total sepanjang tahun.",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+      ),
+      features: [
+        "Unlimited Pesan / bulan",
+        "Free PDF Documents Upload",
+        "Branding Kustom (Tanpa Logo)",
+        "Integrasi Widget Web",
+        "Support Teknis 24/7 Setiap Hari"
+      ],
+      cta: "Go Full Scale",
       popular: false,
       href: "https://wa.me/6287826563459"
     }
   ];
 
   return (
-    <section id="harga" className="py-24 bg-slate-50 border-y border-slate-200">
+    <section id="harga" className="py-24 bg-[#0f172a] text-white">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-center mb-8"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Investasi Fleksibel untuk Semua</h2>
-          <p className="text-xl text-slate-600 mb-8">Pilih paket yang sesuai dengan volume percakapan harian Anda.</p>
-          
-          {/* Toggle Billing */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className={`text-sm font-bold ${!isAnnual ? 'text-emerald-600' : 'text-slate-500'}`}>Bulanan</span>
-            <button 
-              onClick={() => setIsAnnual(!isAnnual)}
-              className="relative w-14 h-7 bg-slate-200 rounded-full p-1 transition-colors duration-300 focus:outline-none"
-            >
-              <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${isAnnual ? 'translate-x-7 bg-emerald-500' : 'translate-x-0'}`} />
-            </button>
-            <span className={`text-sm font-bold ${isAnnual ? 'text-emerald-600' : 'text-slate-500'}`}>Tahunan</span>
-            <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tight animate-pulse">Hemat 20%</span>
+          <div className="inline-block mb-4">
+            <span className="flex items-center gap-2 text-emerald-400 font-bold tracking-wider uppercase text-sm">
+              <span className="w-8 h-[1px] bg-emerald-400"></span>
+              Pricing Plans
+              <span className="w-8 h-[1px] bg-emerald-400"></span>
+            </span>
           </div>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Investasi Cerdas Untuk Bisnis Anda</h2>
+          <p className="text-xl text-slate-400">💡 Pilih paketnya, lupakan pusingnya.</p>
         </motion.div>
 
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto items-center"
-        >
+        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
           {tiers.map((tier, i) => (
-            <motion.div key={i} variants={fadeInUp} className={`relative p-8 rounded-3xl border flex flex-col ${tier.popular ? 'border-emerald-500 shadow-2xl bg-slate-900 text-white transform md:-translate-y-4 md:scale-105 z-10' : 'border-slate-200 shadow-sm bg-white text-slate-900'}`}>
-              {tier.popular && (
+            <motion.div 
+              key={i} 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              transition={{ delay: i * 0.1 }}
+              className={`relative p-8 rounded-[32px] border flex flex-col transition-all duration-500 hover:scale-[1.02] ${
+                tier.popular 
+                ? 'border-emerald-500/50 bg-slate-900/50 shadow-[0_0_40px_-15px_rgba(16,185,129,0.3)]' 
+                : 'border-slate-800 bg-slate-900/30'
+              }`}
+            >
+              {tier.badge && (
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-full shadow-md">Paling Populer</span>
+                  <span className="bg-emerald-500 text-white text-xs font-black uppercase tracking-[0.2em] py-2 px-6 rounded-full shadow-[0_4px_20px_rgba(16,185,129,0.4)]">
+                    {tier.badge}
+                  </span>
                 </div>
               )}
-              {tier.savings && (
-                <div className="absolute top-4 right-4">
-                  <span className="bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg shadow-sm">{tier.savings}</span>
+              
+              <div className="text-center mb-8">
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-800 text-slate-400 mb-6 border border-slate-700">
+                  {tier.icon}
                 </div>
-              )}
-              <div className="mb-8">
-                <h3 className={`text-2xl font-bold mb-2 ${tier.popular ? 'text-white' : 'text-slate-900'}`}>{tier.name}</h3>
-                <p className={`text-sm ${tier.popular ? 'text-slate-300' : 'text-slate-500'} mb-6 min-h-[40px]`}>{tier.desc}</p>
-                <div className="flex flex-col gap-1">
-                  {tier.originalPrice && (
-                    <span className="text-slate-500 line-through text-sm font-medium">
-                      {tier.originalPrice}
-                    </span>
-                  )}
-                  <div className="flex items-baseline">
-                    <span className={`text-4xl md:text-5xl font-extrabold ${tier.popular ? 'text-white' : 'text-slate-900'}`}>{tier.price}</span>
-                    <span className={`text-lg ml-2 font-medium ${tier.popular ? 'text-slate-400' : 'text-slate-500'}`}>{tier.period}</span>
-                  </div>
+
+                <h3 className="text-xl font-bold text-white mb-1">{tier.name}</h3>
+                <p className="text-slate-400 text-sm font-medium mb-6">{tier.duration}</p>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-5xl font-black text-white tracking-tight">
+                    {tier.price}
+                  </span>
+                  <span className="text-emerald-400 font-bold text-sm">
+                    {tier.monthlyPrice}
+                  </span>
                 </div>
               </div>
-              <ul className="mb-8 space-y-4 flex-1">
+
+              <p className="text-slate-400 text-center text-sm leading-relaxed mb-8 min-h-[48px]">
+                {tier.desc}
+              </p>
+
+              <div className="space-y-4 mb-10 flex-1">
                 {tier.features.map((feature, j) => (
-                  <li key={j} className="flex items-start">
-                    <svg className={`w-6 h-6 mr-3 shrink-0 ${tier.popular ? 'text-emerald-400' : 'text-emerald-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span className={`font-medium ${tier.popular ? 'text-slate-200' : 'text-slate-700'}`}>{feature}</span>
-                  </li>
+                  <div key={j} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
+                      <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <span className="text-slate-300 text-sm font-medium">{feature}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
               <Link
-                href="https://wa.me/6287826563459"
+                href={tier.href}
                 target="_blank"
-                className={`block w-full text-center py-4 px-6 rounded-xl font-bold text-lg transition-all ${tier.popular ? 'bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/30' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
+                className={`block w-full text-center py-5 px-6 rounded-2xl font-bold text-lg transition-all duration-300 ${
+                  tier.popular 
+                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-400 text-white shadow-[0_10px_25px_-5px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(16,185,129,0.5)] hover:-translate-y-1' 
+                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20'
+                }`}
               >
                 {tier.cta}
               </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="mt-12 text-center max-w-2xl mx-auto"
-        >
-          <p className="text-sm text-slate-500 font-medium bg-emerald-50 border border-emerald-100 rounded-2xl p-4">
-            🛡️ <span className="text-slate-900 font-bold">Garansi Kepuasan:</span> Jika sistem kami mengalami kendala teknis yang tidak terselesaikan dalam 7 hari, uang Anda kembali 100%.
+        <div className="mt-20 text-center">
+          <p className="text-slate-400 font-bold text-sm uppercase tracking-widest mb-4">Semua paket sudah termasuk:</p>
+          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            Akses semua fitur unggulan, dukungan penuh dari tim kami, dan update fitur terbaru secara gratis.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -423,7 +453,7 @@ function Testimonials() {
     {
       name: "Ahmad Rizky",
       role: "Founder, OtoParts",
-      content: "Integrasi WhatsApp-nya sangat lancar. Kami bisa fokus pada strategi bisnis sementara PulseAI menangani ratusan pertanyaan tentang ketersediaan suku cadang.",
+      content: "Sangat membantu untuk otomasi CS. Kami bisa fokus pada strategi bisnis sementara PulseAI menangani ratusan pertanyaan tentang ketersediaan suku cadang dengan sangat akurat.",
       rating: 5
     }
   ];
@@ -480,7 +510,7 @@ function FAQ() {
   const faqs = [
     {
       q: "Apa itu PulseAI dan bagaimana ia membantu bisnis saya?",
-      a: "PulseAI adalah asisten sales AI otomatis berbasis RAG (Retrieval-Augmented Generation). Ia bertindak sebagai tim CS virtual yang paham katalog produk Anda 100% dan membalas pertanyaan pelanggan 24/7 di WhatsApp dan Website."
+      a: "PulseAI adalah asisten sales AI otomatis berbasis RAG (Retrieval-Augmented Generation). Ia bertindak sebagai tim CS virtual yang paham katalog produk Anda 100% dan membalas pertanyaan pelanggan 24/7 di Website Anda."
     },
     {
       q: "Bagaimana cara kerja AI RAG ini?",
