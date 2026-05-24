@@ -134,7 +134,7 @@ function ProblemBreakdown() {
   return (
     <section id="solusi" className="py-24 bg-slate-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl relative z-10">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -151,7 +151,7 @@ function ProblemBreakdown() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {[
             {
@@ -163,6 +163,11 @@ function ProblemBreakdown() {
               title: "Website Widget",
               desc: "Pasang widget chat di website Anda hanya dengan satu baris kode. Mudah dan cepat.",
               icon: "M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            },
+            {
+              title: "Integrasi WhatsApp",
+              desc: "Kumpulkan leads dan balas pesan otomatis langsung dari nomor WhatsApp bisnis Anda.",
+              icon: "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
             },
             {
               title: "Akurasi 100%",
@@ -436,6 +441,92 @@ function Pricing() {
           <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Akses semua fitur unggulan, dukungan penuh dari tim kami, dan update fitur terbaru secara gratis.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhatsAppIntegration() {
+  return (
+    <section className="py-24 bg-slate-50 border-t border-slate-200">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="w-full md:w-1/2"
+          >
+            <div className="inline-block bg-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-sm mb-6">Integrasi WhatsApp</div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">Chatbot WhatsApp & Pengumpulan Leads</h2>
+            <p className="text-lg text-slate-600 leading-relaxed mb-6">
+              Selain widget website, PulseAI dapat diintegrasikan langsung dengan WhatsApp bisnis Anda. Kumpulkan prospek (leads) secara otomatis dari berbagai channel.
+            </p>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-start text-slate-700 font-medium">
+                <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>WhatsApp Unofficial:</strong> Solusi cepat & hemat untuk langsung menggunakan chatbot di nomor WhatsApp biasa Anda.</span>
+              </li>
+              <li className="flex items-start text-slate-700 font-medium">
+                <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Koleksi Leads Otomatis:</strong> AI mengumpulkan nama & kontak pengguna secara otomatis baik dari Widget Website maupun WhatsApp.</span>
+              </li>
+            </ul>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-8">
+              <div className="flex items-center gap-4 mb-4">
+                <Image src="/logo-mekari.svg" alt="Mekari Qontak" width={120} height={40} className="object-contain" />
+                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full uppercase tracking-wider border border-emerald-100">Official Partner</span>
+              </div>
+              <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                Ingin menggunakan <strong>WhatsApp API Official (Centang Hijau)</strong>? Kami merekomendasikan Mekari Qontak. Gunakan kode referral kami untuk mendapatkan diskon tambahan!
+              </p>
+            </div>
+
+            <Link
+              href="https://wa.me/6287826563459"
+              target="_blank"
+              className="inline-flex items-center justify-center h-14 px-8 text-lg font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+            >
+              Konsultasi Gratis
+              <svg className="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+            </Link>
+          </motion.div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="w-full md:w-1/2"
+          >
+            <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-emerald-50 flex items-center justify-center p-8">
+              <div className="w-full max-w-sm bg-white rounded-[2rem] shadow-xl border-4 border-slate-100 overflow-hidden flex flex-col h-[400px]">
+                <div className="bg-[#075e54] text-white p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold">
+                    PA
+                  </div>
+                  <div>
+                    <div className="font-bold">PulseAI Chatbot</div>
+                    <div className="text-xs text-white/80">Online</div>
+                  </div>
+                </div>
+                <div className="flex-1 bg-[#efeae2] p-4 flex flex-col gap-3 overflow-hidden">
+                  <div className="bg-white p-3 rounded-xl rounded-tl-none self-start max-w-[85%] shadow-sm text-sm text-slate-700">
+                    Halo! Selamat datang di PulseAI. Ada yang bisa kami bantu hari ini?
+                  </div>
+                  <div className="bg-[#dcf8c6] p-3 rounded-xl rounded-tr-none self-end max-w-[85%] shadow-sm text-sm text-slate-700">
+                    Saya tertarik dengan layanannya.
+                  </div>
+                  <div className="bg-white p-3 rounded-xl rounded-tl-none self-start max-w-[85%] shadow-sm text-sm text-slate-700">
+                    Tentu! Boleh kami tahu nama dan email Anda agar tim kami bisa mengirimkan detail lebih lanjut?
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -717,6 +808,7 @@ export default function LandingPage() {
         <TrustBar />
         <ProblemBreakdown />
         <DeepDiveFeatures />
+        <WhatsAppIntegration />
         <Testimonials />
         <Pricing />
         <FAQ />
