@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -107,6 +108,10 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Script
+          src="https://api.pulseai.biz.id/api/widget.js?orgId=913f196b-f42a-4090-9153-244b603dbfe0&botName=Pulse%20AI%20Assistant&company=PulseAI"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
