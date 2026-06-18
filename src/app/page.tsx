@@ -2,64 +2,43 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-// Animations
+// ── Animations ────────────────────────────────────────────────────────────────
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.6, 
-      ease: "easeOut" 
-    } 
-  }
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
+// ── Navbar ────────────────────────────────────────────────────────────────────
 function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md text-slate-900">
-      <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl shadow-sm shadow-slate-100">
+      <div className="container mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-md shadow-emerald-500/30">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
           </div>
-          <span className="font-bold text-xl tracking-tight flex items-center gap-2">
+          <span className="font-black text-xl text-slate-900 tracking-tight">
             PulseAI
-            <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-emerald-200">Beta</span>
+            <span className="ml-2 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-emerald-200">Beta</span>
           </span>
         </div>
-        <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
-          <Link href="#fitur" className="hover:text-emerald-600 transition-colors">Fitur</Link>
-          <Link href="#solusi" className="hover:text-emerald-600 transition-colors">Solusi</Link>
-          <Link href="#harga" className="hover:text-emerald-600 transition-colors">Harga</Link>
-          <Link href="#faq" className="hover:text-emerald-600 transition-colors">FAQ</Link>
+        <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
+          {["#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
+            const [href, label] = item.split("|");
+            return <Link key={href} href={href} className="hover:text-emerald-600 transition-colors duration-200">{label}</Link>;
+          })}
         </nav>
-        <div className="flex items-center gap-4">
-          <Link
-            href="https://dashboard.pulseai.biz.id"
-            className="text-sm font-semibold text-slate-600 hover:text-emerald-600 transition-colors"
-          >
-            Login
-          </Link>
-          <Link
-            href="https://wa.me/6287826563459"
-            target="_blank"
-            className="text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg"
-          >
-            Book a demo
+        <div className="flex items-center gap-3">
+          <Link href="https://dashboard.pulseai.biz.id" className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors hidden sm:block">Login</Link>
+          <Link href="https://wa.me/6287826563459" target="_blank" className="text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:-translate-y-px">
+            Book a Demo
           </Link>
         </div>
       </div>
@@ -67,62 +46,109 @@ function Navbar() {
   );
 }
 
+// ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-slate-50 pt-24 pb-20 md:pt-32 md:pb-28">
-      {/* Background decoration */}
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-emerald-50 to-transparent"></div>
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
-      <div className="absolute top-12 -left-12 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/40 to-white pt-24 pb-24 md:pt-36 md:pb-32">
+      {/* Subtle background decorations */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-emerald-100/50 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 -right-32 w-80 h-80 bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-40 -left-24 w-64 h-64 bg-emerald-100/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container relative mx-auto px-4 md:px-6 text-center max-w-4xl">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-8 leading-tight">
-            Ubah <span className="text-emerald-600">PDF Bisnis</span> Anda Menjadi <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">Chatbot Pintar</span>
+      {/* Dot grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#d1fae5_1px,transparent_1px)] bg-[size:32px_32px] opacity-40 pointer-events-none" />
+
+      <div className="container relative mx-auto px-4 md:px-6 text-center max-w-5xl">
+        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-7">
+
+          {/* Badge */}
+          <motion.div variants={fadeInUp} className="flex justify-center">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-300/60 bg-emerald-50 text-emerald-700 text-sm font-semibold shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
+              </span>
+              Platform AI Otomasi Bisnis #1 Indonesia
+            </div>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.05]">
+            Satu Platform.{" "}
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700">
+              Semua Otomasi.
+            </span>
           </motion.h1>
-          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Capek menjawab pertanyaan yang sama berulang kali? Unggah katalog atau dokumen PDF Anda, dan biarkan AI kami melayani pelanggan Anda dengan akurasi 100% menggunakan data bisnis Anda sendiri.
+
+          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            PulseAI mengotomatiskan dua pilar terpenting bisnis Anda — dari sales &amp; customer service hingga proses rekrutmen.
           </motion.p>
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="https://wa.me/6287826563459"
-              target="_blank"
-              className="inline-flex items-center justify-center h-14 px-8 text-lg font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-            >
-              Book a demo
-              <svg className="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+
+          {/* Pillar Cards */}
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
+            {[
+              { icon: "💬", label: "AI Chatbot & Sales", sub: "Layani pelanggan 24/7", bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700" },
+              { icon: "📋", label: "AI HR & ATS Scanner", sub: "Rekrut kandidat terbaik", bg: "bg-violet-50", border: "border-violet-200", text: "text-violet-700" },
+            ].map((p) => (
+              <div key={p.label} className={`flex items-center gap-3.5 ${p.bg} border ${p.border} rounded-2xl px-5 py-3.5 shadow-sm`}>
+                <span className="text-2xl">{p.icon}</span>
+                <div className="text-left">
+                  <p className={`font-bold text-sm leading-none mb-1 ${p.text}`}>{p.label}</p>
+                  <p className="text-slate-500 text-xs">{p.sub}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
+            <Link href="https://wa.me/6287826563459" target="_blank" className="group inline-flex items-center justify-center gap-2 h-14 px-9 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-2xl transition-all shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:-translate-y-1">
+              Mulai Gratis Sekarang
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
-            <Link
-              href="https://dashboard.pulseai.biz.id"
-              className="inline-flex items-center justify-center h-14 px-8 text-lg font-bold text-slate-700 bg-white border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50 rounded-full transition-all shadow-sm"
-            >
+            <Link href="https://dashboard.pulseai.biz.id" className="inline-flex items-center justify-center h-14 px-9 text-base font-bold text-slate-700 bg-white border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/50 rounded-2xl transition-all shadow-sm">
               Login Dashboard
             </Link>
           </motion.div>
+
+          <motion.p variants={fadeInUp} className="text-slate-400 text-xs tracking-wide">
+            Tidak perlu kartu kredit · Setup 5 menit · Kuota gratis tersedia
+          </motion.p>
         </motion.div>
       </div>
     </section>
   );
 }
 
-function TrustBar() {
-  const industries = ["FinTech", "E-Commerce", "HealthCare", "SaaS", "Real Estate"];
+// ── Stats Bar ─────────────────────────────────────────────────────────────────
+function StatsBar() {
+  const stats = [
+    { value: "24/7", label: "Operasi Tanpa Henti", icon: "⚡" },
+    { value: "< 2s", label: "Waktu Respons AI", icon: "🚀" },
+    { value: "100%", label: "Akurasi Data Bisnis", icon: "🎯" },
+    { value: "5 Mnt", label: "Waktu Setup", icon: "⏱️" },
+  ];
+
   return (
-    <section className="py-12 border-y border-slate-200 bg-white">
-      <div className="container mx-auto px-4 text-center">
-        <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8">Modern AI Solution for Every Industry</p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          {industries.map((item) => (
-            <div key={item} className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-emerald-100 rounded-md flex items-center justify-center">
-                <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" /></svg>
-              </div>
-              <span className="text-xl font-bold text-slate-400">{item}</span>
-            </div>
+    <section className="relative bg-emerald-600 py-10 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 opacity-100" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-emerald-500/40">
+          {stats.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="text-center py-4 px-6"
+            >
+              <div className="text-2xl mb-1">{s.icon}</div>
+              <p className="text-3xl md:text-4xl font-black text-white mb-1 tabular-nums">{s.value}</p>
+              <p className="text-emerald-100/80 text-xs font-medium uppercase tracking-wider">{s.label}</p>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -130,57 +156,57 @@ function TrustBar() {
   );
 }
 
+// ── Problem Section ───────────────────────────────────────────────────────────
 function ProblemBreakdown() {
+  const problems = [
+    { emoji: "😩", problem: "Tim CS kewalahan menjawab chat berulang di luar jam kerja", solution: "AI Chatbot menjawab ribuan pertanyaan sekaligus, 24/7 otomatis" },
+    { emoji: "⏳", problem: "Screening ratusan CV memakan waktu berminggu-minggu", solution: "AI ATS Scanner menyeleksi CV lengkap dalam hitungan detik" },
+    { emoji: "📉", problem: "Leads hilang karena respons terlambat", solution: "AI mengumpulkan & membalas leads kapanpun, tanpa jeda" },
+    { emoji: "🤷", problem: "Keputusan rekrutmen bias & tidak konsisten", solution: "AI memberi skor objektif & rekomendasi berbasis data CV" },
+  ];
+
   return (
-    <section id="solusi" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-bold mb-6">The Cost of Slow Response</motion.h2>
-          <motion.p variants={fadeInUp} className="text-xl text-slate-400 max-w-2xl mx-auto">Dalam era digital, pelanggan mengharapkan balasan instan. Keterlambatan membalas chat berujung pada hilangnya potensi penjualan.</motion.p>
+    <section id="solusi" className="py-24 bg-gradient-to-b from-white to-emerald-50/50 relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent" />
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="text-center mb-16">
+          <motion.span variants={fadeInUp} className="inline-flex items-center gap-2 text-emerald-600 text-sm font-bold uppercase tracking-widest mb-5">
+            <span className="w-6 h-px bg-emerald-400" /> Masalah → Solusi <span className="w-6 h-px bg-emerald-400" />
+          </motion.span>
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-5 leading-tight">
+            Bisnis Modern Butuh<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Automasi Cerdas</span>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg max-w-2xl mx-auto">
+            PulseAI memecahkan dua masalah terbesar yang membuang waktu &amp; uang bisnis Anda.
+          </motion.p>
         </motion.div>
-        
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {[
-            {
-              title: "Instan PDF Training",
-              desc: "Cukup upload PDF katalog atau SOP bisnis Anda. AI akan mempelajarinya dalam hitungan detik.",
-              icon: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-            },
-            {
-              title: "Website Widget",
-              desc: "Pasang widget chat di website Anda hanya dengan satu baris kode. Mudah dan cepat.",
-              icon: "M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-            },
-            {
-              title: "Integrasi WhatsApp",
-              desc: "Kumpulkan leads dan balas pesan otomatis langsung dari nomor WhatsApp bisnis Anda.",
-              icon: "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-            },
-            {
-              title: "Akurasi 100%",
-              desc: "AI hanya menjawab berdasarkan dokumen yang Anda berikan. Tidak ada halusinasi atau info ngawur.",
-              icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            }
-          ].map((item, i) => (
-            <motion.div key={i} variants={fadeInUp} className="bg-slate-800 p-8 rounded-3xl border border-slate-700 hover:border-emerald-500 transition-colors group">
-              <div className="w-14 h-14 bg-slate-700 group-hover:bg-emerald-500 text-emerald-400 group-hover:text-white rounded-2xl flex items-center justify-center mb-6 transition-colors">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon}></path></svg>
+
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="grid md:grid-cols-2 gap-4">
+          {problems.map((item, i) => (
+            <motion.div key={i} variants={fadeInUp}
+              className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-50 transition-all duration-300 p-6"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 group-hover:from-emerald-50/80 to-transparent transition-all duration-500 pointer-events-none rounded-2xl" />
+              <div className="relative flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 group-hover:border-emerald-100 flex items-center justify-center text-2xl shrink-0 transition-colors">
+                  {item.emoji}
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="flex items-start gap-2">
+                    <span className="mt-1 shrink-0 w-4 h-4 rounded-full border border-red-200 bg-red-50 flex items-center justify-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    </span>
+                    <p className="text-slate-400 text-sm line-through decoration-red-300/60 leading-relaxed">{item.problem}</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="mt-1 shrink-0 w-4 h-4 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center">
+                      <svg className="w-2.5 h-2.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                    </span>
+                    <p className="text-slate-800 font-semibold text-sm leading-relaxed">{item.solution}</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -189,81 +215,307 @@ function ProblemBreakdown() {
   );
 }
 
+// ── Product Suite Tabs ────────────────────────────────────────────────────────
+function ProductSuite() {
+  const [activeTab, setActiveTab] = useState<"chatbot" | "ats">("chatbot");
+
+  const chatbotFeatures = [
+    { icon: "🧠", title: "Akurasi RAG 100%", desc: "AI hanya menjawab dari dokumen yang Anda upload. Zero halusinasi, zero jawaban ngawur." },
+    { icon: "📄", title: "Upload PDF Instan", desc: "Upload katalog, SOP, atau FAQ bisnis. AI belajar dan siap melayani dalam detik." },
+    { icon: "💬", title: "Widget Website", desc: "Pasang di website apapun dengan satu baris kode. Plug & play tanpa coding." },
+    { icon: "📱", title: "Integrasi WhatsApp", desc: "Bot otomatis langsung dari nomor WhatsApp bisnis Anda via QR scan." },
+    { icon: "🎯", title: "Lead Capture Otomatis", desc: "AI mengumpulkan nama & kontak prospek dari setiap percakapan secara otomatis." },
+    { icon: "🕐", title: "Operasi 24/7", desc: "Tidak ada jam tidur. Bisnis Anda terus berjalan selagi Anda istirahat." },
+  ];
+
+  const atsFeatures = [
+    { icon: "🎯", title: "ATS Scoring 0-100", desc: "Skor kecocokan CV vs deskripsi pekerjaan berbasis konteks, bukan sekedar keyword matching." },
+    { icon: "📋", title: "Ekstraksi Data Otomatis", desc: "Nama, email, WhatsApp, pendidikan — semua diekstrak dari PDF tanpa input manual." },
+    { icon: "⚖️", title: "Analisis Kelebihan & Gap", desc: "AI memberikan breakdown kekuatan dan kekurangan kandidat terhadap role yang dilamar." },
+    { icon: "🚩", title: "Deteksi Red Flags", desc: "Job hopping, gap kerja panjang, loncatan karier ekstrem — semua terdeteksi otomatis." },
+    { icon: "✅", title: "Rekomendasi HR Instan", desc: "Lolos Interview / Talent Pool / Tolak — keputusan AI berbasis data dalam detik." },
+    { icon: "💬", title: "Draft WhatsApp Otomatis", desc: "Pesan balasan ke kandidat dibuat AI secara otomatis, tinggal copy-paste & kirim." },
+  ];
+
+  const isAts = activeTab === "ats";
+  const features = isAts ? atsFeatures : chatbotFeatures;
+
+  return (
+    <section id="fitur" className="py-24 bg-gradient-to-b from-emerald-50/50 via-white to-white">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-14">
+          <motion.span variants={fadeInUp} className="inline-block mb-4 bg-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-emerald-200">
+            Suite Produk PulseAI
+          </motion.span>
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
+            Dua Modul. Satu Platform.<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Automasi Total.</span>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg max-w-2xl mx-auto">
+            Pilih modul yang dibutuhkan, atau gunakan keduanya untuk efisiensi maksimal.
+          </motion.p>
+        </motion.div>
+
+        {/* Tab Switcher */}
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex justify-center mb-10">
+          <div className="inline-flex bg-slate-100 rounded-2xl p-1.5 gap-1 shadow-inner border border-slate-200">
+            {[
+              { id: "chatbot", label: "🤖 AI Chatbot & Sales" },
+              { id: "ats", label: "📋 AI HR & ATS Scanner" },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as "chatbot" | "ats")}
+                className={`relative px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? "bg-white text-slate-900 shadow-md border border-slate-100"
+                    : "text-slate-500 hover:text-slate-700"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Description Banner */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab + "-desc"}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className={`mb-10 p-6 rounded-2xl border text-center ${
+              isAts
+                ? "bg-violet-50 border-violet-200"
+                : "bg-emerald-50 border-emerald-200"
+            }`}
+          >
+            <h3 className="text-lg font-bold text-slate-900 mb-2">
+              {isAts ? "📋 AI HR Tools & ATS CV Scanner" : "🤖 AI Chatbot & Lead Generation"}
+            </h3>
+            <p className="text-slate-600 max-w-2xl mx-auto text-sm leading-relaxed">
+              {isAts
+                ? "Berhenti buang waktu membaca CV manual. AI membaca, menilai, dan deteksi red flag dari setiap pelamar — dalam hitungan detik."
+                : "Ubah dokumen bisnis jadi asisten AI. Layani pelanggan, kumpulkan leads, dan tingkatkan konversi — otomatis 24/7 tanpa CS tambahan."}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Feature Cards */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab + "-cards"}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {features.map((f, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.06 }}
+                className={`group bg-white border transition-all duration-300 hover:shadow-xl rounded-2xl p-6 cursor-default ${
+                  isAts
+                    ? "border-slate-100 hover:border-violet-200 hover:shadow-violet-50"
+                    : "border-slate-100 hover:border-emerald-200 hover:shadow-emerald-50"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-110 duration-300 ${
+                  isAts ? "bg-violet-50 border border-violet-100" : "bg-emerald-50 border border-emerald-100"
+                }`}>
+                  {f.icon}
+                </div>
+                <h4 className="font-bold text-slate-900 mb-2 text-base">{f.title}</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
+// ── How It Works ──────────────────────────────────────────────────────────────
+function HowItWorks() {
+  const [activeProduct, setActiveProduct] = useState<"chatbot" | "ats">("chatbot");
+
+  const chatbotSteps = [
+    { step: "01", emoji: "📂", title: "Upload Dokumen", desc: "Upload PDF katalog produk, SOP, atau website bisnis Anda ke dashboard PulseAI.", color: "from-emerald-400 to-teal-500" },
+    { step: "02", emoji: "🧠", title: "AI Memproses", desc: "PulseAI RAG memahami seluruh konten dokumen Anda secara mendalam dalam hitungan detik.", color: "from-teal-400 to-emerald-500" },
+    { step: "03", emoji: "🔌", title: "Pasang Widget / WA", desc: "Salin satu baris kode ke website Anda, atau scan QR untuk koneksi WhatsApp bisnis.", color: "from-emerald-500 to-green-500" },
+    { step: "04", emoji: "⚡", title: "AI Bekerja Otomatis", desc: "Chatbot menjawab pelanggan, mengumpulkan leads, dan melaporkan hasilnya ke dashboard.", color: "from-green-400 to-emerald-600" },
+  ];
+
+  const atsSteps = [
+    { step: "01", emoji: "📝", title: "Buat Lowongan", desc: "Isi judul posisi, deskripsi pekerjaan, dan persyaratan kandidat di dashboard Anda.", color: "from-violet-400 to-indigo-500" },
+    { step: "02", emoji: "📤", title: "Upload CV (PDF)", desc: "Drag & drop file CV pelamar. Bisa satu per satu atau minta pelamar submit via link.", color: "from-indigo-400 to-violet-500" },
+    { step: "03", emoji: "🔍", title: "AI Menganalisis", desc: "Gemini AI membaca CV, menilai kecocokan, mendeteksi red flags, dan memberi skor ATS.", color: "from-violet-500 to-purple-500" },
+    { step: "04", emoji: "✅", title: "Ambil Keputusan", desc: "Dapat rekomendasi HR (Lolos/Pool/Tolak) + draft pesan WhatsApp ke kandidat siap kirim.", color: "from-purple-400 to-violet-600" },
+  ];
+
+  const isAts = activeProduct === "ats";
+  const steps = isAts ? atsSteps : chatbotSteps;
+  const accentRing = isAts ? "ring-violet-200" : "ring-emerald-200";
+
+  return (
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#d1fae5_1px,transparent_1px)] bg-[size:28px_28px] opacity-30 pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="inline-block mb-3 bg-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-emerald-200">Step by Step</span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-3">Cara Kerja PulseAI</h2>
+          <p className="text-slate-500 text-lg">Setup mudah, hasil langsung terasa.</p>
+
+          {/* Tab toggle */}
+          <div className="flex justify-center mt-8">
+            <div className="inline-flex bg-white rounded-2xl p-1.5 gap-1 border border-slate-200 shadow-md">
+              {[
+                { id: "chatbot", label: "🤖 AI Chatbot", activeClass: "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30" },
+                { id: "ats", label: "📋 AI ATS Scanner", activeClass: "bg-violet-600 text-white shadow-lg shadow-violet-600/30" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveProduct(tab.id as "chatbot" | "ats")}
+                  className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${activeProduct === tab.id ? tab.activeClass : "text-slate-500 hover:text-slate-700"}`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Steps */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProduct}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {steps.map((s, i) => (
+              <div key={i} className="relative group flex flex-col">
+                {/* Arrow connector between cards */}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:flex absolute top-10 left-full z-20 items-center -translate-x-1/2">
+                    <div className={`w-8 h-8 rounded-full bg-white border-2 ${accentRing} flex items-center justify-center shadow-sm`}>
+                      <svg className={`w-3.5 h-3.5 ${isAts ? "text-violet-500" : "text-emerald-500"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  className={`relative flex-1 flex flex-col rounded-2xl bg-white border border-slate-100 p-6 transition-all duration-300 cursor-default group-hover:-translate-y-2 group-hover:shadow-2xl ${isAts ? 'group-hover:border-violet-200 group-hover:shadow-violet-100/80' : 'group-hover:border-emerald-200 group-hover:shadow-emerald-100/80'}`}
+                >
+                  <div className="flex items-start justify-between mb-5">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                      {s.emoji}
+                    </div>
+                    <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${isAts ? 'bg-violet-50 text-violet-600 border-violet-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>
+                      STEP {s.step}
+                    </span>
+                  </div>
+                  <h4 className="font-black text-slate-900 text-base mb-2 leading-snug">{s.title}</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed flex-1">{s.desc}</p>
+                  <div className={`mt-5 h-1 rounded-full bg-gradient-to-r ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
+// ── Deep Dive Features ────────────────────────────────────────────────────────
 function DeepDiveFeatures() {
   const features = [
     {
-      title: "Akurasi Tinggi dengan Teknologi RAG",
-      desc: "Ucapkan selamat tinggal pada chatbot bodoh yang hanya mengandalkan kata kunci. PulseAI menggunakan Retrieval-Augmented Generation (RAG) untuk membaca, memahami, dan memproses PDF, dokumen katalog, atau website Anda. Hasilnya? AI merespons layaknya karyawan terbaik Anda yang tahu segalanya tentang produk.",
+      tag: "AI Chatbot · Modul 01", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
+      title: "Chatbot Pintar Berbasis Dokumen Bisnis Anda",
+      desc: "Bukan chatbot generik yang menjawab sembarang. PulseAI menggunakan RAG (Retrieval-Augmented Generation) yang membaca dokumen bisnis Anda — katalog, SOP, FAQ — lalu menjawab pelanggan layaknya karyawan terbaik Anda.",
       image: "/rag_accuracy.png",
       reversed: false,
-      usps: [
-        "Memahami konteks dokumen secara mendalam",
-        "Jawaban berbasis data real-time dari PDF Anda",
-        "Minimasi kesalahan informasi atau halusinasi AI"
-      ]
+      checkColor: "bg-emerald-100 border-emerald-200",
+      iconColor: "text-emerald-600",
+      usps: ["Jawaban 100% berbasis data bisnis Anda sendiri", "Tanpa halusinasi atau informasi ngawur", "Update pengetahuan AI cukup dengan upload dokumen baru"],
     },
     {
+      tag: "AI Chatbot · Modul 02", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
       title: "Lead Generation Otomatis 24/7",
-      desc: "Biarkan AI yang melakukan prospecting. PulseAI dirancang untuk tidak hanya menjawab pertanyaan, tapi juga memandu percakapan menuju konversi. AI dapat mengumpulkan nama, nomor telepon, dan kebutuhan spesifik pelanggan, lalu menyimpannya langsung ke sistem Anda.",
+      desc: "PulseAI tidak hanya menjawab pertanyaan — ia memandu percakapan menuju konversi. AI mengumpulkan nama, nomor telepon, dan kebutuhan spesifik pelanggan, lalu menyimpannya ke dashboard Anda secara otomatis.",
       image: "/lead_gen.png",
       reversed: true,
-      usps: [
-        "Kualifikasi prospek secara otomatis 24/7",
-        "Pengumpulan data leads yang terstruktur",
-        "Peningkatan rasio konversi hingga 3x lipat"
-      ]
+      checkColor: "bg-emerald-100 border-emerald-200",
+      iconColor: "text-emerald-600",
+      usps: ["Kualifikasi prospek otomatis saat Anda tidur", "Pengumpulan data leads yang terstruktur & bersih", "Peningkatan rasio konversi hingga 3x lipat"],
     },
     {
-      title: "Integrasi Widget Website",
-      desc: "Tampilkan chatbot Anda di website dengan widget yang cantik dan responsif. Berikan pengalaman layanan pelanggan yang instan tanpa perlu coding yang rumit.",
+      tag: "AI HR Tools · Modul 03", tagBg: "bg-violet-100", tagText: "text-violet-700", tagBorder: "border-violet-200",
+      title: "AI ATS CV Scanner untuk Rekrutmen Lebih Cerdas",
+      desc: "Berhenti membuang waktu membaca ratusan CV secara manual. Upload CV pelamar, dan AI memberikan ATS Score, analisis mendalam, deteksi red flags, serta rekomendasi keputusan HR dalam hitungan detik.",
       image: "/widget_demo.png",
       reversed: false,
-      usps: [
-        "Instalasi instan hanya dengan satu baris kode",
-        "Desain responsif & elegan di semua perangkat",
-        "Ringan & tidak memperlambat loading website"
-      ]
-    }
+      checkColor: "bg-violet-100 border-violet-200",
+      iconColor: "text-violet-600",
+      usps: ["ATS Score 0-100 berdasarkan kesesuaian dengan JD", "Deteksi otomatis job hopping, gap kerja & inkonsistensi data", "Draft pesan WhatsApp ke kandidat dibuat otomatis"],
+    },
   ];
 
   return (
-    <section id="fitur" className="py-24 bg-white overflow-hidden">
+    <section className="py-28 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Masa Depan Automasi Bisnis</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">Teknologi Enterprise yang disederhanakan agar mudah digunakan oleh UMKM dan Bisnis dari berbagai skala.</p>
+          <span className="inline-block mb-4 bg-slate-100 text-slate-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-slate-200">Detail Fitur</span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-5 leading-tight">Cara Setiap Modul Bekerja</h2>
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">Teknologi enterprise, disederhanakan untuk UMKM dan bisnis berkembang.</p>
         </div>
 
-        <div className="space-y-24">
-          {features.map((feature, i) => (
-            <motion.div 
+        <div className="space-y-28">
+          {features.map((f, i) => (
+            <motion.div
               key={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className={`flex flex-col md:flex-row items-center gap-12 ${feature.reversed ? 'md:flex-row-reverse' : ''}`}
+              className={`flex flex-col lg:flex-row items-center gap-14 ${f.reversed ? "lg:flex-row-reverse" : ""}`}
             >
-              <motion.div variants={fadeInUp} className="w-full md:w-1/2">
-                <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <motion.div variants={fadeInUp} className="w-full lg:w-1/2">
+                <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-200 group">
+                  <Image src={f.image} alt={f.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
                 </div>
               </motion.div>
-              <motion.div variants={fadeInUp} className="w-full md:w-1/2">
-                <div className="inline-block bg-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-sm mb-6">Fitur Unggulan {i+1}</div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-6 leading-tight">{feature.title}</h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-8">{feature.desc}</p>
-                <ul className="space-y-4">
-                  {feature.usps.map((usp, j) => (
-                    <li key={j} className="flex items-center text-slate-700 font-medium">
-                      <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                      {usp}
+
+              <motion.div variants={fadeInUp} className="w-full lg:w-1/2 space-y-6">
+                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border ${f.tagBg} ${f.tagBorder}`}>
+                  <span className={`text-xs font-black uppercase tracking-widest ${f.tagText}`}>{f.tag}</span>
+                </div>
+                <h3 className="text-3xl font-black text-slate-900 leading-tight">{f.title}</h3>
+                <p className="text-slate-600 text-base leading-relaxed">{f.desc}</p>
+                <ul className="space-y-3">
+                  {f.usps.map((usp, j) => (
+                    <li key={j} className="flex items-start gap-3">
+                      <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 border ${f.checkColor}`}>
+                        <svg className={`w-3 h-3 ${f.iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-slate-700 font-medium text-sm">{usp}</span>
                     </li>
                   ))}
                 </ul>
@@ -276,321 +528,174 @@ function DeepDiveFeatures() {
   );
 }
 
+// ── Pricing ───────────────────────────────────────────────────────────────────
 function Pricing() {
   const tiers = [
     {
-      name: "Paket Starter",
-      duration: "Durasi 1 Bulan",
-      price: "Rp 69.000",
-      monthlyPrice: "Rp 69.000/bulan",
+      name: "Starter", duration: "1 Bulan", price: "Rp 69.000", per: "Rp 69.000/bulan",
       desc: "Solusi cerdas untuk automasi bisnis jangka pendek.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      ),
-      features: [
-        "Unlimited Pesan / bulan",
-        "3 Dokumen PDF Upload",
-        "Branding Kustom (Tanpa Logo)",
-        "Integrasi Widget Web",
-        "Support Teknis 24/7 Setiap Hari"
-      ],
-      cta: "Pilih Paket Starter",
-      popular: false,
-      href: "https://dashboard.pulseai.biz.id"
+      popular: false, badge: null,
+      bg: "bg-white", border: "border-slate-200", hover: "hover:border-emerald-300 hover:shadow-emerald-100",
+      href: "https://dashboard.pulseai.biz.id", cta: "Mulai Sekarang",
+      ctaClass: "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700",
+      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
     },
     {
-      name: "Paket Pro",
-      duration: "Durasi 3 Bulan",
-      price: "Rp 149.000",
-      monthlyPrice: "Hanya ~Rp 49.700/bulan",
+      name: "Pro", duration: "3 Bulan", price: "Rp 149.000", per: "~Rp 49.700/bulan",
       desc: "Penawaran terbaik untuk stabilitas bisnis Anda.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M12 3l1.912 5.886 6.182.023-4.991 3.65 1.895 5.892L12 14.83l-5.001 3.621 1.895-5.892-4.991-3.65 6.182-.023L12 3z"/></svg>
-      ),
-      features: [
-        "Unlimited Pesan / bulan",
-        "3 Dokumen PDF Upload",
-        "Branding Kustom (Tanpa Logo)",
-        "Integrasi Widget Web",
-        "Support Teknis 24/7 Setiap Hari"
-      ],
-      cta: "Ambil Penawaran Terbaik",
-      popular: true,
-      badge: "BEST VALUE",
-      href: "https://dashboard.pulseai.biz.id"
+      popular: true, badge: "BEST VALUE",
+      bg: "bg-gradient-to-b from-emerald-600 to-emerald-700", border: "border-emerald-600", hover: "",
+      href: "https://dashboard.pulseai.biz.id", cta: "Ambil Penawaran Ini",
+      ctaClass: "bg-white text-emerald-700 hover:bg-emerald-50 shadow-lg shadow-emerald-900/20",
+      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
     },
     {
-      name: "Paket Full Scale",
-      duration: "Durasi 12 Bulan",
-      price: "Rp 249.000",
-      monthlyPrice: "Hanya ~Rp 20.750/bulan",
+      name: "Full Scale", duration: "12 Bulan", price: "Rp 249.000", per: "~Rp 20.750/bulan",
       desc: "Investasi maksimal untuk efisiensi total sepanjang tahun.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
-      ),
-      features: [
-        "Unlimited Pesan / bulan",
-        "3 Dokumen PDF Upload",
-        "Branding Kustom (Tanpa Logo)",
-        "Integrasi Widget Web",
-        "Support Teknis 24/7 Setiap Hari"
-      ],
-      cta: "Go Full Scale",
-      popular: false,
-      href: "https://dashboard.pulseai.biz.id"
-    }
+      popular: false, badge: null,
+      bg: "bg-white", border: "border-slate-200", hover: "hover:border-emerald-300 hover:shadow-emerald-100",
+      href: "https://dashboard.pulseai.biz.id", cta: "Go Full Scale",
+      ctaClass: "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700",
+      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
+    },
   ];
 
   return (
-    <section id="harga" className="py-24 bg-[#0f172a] text-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <div className="inline-block mb-4">
-            <span className="flex items-center gap-2 text-emerald-400 font-bold tracking-wider uppercase text-sm">
-              <span className="w-8 h-[1px] bg-emerald-400"></span>
-              Pricing Plans
-              <span className="w-8 h-[1px] bg-emerald-400"></span>
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Investasi Cerdas Untuk Bisnis Anda</h2>
-          <p className="text-xl text-slate-400">💡 Pilih paketnya, lupakan pusingnya.</p>
+    <section id="harga" className="py-24 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#d1fae5_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 pointer-events-none" />
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
+          <motion.span variants={fadeInUp} className="inline-flex items-center gap-2 text-emerald-600 font-bold tracking-widest uppercase text-xs mb-5">
+            <span className="w-8 h-px bg-emerald-400" /> Pricing Plans <span className="w-8 h-px bg-emerald-400" />
+          </motion.span>
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+            Investasi Cerdas<br />Untuk Bisnis Anda
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg max-w-xl mx-auto">
+            Semua paket sudah termasuk <strong className="text-slate-800">AI Chatbot + AI ATS CV Scanner</strong>.
+          </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+        {/* Bonus callout */}
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 max-w-2xl mx-auto">
+          <div className="flex items-start gap-4 bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl px-6 py-5 shadow-sm">
+            <div className="text-3xl shrink-0">🔥</div>
+            <div>
+              <p className="text-slate-900 font-bold text-sm mb-1">BONUS Eksklusif Semua Paket!</p>
+              <p className="text-slate-600 text-sm leading-relaxed">AI ATS CV Reader dengan kuota <span className="text-violet-700 font-bold">50 Scan CV per Bulan</span> sudah termasuk di setiap paket. Rekrut lebih cerdas tanpa biaya tambahan.</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid lg:grid-cols-3 gap-6 items-stretch">
           {tiers.map((tier, i) => (
-            <motion.div 
-              key={i} 
-              initial="hidden"
-              whileInView="visible"
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              variants={fadeInUp}
               transition={{ delay: i * 0.1 }}
-              className={`relative p-8 rounded-[32px] border flex flex-col transition-all duration-500 hover:scale-[1.02] ${
-                tier.popular 
-                ? 'border-emerald-500/50 bg-slate-900/50 shadow-[0_0_40px_-15px_rgba(16,185,129,0.3)]' 
-                : 'border-slate-800 bg-slate-900/30'
-              }`}
+              className={`relative flex flex-col rounded-3xl border overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${tier.bg} ${tier.border} ${tier.hover}`}
             >
               {tier.badge && (
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="bg-emerald-500 text-white text-xs font-black uppercase tracking-[0.2em] py-2 px-6 rounded-full shadow-[0_4px_20px_rgba(16,185,129,0.4)]">
-                    {tier.badge}
-                  </span>
+                <div className="bg-white text-center py-2 border-b border-emerald-500/30">
+                  <span className="text-emerald-700 text-xs font-black uppercase tracking-[0.2em]">{tier.badge}</span>
                 </div>
               )}
-              
-              <div className="text-center mb-8">
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-800 text-slate-400 mb-6 border border-slate-700">
-                  {tier.icon}
+
+              <div className="p-8 flex flex-col flex-1">
+                <div className="mb-6">
+                  <h3 className={`text-xl font-black mb-1 ${tier.popular ? "text-white" : "text-slate-900"}`}>Paket {tier.name}</h3>
+                  <p className={`text-sm font-medium ${tier.popular ? "text-emerald-100" : "text-slate-400"}`}>Durasi {tier.duration}</p>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-1">{tier.name}</h3>
-                <p className="text-slate-400 text-sm font-medium mb-6">{tier.duration}</p>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-5xl font-black text-white tracking-tight">
-                    {tier.price}
-                  </span>
-                  <span className="text-emerald-400 font-bold text-sm">
-                    {tier.monthlyPrice}
-                  </span>
+                <div className="mb-2">
+                  <span className={`text-5xl font-black tracking-tight ${tier.popular ? "text-white" : "text-slate-900"}`}>{tier.price}</span>
                 </div>
-              </div>
+                <p className={`text-sm font-bold mb-6 ${tier.popular ? "text-emerald-200" : "text-emerald-600"}`}>{tier.per}</p>
 
-              <p className="text-slate-400 text-center text-sm leading-relaxed mb-8 min-h-[48px]">
-                {tier.desc}
-              </p>
+                <p className={`text-sm leading-relaxed mb-8 ${tier.popular ? "text-emerald-100" : "text-slate-500"}`}>{tier.desc}</p>
 
-              <div className="space-y-4 mb-10 flex-1">
-                {tier.features.map((feature, j) => (
-                  <div key={j} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                      <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
-                      </svg>
+                <div className="space-y-3 flex-1 mb-6">
+                  {tier.features.map((feat, j) => (
+                    <div key={j} className="flex items-center gap-3">
+                      <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${tier.popular ? "bg-emerald-500/30 border border-emerald-400/40" : "bg-emerald-100 border border-emerald-200"}`}>
+                        <svg className={`w-2.5 h-2.5 ${tier.popular ? "text-emerald-200" : "text-emerald-600"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className={`text-sm ${tier.popular ? "text-emerald-50" : "text-slate-600"}`}>{feat}</span>
                     </div>
-                    <span className="text-slate-300 text-sm font-medium">{feature}</span>
-                  </div>
-                ))}
-              </div>
+                  ))}
 
-              <Link
-                href={tier.href}
-                target="_blank"
-                className={`block w-full text-center py-5 px-6 rounded-2xl font-bold text-lg transition-all duration-300 ${
-                  tier.popular 
-                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-400 text-white shadow-[0_10px_25px_-5px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(16,185,129,0.5)] hover:-translate-y-1' 
-                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20'
-                }`}
-              >
-                {tier.cta}
-              </Link>
+                  <div className="mt-5 pt-5 border-t border-white/20">
+                    <div className={`flex items-start gap-3 rounded-xl px-3.5 py-3 ${tier.popular ? "bg-white/15 border border-white/20" : "bg-violet-50 border border-violet-200"}`}>
+                      <span className="text-base shrink-0">🔥</span>
+                      <span className={`text-xs font-bold leading-relaxed ${tier.popular ? "text-white" : "text-violet-700"}`}>BONUS: {tier.bonus}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href={tier.href}
+                  target="_blank"
+                  className={`block text-center py-4 px-6 rounded-2xl font-bold text-base transition-all duration-300 hover:-translate-y-px ${tier.ctaClass}`}
+                >
+                  {tier.cta}
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
-
-        <div className="mt-20 text-center">
-          <p className="text-slate-400 font-bold text-sm uppercase tracking-widest mb-4">Semua paket sudah termasuk:</p>
-          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Akses semua fitur unggulan, dukungan penuh dari tim kami, dan update fitur terbaru secara gratis.
-          </p>
-        </div>
       </div>
     </section>
   );
 }
 
-function WhatsAppIntegration() {
-  return (
-    <section className="py-24 bg-slate-50 border-t border-slate-200">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-            className="w-full md:w-1/2"
-          >
-            <div className="inline-block bg-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-sm mb-6">Integrasi WhatsApp</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">Chatbot WhatsApp & Pengumpulan Leads</h2>
-            <p className="text-lg text-slate-600 leading-relaxed mb-6">
-              Selain widget website, PulseAI dapat diintegrasikan langsung dengan WhatsApp bisnis Anda. Kumpulkan prospek (leads) secara otomatis dari berbagai channel.
-            </p>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-start text-slate-700 font-medium">
-                <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                <span><strong>WhatsApp Unofficial:</strong> Solusi cepat & hemat untuk langsung menggunakan chatbot di nomor WhatsApp biasa Anda.</span>
-              </li>
-              <li className="flex items-start text-slate-700 font-medium">
-                <svg className="w-6 h-6 mr-3 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                <span><strong>Koleksi Leads Otomatis:</strong> AI mengumpulkan nama & kontak pengguna secara otomatis baik dari Widget Website maupun WhatsApp.</span>
-              </li>
-            </ul>
-
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-8">
-              <div className="flex items-center gap-4 mb-4">
-                <Image src="/logo-mekari.svg" alt="Mekari Qontak" width={120} height={40} className="object-contain" />
-                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full uppercase tracking-wider border border-emerald-100">Official Partner</span>
-              </div>
-              <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-                Ingin menggunakan <strong>WhatsApp API Official (Centang Hijau)</strong>? Kami merekomendasikan Mekari Qontak. Gunakan kode referral kami untuk mendapatkan diskon tambahan!
-              </p>
-            </div>
-
-            <Link
-              href="https://wa.me/6287826563459"
-              target="_blank"
-              className="inline-flex items-center justify-center h-14 px-8 text-lg font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-            >
-              Konsultasi Gratis
-              <svg className="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
-            </Link>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-            className="w-full md:w-1/2"
-          >
-            <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-emerald-50 flex items-center justify-center p-8">
-              <div className="w-full max-w-sm bg-white rounded-[2rem] shadow-xl border-4 border-slate-100 overflow-hidden flex flex-col h-[400px]">
-                <div className="bg-[#075e54] text-white p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold">
-                    PA
-                  </div>
-                  <div>
-                    <div className="font-bold">PulseAI Chatbot</div>
-                    <div className="text-xs text-white/80">Online</div>
-                  </div>
-                </div>
-                <div className="flex-1 bg-[#efeae2] p-4 flex flex-col gap-3 overflow-hidden">
-                  <div className="bg-white p-3 rounded-xl rounded-tl-none self-start max-w-[85%] shadow-sm text-sm text-slate-700">
-                    Halo! Selamat datang di PulseAI. Ada yang bisa kami bantu hari ini?
-                  </div>
-                  <div className="bg-[#dcf8c6] p-3 rounded-xl rounded-tr-none self-end max-w-[85%] shadow-sm text-sm text-slate-700">
-                    Saya tertarik dengan layanannya.
-                  </div>
-                  <div className="bg-white p-3 rounded-xl rounded-tl-none self-start max-w-[85%] shadow-sm text-sm text-slate-700">
-                    Tentu! Boleh kami tahu nama dan email Anda agar tim kami bisa mengirimkan detail lebih lanjut?
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
+// ── Testimonials ──────────────────────────────────────────────────────────────
 function Testimonials() {
   const reviews = [
-    {
-      name: "Budi Santoso",
-      role: "Owner, TechStore ID",
-      content: "Sejak menggunakan PulseAI, tim CS kami tidak lagi kewalahan di malam hari. Konversi penjualan meningkat 30% karena semua prospek dibalas dalam hitungan detik.",
-      rating: 5
-    },
-    {
-      name: "Rina Amelia",
-      role: "Marketing Director, BeautyGlow",
-      content: "Teknologi RAG-nya luar biasa! AI ini benar-benar paham detail ingredients produk kosmetik kami dan bisa menjawab pertanyaan rumit dari pelanggan.",
-      rating: 5
-    },
-    {
-      name: "Ahmad Rizky",
-      role: "Founder, OtoParts",
-      content: "Sangat membantu untuk otomasi CS. Kami bisa fokus pada strategi bisnis sementara PulseAI menangani ratusan pertanyaan tentang ketersediaan suku cadang dengan sangat akurat.",
-      rating: 5
-    }
+    { name: "Budi Santoso", role: "Owner, TechStore ID", tag: "AI Chatbot", tagBg: "bg-emerald-100 text-emerald-700 border border-emerald-200", avatar: "from-emerald-400 to-teal-500", content: "Sejak pakai PulseAI, tim CS kami tidak lagi kewalahan di malam hari. Konversi penjualan naik 30% karena semua prospek dibalas dalam hitungan detik.", rating: 5 },
+    { name: "Rina Amelia", role: "HR Director, BeautyGlow", tag: "AI ATS Scanner", tagBg: "bg-violet-100 text-violet-700 border border-violet-200", avatar: "from-violet-400 to-indigo-500", content: "Proses screening CV yang biasanya 2 minggu, sekarang selesai dalam 2 jam. AI-nya akurat banget dalam mendeteksi kandidat tidak sesuai kualifikasi.", rating: 5 },
+    { name: "Ahmad Rizky", role: "Founder, OtoParts", tag: "Chatbot + ATS", tagBg: "bg-blue-100 text-blue-700 border border-blue-200", avatar: "from-blue-400 to-cyan-500", content: "Dua fitur dalam satu platform! Chatbot bantu tim CS kami, ATS Scanner hemat waktu HR. Value for money yang benar-benar luar biasa.", rating: 5 },
   ];
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Dipercaya oleh Pebisnis Cerdas</h2>
-          <p className="text-xl text-slate-600">Lihat apa kata mereka yang telah mengotomatiskan bisnisnya.</p>
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#d1fae5_1px,transparent_1px)] bg-[size:28px_28px] opacity-25 pointer-events-none" />
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-14">
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Dipercaya Pebisnis Cerdas</motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg">Lihat apa kata mereka yang telah mengotomatiskan bisnisnya.</motion.p>
         </motion.div>
 
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {reviews.map((review, i) => (
-            <motion.div key={i} variants={fadeInUp} className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-              <div className="flex gap-1 mb-6">
-                {[...Array(review.rating)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                ))}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-3 gap-6">
+          {reviews.map((r, i) => (
+            <motion.div key={i} variants={fadeInUp}
+              className="group relative bg-white border border-slate-100 hover:border-emerald-200 rounded-3xl p-7 shadow-sm hover:shadow-2xl hover:shadow-emerald-50 transition-all duration-500 hover:-translate-y-1"
+            >
+              <div className="absolute top-7 right-7 text-5xl text-slate-100 font-serif leading-none select-none">"</div>
+
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex gap-0.5">
+                  {[...Array(r.rating)].map((_, k) => (
+                    <svg key={k} className="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                  ))}
+                </div>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${r.tagBg}`}>{r.tag}</span>
               </div>
-              <p className="text-slate-700 leading-relaxed mb-8 font-medium italic">"{review.content}"</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center text-emerald-700 font-bold text-lg">
-                  {review.name.charAt(0)}
+
+              <p className="text-slate-600 leading-relaxed mb-7 text-sm font-medium relative z-10">&ldquo;{r.content}&rdquo;</p>
+
+              <div className="flex items-center gap-3 pt-5 border-t border-slate-50">
+                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${r.avatar} flex items-center justify-center text-white font-bold text-sm shrink-0`}>
+                  {r.name.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900">{review.name}</h4>
-                  <p className="text-sm text-slate-500">{review.role}</p>
+                  <p className="font-bold text-slate-900 text-sm">{r.name}</p>
+                  <p className="text-slate-400 text-xs">{r.role}</p>
                 </div>
               </div>
             </motion.div>
@@ -601,103 +706,53 @@ function Testimonials() {
   );
 }
 
+// ── FAQ ───────────────────────────────────────────────────────────────────────
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
-    {
-      q: "Apa itu PulseAI dan bagaimana ia membantu bisnis saya?",
-      a: "PulseAI adalah asisten sales AI otomatis berbasis RAG (Retrieval-Augmented Generation). Ia bertindak sebagai tim CS virtual yang paham katalog produk Anda 100% dan membalas pertanyaan pelanggan 24/7 di Website Anda."
-    },
-    {
-      q: "Bagaimana cara kerja AI RAG ini?",
-      a: "Anda cukup mengunggah file PDF, dokumen teks, atau link website bisnis Anda ke dalam dashboard PulseAI. AI kami akan mengekstrak data tersebut menjadi basis pengetahuan (Knowledge Base) untuk menjawab pertanyaan pelanggan secara akurat tanpa halusinasi."
-    },
-    {
-      q: "Apakah bisa disambungkan ke Website saya?",
-      a: "Tentu saja. Anda akan mendapatkan satu baris kode script yang bisa dipasang di website apapun (WordPress, Shopify, atau Custom Code) untuk memunculkan widget chat AI Anda."
-    },
-    {
-      q: "Apakah AI ini bisa memproses transaksi atau pembayaran?",
-      a: "Saat ini, PulseAI dirancang kuat untuk Lead Generation dan Customer Support (menjawab pertanyaan katalog, harga, dll). Namun, Anda dapat menyisipkan tautan checkout atau payment gateway pada balasan AI untuk memandu pelanggan melakukan pembayaran mandiri."
-    },
-    {
-      q: "Bagaimana jika pelanggan ingin berbicara dengan CS manusia?",
-      a: "PulseAI memiliki fitur handoff (pengalihan). Jika AI tidak dapat menjawab pertanyaan atau pelanggan meminta berbicara dengan agen manusia, sistem akan memberikan notifikasi kepada Anda untuk mengambil alih chat secara manual."
-    },
-    {
-      q: "Apakah data bisnis saya aman?",
-      a: "Keamanan data adalah prioritas utama kami. Dokumen yang Anda unggah hanya digunakan sebagai basis pengetahuan untuk chatbot Anda sendiri dan tidak akan pernah dibagikan atau digunakan untuk melatih model publik lainnya."
-    },
-    {
-      q: "Mengapa harganya sangat murah?",
-      a: "Karena kami baru saja melakukan Beta Launch dan ingin Anda menjadi bagian dari perjalanan PulseAI dalam menyempurnakan AI terbaik untuk bisnis Indonesia. Ini adalah investasi awal bagi kami untuk mendapatkan feedback dari user-user terbaik."
-    }
+    { q: "Apa itu PulseAI dan apa yang bisa dilakukan?", a: "PulseAI adalah platform automasi bisnis berbasis AI dengan dua modul: (1) AI Chatbot & Lead Generation — asisten penjualan 24/7 di website dan WhatsApp, dan (2) AI HR Tools & ATS Scanner — sistem rekrutmen otomatis yang menilai CV pelamar dalam hitungan detik." },
+    { q: "Bagaimana cara kerja AI Chatbot-nya?", a: "Upload dokumen bisnis (PDF katalog, SOP, FAQ) ke dashboard. AI menggunakan teknologi RAG untuk memahami konten tersebut dan menjawab pelanggan dengan akurasi 100% berbasis data Anda. Tidak ada halusinasi, tidak ada jawaban ngawur." },
+    { q: "Apa itu AI ATS CV Scanner dan cara kerjanya?", a: "AI ATS Scanner membaca PDF CV pelamar dan menghasilkan: Skor ATS (0-100), analisis kelebihan & kekurangan, deteksi red flags (job hopping, gap kerja), rekomendasi keputusan HR, dan draft pesan WhatsApp ke kandidat yang siap kirim." },
+    { q: "Apakah perlu berlangganan untuk pakai ATS CV Scanner?", a: "Tidak! AI ATS CV Scanner sudah termasuk BONUS di semua paket. Subscriber mendapat kuota 50 scan CV per bulan. Tanpa langganan pun tersedia 5 scan gratis per bulan untuk dicoba." },
+    { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! AI Chatbot tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp (scan QR untuk hubungkan nomor bisnis Anda)." },
+    { q: "Apakah data bisnis dan CV pelamar saya aman?", a: "Keamanan data adalah prioritas utama. Dokumen bisnis hanya digunakan sebagai basis pengetahuan chatbot Anda sendiri. Data CV tersimpan di sistem Anda dan tidak pernah dibagikan atau digunakan melatih model AI publik." },
+    { q: "Mengapa harganya sangat murah?", a: "Karena kami baru saja Beta Launch dan ingin Anda menjadi bagian dari perjalanan PulseAI. Harga early adopter ini tidak akan berlaku selamanya — semakin cepat bergabung, semakin besar keuntungan Anda!" },
   ];
 
-  // Generate JSON-LD Schema
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
-      }
-    }))
-  };
+  const schemaData = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) };
 
   return (
-    <section id="faq" className="py-24 bg-emerald-50">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-      <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Pertanyaan yang Sering Diajukan</h2>
-          <p className="text-xl text-slate-600">Pelajari lebih lanjut tentang bagaimana PulseAI bekerja untuk Anda.</p>
+    <section id="faq" className="py-24 bg-white relative">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-14">
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Pertanyaan Umum</motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg">Pelajari lebih lanjut tentang bagaimana PulseAI bekerja.</motion.p>
         </motion.div>
-        
-        <div className="space-y-4">
+
+        <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <motion.div 
-              key={i} 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
+            <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+              className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === i ? "border-emerald-200 shadow-lg shadow-emerald-50" : "border-slate-100 shadow-sm hover:border-slate-200"}`}
             >
-              <button 
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50 transition-colors"
-              >
-                <h3 className="text-lg font-bold text-slate-900 pr-8">{faq.q}</h3>
-                <svg 
-                  className={`w-6 h-6 text-emerald-500 transform transition-transform duration-300 shrink-0 ${openIndex === i ? 'rotate-180' : ''}`} 
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {/* Expandable Content */}
-              <div 
-                className={`transition-all duration-300 ease-in-out ${openIndex === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-              >
-                <div className="px-6 pb-6 pt-2 border-t border-slate-100">
-                  <p className="text-slate-600 leading-relaxed text-lg">{faq.a}</p>
+              <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                <h3 className="font-bold text-slate-900 text-sm leading-snug">{faq.q}</h3>
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${openIndex === i ? "bg-emerald-600 rotate-180" : "bg-slate-100"}`}>
+                  <svg className={`w-4 h-4 transition-colors ${openIndex === i ? "text-white" : "text-slate-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
-              </div>
+              </button>
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
+                    <div className="px-6 pb-5 border-t border-emerald-50">
+                      <p className="text-slate-600 text-sm leading-relaxed pt-4">{faq.a}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -706,40 +761,32 @@ function FAQ() {
   );
 }
 
+// ── Final CTA ─────────────────────────────────────────────────────────────────
 function FinalPitch() {
   return (
-    <section className="py-24 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-pulse"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-      
+    <section className="py-28 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-700 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-teal-400/20 rounded-full blur-3xl" />
+
       <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-            Siap Mengotomatiskan Bisnis Anda?<br/>Gabung dengan ratusan pebisnis cerdas lainnya.
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-semibold backdrop-blur-sm">
+            🚀 Automasi Bisnis Dimulai Hari Ini
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+            Siap Mengotomatiskan<br />Bisnis Anda?
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-xl text-emerald-100 mb-12 max-w-2xl mx-auto">
-            Mulai sekarang juga. Setup sistem AI Anda dalam hitungan menit tanpa perlu kemampuan coding sedikitpun.
+          <motion.p variants={fadeInUp} className="text-emerald-100 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+            AI Chatbot + AI ATS CV Scanner. Setup dalam 5 menit. Tidak perlu coding. Tidak perlu tim IT.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="https://wa.me/6287826563459"
-              target="_blank"
-              className="inline-flex items-center justify-center h-16 px-10 text-xl font-bold text-emerald-700 bg-white hover:bg-emerald-50 rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-            >
-              Book a demo
-              <svg className="w-6 h-6 ml-3 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            <Link href="https://wa.me/6287826563459" target="_blank" className="group inline-flex items-center justify-center gap-2.5 px-10 py-4 text-lg font-bold text-emerald-700 bg-white hover:bg-emerald-50 rounded-2xl shadow-2xl shadow-emerald-900/20 transition-all hover:-translate-y-1">
+              Book a Demo
+              <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
-            <Link
-              href="https://wa.me/6287826563459"
-              target="_blank"
-              className="inline-flex items-center justify-center h-16 px-10 text-xl font-bold text-white border-2 border-white/20 hover:bg-white/10 rounded-full transition-all"
-            >
-              Tanya Produk
+            <Link href="https://dashboard.pulseai.biz.id" className="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white border-2 border-white/30 hover:bg-white/15 hover:border-white/50 rounded-2xl transition-all">
+              Coba Gratis
             </Link>
           </motion.div>
         </motion.div>
@@ -748,50 +795,47 @@ function FinalPitch() {
   );
 }
 
+// ── Footer ────────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-16">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
               </div>
-              <span className="font-bold text-2xl text-white tracking-tight flex items-center gap-2">
-                PulseAI
-                <span className="bg-white/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-white/10">Beta</span>
-              </span>
+              <span className="font-black text-xl text-white">PulseAI <span className="text-[10px] font-bold bg-white/10 text-emerald-400 px-2 py-0.5 rounded-full border border-white/10 align-middle ml-1">Beta</span></span>
             </div>
-            <p className="text-base text-slate-400 max-w-md leading-relaxed">
-              Masa depan customer service dan penjualan ada di tangan AI. Percepat pertumbuhan bisnis Anda sekarang dengan asisten pintar yang bekerja 24 jam nonstop.
+            <p className="text-sm text-slate-500 max-w-sm leading-relaxed">
+              Platform AI Otomasi Bisnis — AI Chatbot untuk Sales & CS, plus AI ATS CV Scanner untuk rekrutmen lebih cerdas. Satu platform, semua kebutuhan automasi.
             </p>
           </div>
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">Produk</h4>
-            <ul className="space-y-4 text-base">
-              <li><Link href="#fitur" className="hover:text-emerald-400 transition-colors">Fitur</Link></li>
-              <li><Link href="#solusi" className="hover:text-emerald-400 transition-colors">Solusi</Link></li>
-              <li><Link href="#harga" className="hover:text-emerald-400 transition-colors">Harga</Link></li>
-              <li><Link href="#faq" className="hover:text-emerald-400 transition-colors">FAQ</Link></li>
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Produk</h4>
+            <ul className="space-y-3 text-sm">
+              {["#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
+                const [href, label] = item.split("|");
+                return <li key={href}><Link href={href} className="hover:text-white transition-colors">{label}</Link></li>;
+              })}
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">Legal</h4>
-            <ul className="space-y-4 text-base">
-              <li><Link href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="hover:text-emerald-400 transition-colors">Contact Us</Link></li>
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Legal</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
         </div>
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
           <p>© {new Date().getFullYear()} PulseAI (pulseai.biz.id). All rights reserved.</p>
-          <div className="flex gap-4">
-            {/* Social Links placeholders */}
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+          <div className="flex gap-5">
+            {["Twitter", "LinkedIn", "Instagram"].map((s) => (
+              <a key={s} href="#" className="hover:text-white transition-colors">{s}</a>
+            ))}
           </div>
         </div>
       </div>
@@ -799,16 +843,18 @@ function Footer() {
   );
 }
 
+// ── Page Assembly ─────────────────────────────────────────────────────────────
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-emerald-500 selection:text-white scroll-smooth">
+    <div className="min-h-screen font-sans text-slate-800 selection:bg-emerald-500 selection:text-white scroll-smooth">
       <Navbar />
       <main>
         <Hero />
-        <TrustBar />
+        <StatsBar />
         <ProblemBreakdown />
+        <ProductSuite />
+        <HowItWorks />
         <DeepDiveFeatures />
-        <WhatsAppIntegration />
         <Testimonials />
         <Pricing />
         <FAQ />
