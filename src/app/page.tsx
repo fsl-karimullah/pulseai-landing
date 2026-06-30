@@ -532,34 +532,34 @@ function DeepDiveFeatures() {
 function Pricing() {
   const tiers = [
     {
-      name: "Starter", duration: "1 Bulan", price: "Rp 69.000", per: "Rp 69.000/bulan",
+      name: "Starter", duration: "1 Bulan", price: "Rp 79.000", per: "~~Rp 149.000~~ (Hemat 47%)",
       desc: "Solusi cerdas untuk automasi bisnis jangka pendek.",
       popular: false, badge: null,
       bg: "bg-white", border: "border-slate-200", hover: "hover:border-emerald-300 hover:shadow-emerald-100",
       href: "https://dashboard.pulseai.biz.id", cta: "Mulai Sekarang",
       ctaClass: "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700",
-      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
-      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
+      features: ["♾️ AI Chatbot Unlimited Pesan", "📄 10 Kuota Scan CV / Bulan", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "Top-up kredit untuk ekstra scan",
     },
     {
-      name: "Pro", duration: "3 Bulan", price: "Rp 149.000", per: "~Rp 49.700/bulan",
+      name: "Pro", duration: "3 Bulan", price: "Rp 199.000", per: "~~Rp 599.000~~ (Hemat 67%)",
       desc: "Penawaran terbaik untuk stabilitas bisnis Anda.",
       popular: true, badge: "BEST VALUE",
       bg: "bg-gradient-to-b from-emerald-600 to-emerald-700", border: "border-emerald-600", hover: "",
       href: "https://dashboard.pulseai.biz.id", cta: "Ambil Penawaran Ini",
       ctaClass: "bg-white text-emerald-700 hover:bg-emerald-50 shadow-lg shadow-emerald-900/20",
-      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
-      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
+      features: ["♾️ AI Chatbot Unlimited Pesan", "📄 20 Kuota Scan CV / Bulan", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "Top-up kredit untuk ekstra scan",
     },
     {
-      name: "Full Scale", duration: "12 Bulan", price: "Rp 249.000", per: "~Rp 20.750/bulan",
+      name: "Full Scale", duration: "12 Bulan", price: "Rp 699.000", per: "~~Rp 1.499.000~~ (Hemat 53%)",
       desc: "Investasi maksimal untuk efisiensi total sepanjang tahun.",
       popular: false, badge: null,
       bg: "bg-white", border: "border-slate-200", hover: "hover:border-emerald-300 hover:shadow-emerald-100",
       href: "https://dashboard.pulseai.biz.id", cta: "Go Full Scale",
       ctaClass: "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700",
-      features: ["🤖 AI Chatbot Unlimited Pesan", "📄 3 Dokumen PDF Upload", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
-      bonus: "AI ATS CV Reader (50 Scan/Bulan)",
+      features: ["♾️ AI Chatbot Unlimited Pesan", "📄 30 Kuota Scan CV / Bulan", "🌐 Widget Website", "📱 Integrasi WhatsApp", "🎯 Lead Capture Otomatis", "💬 Support Teknis 24/7"],
+      bonus: "Top-up kredit untuk ekstra scan",
     },
   ];
 
@@ -584,8 +584,8 @@ function Pricing() {
           <div className="flex items-start gap-4 bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl px-6 py-5 shadow-sm">
             <div className="text-3xl shrink-0">🔥</div>
             <div>
-              <p className="text-slate-900 font-bold text-sm mb-1">BONUS Eksklusif Semua Paket!</p>
-              <p className="text-slate-600 text-sm leading-relaxed">AI ATS CV Reader dengan kuota <span className="text-violet-700 font-bold">50 Scan CV per Bulan</span> sudah termasuk di setiap paket. Rekrut lebih cerdas tanpa biaya tambahan.</p>
+              <p className="text-slate-900 font-bold text-sm mb-1">Butuh lebih dari kuota bulanan?</p>
+              <p className="text-slate-600 text-sm leading-relaxed">PulseAI kini menggunakan <span className="text-violet-700 font-bold">Sistem Top-Up Kredit Fleksibel</span>. Kehabisan kuota CV Scan? Anda bisa top-up kapan saja (Rp 10.000 = 100 Kredit = 10 Extra Scan) tanpa harus langganan baru!</p>
             </div>
           </div>
         </motion.div>
