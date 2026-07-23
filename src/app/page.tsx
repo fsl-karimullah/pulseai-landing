@@ -30,7 +30,7 @@ function Navbar() {
           </span>
         </div>
         <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
-          {["#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
+          {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
             const [href, label] = item.split("|");
             return <Link key={href} href={href} className="hover:text-emerald-600 transition-colors duration-200">{label}</Link>;
           })}
@@ -115,6 +115,144 @@ function Hero() {
           <motion.p variants={fadeInUp} className="text-slate-400 text-xs tracking-wide">
             Tidak perlu kartu kredit · Setup 5 menit · Kuota gratis tersedia
           </motion.p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ── About Us ─────────────────────────────────────────────────────────────────
+function AboutUs() {
+  return (
+    <section id="tentang-kami" className="py-24 bg-white relative overflow-hidden">
+      {/* Decorative gradient blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50/60 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-50/50 rounded-full blur-3xl pointer-events-none translate-y-1/2 -translate-x-1/2" />
+
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        {/* Section Header */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="text-center mb-16">
+          <motion.span variants={fadeInUp} className="inline-flex items-center gap-2 text-emerald-600 text-sm font-bold uppercase tracking-widest mb-5">
+            <span className="w-6 h-px bg-emerald-400" /> Tentang Kami <span className="w-6 h-px bg-emerald-400" />
+          </motion.span>
+          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-5 leading-tight">
+            PT Astra Solusi Digital
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+            Perusahaan teknologi Indonesia yang berdedikasi menghadirkan solusi kecerdasan buatan (AI) terdepan untuk mendorong transformasi digital bisnis.
+          </motion.p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-14 items-center mb-20">
+          {/* Company Description */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border bg-emerald-50 border-emerald-200">
+              <span className="text-xs font-black uppercase tracking-widest text-emerald-700">🏢 Tentang Perusahaan</span>
+            </motion.div>
+            <motion.h3 variants={fadeInUp} className="text-2xl md:text-3xl font-black text-slate-900 leading-tight">
+              Mendorong Transformasi Digital melalui Kecerdasan Buatan
+            </motion.h3>
+            <motion.p variants={fadeInUp} className="text-slate-600 leading-relaxed text-base">
+              <strong className="text-slate-800">PT Astra Solusi Digital</strong> adalah perusahaan teknologi Indonesia yang berfokus pada pengembangan dan penerapan solusi berbasis Artificial Intelligence (AI) untuk sektor bisnis dan UMKM. Didirikan dengan visi membantu bisnis Indonesia bersaing di era digital, kami menghadirkan PulseAI — platform automasi all-in-one yang menggabungkan AI Chatbot, Lead Generation, dan AI HR Tools dalam satu ekosistem terintegrasi.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-slate-600 leading-relaxed text-base">
+              Kami percaya bahwa teknologi AI seharusnya dapat diakses oleh semua kalangan bisnis — dari startup hingga perusahaan skala menengah. Itulah mengapa kami merancang PulseAI agar mudah digunakan, terjangkau, namun tetap bertenaga enterprise.
+            </motion.p>
+
+            {/* Values */}
+            <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-4 pt-2">
+              {[
+                { icon: "🎯", title: "Misi", desc: "Demokratisasi AI untuk bisnis Indonesia" },
+                { icon: "🔭", title: "Visi", desc: "Menjadi platform AI #1 di Asia Tenggara" },
+                { icon: "💡", title: "Inovasi", desc: "Teknologi RAG & LLM mutakhir" },
+                { icon: "🤝", title: "Komitmen", desc: "Support 24/7 untuk setiap klien" },
+              ].map((v, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300">
+                  <span className="text-xl shrink-0">{v.icon}</span>
+                  <div>
+                    <p className="font-bold text-slate-900 text-sm">{v.title}</p>
+                    <p className="text-slate-500 text-xs leading-relaxed">{v.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Director Card */}
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}>
+            <div className="relative">
+              {/* Decorative ring */}
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-100/60 to-teal-100/60 blur-xl" />
+              <div className="relative bg-white rounded-3xl border border-slate-100 shadow-2xl shadow-emerald-50 overflow-hidden">
+                {/* Top gradient bar */}
+                <div className="h-2 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600" />
+
+                <div className="p-8">
+                  {/* Avatar */}
+                  <div className="flex items-center gap-5 mb-7">
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg shadow-emerald-500/30 shrink-0 ring-4 ring-emerald-50 relative">
+                      <Image
+                        src="/amir-faisal.jpg"
+                        alt="Amir Faisal Karimullah - Direktur Utama PT Astra Solusi Digital"
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1">Direktur Utama</p>
+                      <h4 className="text-xl font-black text-slate-900 leading-snug">Amir Faisal Karimullah, A.Md.Kom.</h4>
+                      <p className="text-slate-400 text-sm font-medium mt-1">Ahli Madya Komputer (D3)</p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent mb-6" />
+
+                  {/* Quote */}
+                  <div className="relative">
+                    <div className="absolute -top-2 -left-1 text-6xl text-emerald-100 font-serif leading-none select-none">&ldquo;</div>
+                    <blockquote className="relative z-10 text-slate-700 text-sm leading-relaxed font-medium italic pl-4">
+                      Kami membangun PulseAI dengan keyakinan bahwa setiap bisnis di Indonesia, sekecil apapun, berhak mendapatkan akses ke teknologi AI kelas dunia. Dengan PT Astra Solusi Digital, kami mewujudkan itu.
+                    </blockquote>
+                  </div>
+
+                  {/* Badges */}
+                  <div className="flex flex-wrap gap-2 mt-6">
+                    {["AI & Machine Learning", "Product Strategy", "Digital Transformation"].map((tag) => (
+                      <span key={tag} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">{tag}</span>
+                    ))}
+                  </div>
+
+                  {/* Company badge */}
+                  <div className="mt-6 pt-5 border-t border-slate-50 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400">Perusahaan</p>
+                      <p className="text-sm font-bold text-slate-800">PT Astra Solusi Digital</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Company Stats */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { value: "2024", label: "Tahun Berdiri", icon: "🏛️" },
+            { value: "100+", label: "Klien Aktif", icon: "🤝" },
+            { value: "2", label: "Modul AI Unggulan", icon: "🤖" },
+            { value: "Indonesia", label: "Berbasis di", icon: "🇮🇩" },
+          ].map((stat, i) => (
+            <motion.div key={i} variants={fadeInUp} className="text-center p-6 bg-gradient-to-b from-slate-50 to-white rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50/80 transition-all duration-300">
+              <div className="text-3xl mb-2">{stat.icon}</div>
+              <p className="text-2xl font-black text-slate-900 mb-1">{stat.value}</p>
+              <p className="text-slate-500 text-xs font-medium uppercase tracking-wider">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
@@ -235,6 +373,7 @@ function ProductSuite() {
     { icon: "🚩", title: "Deteksi Red Flags", desc: "Job hopping, gap kerja panjang, loncatan karier ekstrem — semua terdeteksi otomatis." },
     { icon: "✅", title: "Rekomendasi HR Instan", desc: "Lolos Interview / Talent Pool / Tolak — keputusan AI berbasis data dalam detik." },
     { icon: "💬", title: "Draft WhatsApp Otomatis", desc: "Pesan balasan ke kandidat dibuat AI secara otomatis, tinggal copy-paste & kirim." },
+    { icon: "📦", title: "Bulk CV Scan", desc: "Free: scan hingga 10 CV sekaligus. Premium: scan lebih dari 20 CV dalam satu sesi — cocok untuk rekrutmen massal." },
   ];
 
   const isAts = activeTab === "ats";
@@ -711,12 +850,14 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
-    { q: "Apa itu PulseAI dan apa yang bisa dilakukan?", a: "PulseAI adalah platform automasi bisnis berbasis AI dengan dua modul: (1) AI Chatbot & Lead Generation — asisten penjualan 24/7 di website dan WhatsApp, dan (2) AI HR Tools & ATS Scanner — sistem rekrutmen otomatis yang menilai CV pelamar dalam hitungan detik." },
+    { q: "Apa itu PulseAI dan apa yang bisa dilakukan?", a: "PulseAI adalah platform automasi bisnis berbasis AI yang dikembangkan oleh PT Astra Solusi Digital, dengan dua modul: (1) AI Chatbot & Lead Generation — asisten penjualan 24/7 di website dan WhatsApp, dan (2) AI HR Tools & ATS Scanner — sistem rekrutmen otomatis yang menilai CV pelamar dalam hitungan detik." },
     { q: "Bagaimana cara kerja AI Chatbot-nya?", a: "Upload dokumen bisnis (PDF katalog, SOP, FAQ) ke dashboard. AI menggunakan teknologi RAG untuk memahami konten tersebut dan menjawab pelanggan dengan akurasi 100% berbasis data Anda. Tidak ada halusinasi, tidak ada jawaban ngawur." },
     { q: "Apa itu AI ATS CV Scanner dan cara kerjanya?", a: "AI ATS Scanner membaca PDF CV pelamar dan menghasilkan: Skor ATS (0-100), analisis kelebihan & kekurangan, deteksi red flags (job hopping, gap kerja), rekomendasi keputusan HR, dan draft pesan WhatsApp ke kandidat yang siap kirim." },
-    { q: "Apakah perlu berlangganan untuk pakai ATS CV Scanner?", a: "Tidak! AI ATS CV Scanner sudah termasuk BONUS di semua paket. Subscriber mendapat kuota 50 scan CV per bulan. Tanpa langganan pun tersedia 5 scan gratis per bulan untuk dicoba." },
+    { q: "Apa itu fitur Bulk CV Scan dan berapa batasannya?", a: "Fitur Bulk CV Scan memungkinkan Anda mengupload dan menganalisis banyak CV sekaligus dalam satu sesi. Untuk pengguna Free, Anda dapat scan hingga 10 CV sekaligus. Pengguna Premium dapat scan lebih dari 20 CV dalam satu sesi — sangat efisien untuk rekrutmen massal!" },
+    { q: "Apakah perlu berlangganan untuk pakai ATS CV Scanner?", a: "Tidak! AI ATS CV Scanner sudah termasuk di semua paket. Pengguna Free mendapat kuota 10 scan CV per bulan. Pengguna Premium mendapat kuota 20+ scan CV per bulan, plus kemampuan Bulk CV Scan lebih dari 20 CV per sesi." },
     { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! AI Chatbot tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp (scan QR untuk hubungkan nomor bisnis Anda)." },
     { q: "Apakah data bisnis dan CV pelamar saya aman?", a: "Keamanan data adalah prioritas utama. Dokumen bisnis hanya digunakan sebagai basis pengetahuan chatbot Anda sendiri. Data CV tersimpan di sistem Anda dan tidak pernah dibagikan atau digunakan melatih model AI publik." },
+    { q: "Siapa di balik PulseAI?", a: "PulseAI dikembangkan oleh PT Astra Solusi Digital, perusahaan teknologi AI yang berbasis di Indonesia. Dipimpin oleh Direktur Utama Amir Faisal Karimullah, A.Md.Kom., tim kami berkomitmen menghadirkan solusi AI terbaik yang terjangkau dan mudah digunakan untuk bisnis Indonesia." },
     { q: "Mengapa harganya sangat murah?", a: "Karena kami baru saja Beta Launch dan ingin Anda menjadi bagian dari perjalanan PulseAI. Harga early adopter ini tidak akan berlaku selamanya — semakin cepat bergabung, semakin besar keuntungan Anda!" },
   ];
 
@@ -811,6 +952,11 @@ function Footer() {
             <p className="text-sm text-slate-500 max-w-sm leading-relaxed">
               Platform AI Otomasi Bisnis — AI Chatbot untuk Sales & CS, plus AI ATS CV Scanner untuk rekrutmen lebih cerdas. Satu platform, semua kebutuhan automasi.
             </p>
+            <div className="mt-5 pt-4 border-t border-slate-800">
+              <p className="text-xs text-slate-500 mb-1">Produk dari</p>
+              <p className="text-sm font-bold text-slate-300">PT Astra Solusi Digital</p>
+              <p className="text-xs text-slate-600 mt-1">Direktur Utama: Amir Faisal Karimullah, A.Md.Kom.</p>
+            </div>
           </div>
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Produk</h4>
@@ -831,7 +977,10 @@ function Footer() {
           </div>
         </div>
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
-          <p>© {new Date().getFullYear()} PulseAI (pulseai.biz.id). All rights reserved.</p>
+          <div>
+            <p>© {new Date().getFullYear()} PulseAI by <span className="text-slate-400 font-semibold">PT Astra Solusi Digital</span>. All rights reserved.</p>
+            <p className="mt-1">pulseai.biz.id</p>
+          </div>
           <div className="flex gap-5">
             {["Twitter", "LinkedIn", "Instagram"].map((s) => (
               <a key={s} href="#" className="hover:text-white transition-colors">{s}</a>
@@ -850,6 +999,7 @@ export default function LandingPage() {
       <Navbar />
       <main>
         <Hero />
+        <AboutUs />
         <StatsBar />
         <ProblemBreakdown />
         <ProductSuite />

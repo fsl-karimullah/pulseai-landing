@@ -108,10 +108,27 @@ export default function RootLayout({
           }}
         />
         {children}
+
+        {/* ── Google Analytics GA4 ── */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NCJ4405BXK"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NCJ4405BXK');
+          `}
+        </Script>
+
+        {/* ── PulseAI Widget ── */}
         <Script
           src="https://api.pulseai.biz.id/api/widget.js?orgId=913f196b-f42a-4090-9153-244b603dbfe0&botName=Pulse%20AI%20Assistant&company=PulseAI"
           strategy="lazyOnload"
         />
+        <script src="https://api.pulseai.biz.id/api/widget.js?orgId=0b2c513b-8cee-4660-a5b1-7f75bbaa12c7&projectId=a8a1bbe1-88f3-4e50-a5dd-18b9899cdb8b&botName=Kantor%20Cabang%202&company=Kantor%20Cabang%202"></script>
       </body>
     </html>
   );
