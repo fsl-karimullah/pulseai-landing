@@ -82,14 +82,15 @@ function Hero() {
           </motion.h1>
 
           <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            PulseAI mengotomatiskan dua pilar terpenting bisnis Anda — dari sales &amp; customer service hingga proses rekrutmen.
+            PulseAI mengotomatiskan tiga pilar bisnis — dari chat &amp; CS, rekrutmen, hingga keuangan &amp; pajak. Semua dalam satu platform.
           </motion.p>
 
           {/* Pillar Cards */}
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
             {[
-              { icon: "💬", label: "AI Chatbot & Sales", sub: "Layani pelanggan 24/7", bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700" },
-              { icon: "📋", label: "AI HR & ATS Scanner", sub: "Rekrut kandidat terbaik", bg: "bg-violet-50", border: "border-violet-200", text: "text-violet-700" },
+              { icon: "🤖", label: "Pulse Chat", sub: "Chatbot AI & otomatisasi CS 24/7", bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700" },
+              { icon: "👔", label: "Pulse Career", sub: "ATS CV Scanner & rekrutmen cerdas", bg: "bg-violet-50", border: "border-violet-200", text: "text-violet-700" },
+              { icon: "💰", label: "Pulse Finance", sub: "Keuangan bisnis & estimasi pajak", bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-700" },
             ].map((p) => (
               <div key={p.label} className={`flex items-center gap-3.5 ${p.bg} border ${p.border} rounded-2xl px-5 py-3.5 shadow-sm`}>
                 <span className="text-2xl">{p.icon}</span>
@@ -244,7 +245,7 @@ function AboutUs() {
           {[
             { value: "2024", label: "Tahun Berdiri", icon: "🏛️" },
             { value: "100+", label: "Klien Aktif", icon: "🤝" },
-            { value: "2", label: "Modul AI Unggulan", icon: "🤖" },
+            { value: "3", label: "Modul AI Unggulan", icon: "🤖" },
             { value: "Indonesia", label: "Berbasis di", icon: "🇮🇩" },
           ].map((stat, i) => (
             <motion.div key={i} variants={fadeInUp} className="text-center p-6 bg-gradient-to-b from-slate-50 to-white rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50/80 transition-all duration-300">
@@ -297,10 +298,10 @@ function StatsBar() {
 // ── Problem Section ───────────────────────────────────────────────────────────
 function ProblemBreakdown() {
   const problems = [
-    { emoji: "😩", problem: "Tim CS kewalahan menjawab chat berulang di luar jam kerja", solution: "AI Chatbot menjawab ribuan pertanyaan sekaligus, 24/7 otomatis" },
-    { emoji: "⏳", problem: "Screening ratusan CV memakan waktu berminggu-minggu", solution: "AI ATS Scanner menyeleksi CV lengkap dalam hitungan detik" },
-    { emoji: "📉", problem: "Leads hilang karena respons terlambat", solution: "AI mengumpulkan & membalas leads kapanpun, tanpa jeda" },
-    { emoji: "🤷", problem: "Keputusan rekrutmen bias & tidak konsisten", solution: "AI memberi skor objektif & rekomendasi berbasis data CV" },
+    { emoji: "😩", problem: "Tim CS kewalahan menjawab chat berulang di luar jam kerja", solution: "Pulse Chat — AI menjawab ribuan pertanyaan sekaligus, 24/7 otomatis" },
+    { emoji: "⏳", problem: "Screening ratusan CV memakan waktu berminggu-minggu", solution: "Pulse Career — AI ATS Scanner menyeleksi CV lengkap dalam hitungan detik" },
+    { emoji: "📉", problem: "Leads hilang karena respons terlambat", solution: "Pulse Chat — AI mengumpulkan & membalas leads kapanpun, tanpa jeda" },
+    { emoji: "🧾", problem: "Pembukuan manual & bingung hitung pajak setiap tahun", solution: "Pulse Finance — Catat transaksi & estimasi PPh otomatis, siap lapor SPT" },
   ];
 
   return (
@@ -355,7 +356,7 @@ function ProblemBreakdown() {
 
 // ── Product Suite Tabs ────────────────────────────────────────────────────────
 function ProductSuite() {
-  const [activeTab, setActiveTab] = useState<"chatbot" | "ats">("chatbot");
+  const [activeTab, setActiveTab] = useState<"chatbot" | "ats" | "finance">("chatbot");
 
   const chatbotFeatures = [
     { icon: "🧠", title: "Akurasi RAG 100%", desc: "AI hanya menjawab dari dokumen yang Anda upload. Zero halusinasi, zero jawaban ngawur." },
@@ -373,11 +374,21 @@ function ProductSuite() {
     { icon: "🚩", title: "Deteksi Red Flags", desc: "Job hopping, gap kerja panjang, loncatan karier ekstrem — semua terdeteksi otomatis." },
     { icon: "✅", title: "Rekomendasi HR Instan", desc: "Lolos Interview / Talent Pool / Tolak — keputusan AI berbasis data dalam detik." },
     { icon: "💬", title: "Draft WhatsApp Otomatis", desc: "Pesan balasan ke kandidat dibuat AI secara otomatis, tinggal copy-paste & kirim." },
-    { icon: "📦", title: "Bulk CV Scan", desc: "Free: scan hingga 10 CV sekaligus. Premium: scan lebih dari 20 CV dalam satu sesi — cocok untuk rekrutmen massal." },
+    { icon: "📦", title: "Bulk CV Scan", desc: "Free: scan hingga 10 CV sekaligus. Premium: scan lebih dari 20 CV dalam satu sesi." },
+  ];
+
+  const financeFeatures = [
+    { icon: "📝", title: "Input Transaksi Mudah", desc: "Catat pemasukan & pengeluaran dalam detik. Pilih kategori, isi nominal, selesai." },
+    { icon: "📊", title: "Laporan Laba/Rugi Otomatis", desc: "Dashboard langsung hitung total income, expense, dan net profit per bulan tanpa Excel." },
+    { icon: "🧮", title: "Estimasi PPh Final UMKM", desc: "Hitung otomatis 0,5% dari omzet bruto sesuai PP 23/2018. Tidak perlu akuntan." },
+    { icon: "📅", title: "Proyeksi Pajak Tahunan", desc: "Estimasi total pajak setahun berdasarkan data bulan berjalan. Selalu siap lapor." },
+    { icon: "⏰", title: "Reminder Deadline Pajak", desc: "Info deadline PPh masa, SPT 1770S, dan SPT 1771 langsung di dashboard." },
+    { icon: "🗂️", title: "Kategori Transaksi Cerdas", desc: "Gaji, sewa, pemasaran, pembelian — semua terorganisir otomatis per kategori." },
   ];
 
   const isAts = activeTab === "ats";
-  const features = isAts ? atsFeatures : chatbotFeatures;
+  const isFinance = activeTab === "finance";
+  const features = isAts ? atsFeatures : isFinance ? financeFeatures : chatbotFeatures;
 
   return (
     <section id="fitur" className="py-24 bg-gradient-to-b from-emerald-50/50 via-white to-white">
@@ -387,33 +398,36 @@ function ProductSuite() {
             Suite Produk PulseAI
           </motion.span>
           <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
-            Dua Modul. Satu Platform.<br />
+            Tiga Modul. Satu Platform.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Automasi Total.</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Pilih modul yang dibutuhkan, atau gunakan keduanya untuk efisiensi maksimal.
+            Pilih modul yang dibutuhkan, atau gunakan ketiganya untuk efisiensi bisnis maksimal.
           </motion.p>
         </motion.div>
 
         {/* Tab Switcher */}
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex justify-center mb-10">
-          <div className="inline-flex bg-slate-100 rounded-2xl p-1.5 gap-1 shadow-inner border border-slate-200">
-            {[
-              { id: "chatbot", label: "🤖 AI Chatbot & Sales" },
-              { id: "ats", label: "📋 AI HR & ATS Scanner" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as "chatbot" | "ats")}
-                className={`relative px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "bg-white text-slate-900 shadow-md border border-slate-100"
-                    : "text-slate-500 hover:text-slate-700"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="inline-flex bg-slate-100 rounded-2xl p-1.5 gap-1 shadow-inner border border-slate-200 flex-wrap justify-center">
+            {(["chatbot", "ats", "finance"] as const).map((id) => {
+              const labels = { chatbot: "🤖 Pulse Chat", ats: "👔 Pulse Career", finance: "💰 Pulse Finance" };
+              const isActive = activeTab === id;
+              const activeStyles = {
+                chatbot: "bg-white text-emerald-700 shadow-md border border-emerald-100",
+                ats: "bg-white text-violet-700 shadow-md border border-violet-100",
+                finance: "bg-white text-amber-700 shadow-md border border-amber-100",
+              };
+              return (
+                <button
+                  key={id}
+                  onClick={() => setActiveTab(id)}
+                  className={`relative px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${isActive ? activeStyles[id] : "text-slate-500 hover:text-slate-700"}`}
+                >
+                  {labels[id]}
+                </button>
+              );
+            })}
+
           </div>
         </motion.div>
 
@@ -426,16 +440,22 @@ function ProductSuite() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
             className={`mb-10 p-6 rounded-2xl border text-center ${
-              isAts
+              isFinance
+                ? "bg-amber-50 border-amber-200"
+                : isAts
                 ? "bg-violet-50 border-violet-200"
                 : "bg-emerald-50 border-emerald-200"
             }`}
           >
             <h3 className="text-lg font-bold text-slate-900 mb-2">
-              {isAts ? "📋 AI HR Tools & ATS CV Scanner" : "🤖 AI Chatbot & Lead Generation"}
+              {isFinance ? "💰 Pulse Finance — Keuangan Bisnis & Pajak"
+                : isAts ? "👔 Pulse Career — AI HR & ATS CV Scanner"
+                : "🤖 Pulse Chat — AI Chatbot & Lead Generation"}
             </h3>
             <p className="text-slate-600 max-w-2xl mx-auto text-sm leading-relaxed">
-              {isAts
+              {isFinance
+                ? "Catat pemasukan & pengeluaran, lihat laba-rugi real-time, dan hitung estimasi PPh Final UMKM otomatis. Tidak perlu akuntan, tidak perlu Excel."
+                : isAts
                 ? "Berhenti buang waktu membaca CV manual. AI membaca, menilai, dan deteksi red flag dari setiap pelamar — dalam hitungan detik."
                 : "Ubah dokumen bisnis jadi asisten AI. Layani pelanggan, kumpulkan leads, dan tingkatkan konversi — otomatis 24/7 tanpa CS tambahan."}
             </p>
@@ -459,13 +479,15 @@ function ProductSuite() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.06 }}
                 className={`group bg-white border transition-all duration-300 hover:shadow-xl rounded-2xl p-6 cursor-default ${
-                  isAts
+                  isFinance
+                    ? "border-slate-100 hover:border-amber-200 hover:shadow-amber-50"
+                    : isAts
                     ? "border-slate-100 hover:border-violet-200 hover:shadow-violet-50"
                     : "border-slate-100 hover:border-emerald-200 hover:shadow-emerald-50"
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-110 duration-300 ${
-                  isAts ? "bg-violet-50 border border-violet-100" : "bg-emerald-50 border border-emerald-100"
+                  isFinance ? "bg-amber-50 border border-amber-100" : isAts ? "bg-violet-50 border border-violet-100" : "bg-emerald-50 border border-emerald-100"
                 }`}>
                   {f.icon}
                 </div>
@@ -480,9 +502,9 @@ function ProductSuite() {
   );
 }
 
-// ── How It Works ──────────────────────────────────────────────────────────────
+
 function HowItWorks() {
-  const [activeProduct, setActiveProduct] = useState<"chatbot" | "ats">("chatbot");
+  const [activeProduct, setActiveProduct] = useState<"chatbot" | "ats" | "finance">("chatbot");
 
   const chatbotSteps = [
     { step: "01", emoji: "📂", title: "Upload Dokumen", desc: "Upload PDF katalog produk, SOP, atau website bisnis Anda ke dashboard PulseAI.", color: "from-emerald-400 to-teal-500" },
@@ -498,9 +520,18 @@ function HowItWorks() {
     { step: "04", emoji: "✅", title: "Ambil Keputusan", desc: "Dapat rekomendasi HR (Lolos/Pool/Tolak) + draft pesan WhatsApp ke kandidat siap kirim.", color: "from-purple-400 to-violet-600" },
   ];
 
+  const financeSteps = [
+    { step: "01", emoji: "📝", title: "Catat Transaksi", desc: "Input pemasukan atau pengeluaran harian bisnis Anda — pilih kategori, isi nominal, simpan.", color: "from-amber-400 to-orange-400" },
+    { step: "02", emoji: "📊", title: "Lihat Laporan", desc: "Dashboard otomatis kalkulasi total income, expense, dan laba/rugi bersih per bulan.", color: "from-orange-400 to-amber-500" },
+    { step: "03", emoji: "🧮", title: "Estimasi Pajak", desc: "AI hitung PPh Final UMKM (0,5% x omzet) sesuai PP 23/2018 — tidak perlu akuntan.", color: "from-amber-500 to-yellow-500" },
+    { step: "04", emoji: "📅", title: "Siap Lapor SPT", desc: "Lihat proyeksi pajak tahunan & reminder deadline SPT langsung di dashboard.", color: "from-yellow-400 to-amber-600" },
+  ];
+
   const isAts = activeProduct === "ats";
-  const steps = isAts ? atsSteps : chatbotSteps;
-  const accentRing = isAts ? "ring-violet-200" : "ring-emerald-200";
+  const isFinance = activeProduct === "finance";
+  const steps = isAts ? atsSteps : isFinance ? financeSteps : chatbotSteps;
+  const accentRing = isFinance ? "ring-amber-200" : isAts ? "ring-violet-200" : "ring-emerald-200";
+  const arrowColor = isFinance ? "text-amber-500" : isAts ? "text-violet-500" : "text-emerald-500";
 
   return (
     <section className="py-24 bg-slate-50 relative overflow-hidden">
@@ -515,19 +546,26 @@ function HowItWorks() {
 
           {/* Tab toggle */}
           <div className="flex justify-center mt-8">
-            <div className="inline-flex bg-white rounded-2xl p-1.5 gap-1 border border-slate-200 shadow-md">
-              {[
-                { id: "chatbot", label: "🤖 AI Chatbot", activeClass: "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30" },
-                { id: "ats", label: "📋 AI ATS Scanner", activeClass: "bg-violet-600 text-white shadow-lg shadow-violet-600/30" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveProduct(tab.id as "chatbot" | "ats")}
-                  className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${activeProduct === tab.id ? tab.activeClass : "text-slate-500 hover:text-slate-700"}`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className="inline-flex bg-white rounded-2xl p-1.5 gap-1 border border-slate-200 shadow-md flex-wrap justify-center">
+              {(["chatbot", "ats", "finance"] as const).map((id) => {
+                const labels = { chatbot: "🤖 Pulse Chat", ats: "👔 Pulse Career", finance: "💰 Pulse Finance" };
+                const isActive = activeProduct === id;
+                const activeStyles = {
+                  chatbot: "bg-emerald-600 text-white shadow-lg",
+                  ats: "bg-violet-600 text-white shadow-lg",
+                  finance: "bg-amber-500 text-white shadow-lg",
+                };
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setActiveProduct(id)}
+                    className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${isActive ? activeStyles[id] : "text-slate-500 hover:text-slate-700"}`}
+                  >
+                    {labels[id]}
+                  </button>
+                );
+              })}
+
             </div>
           </div>
         </div>
@@ -548,7 +586,7 @@ function HowItWorks() {
                 {i < steps.length - 1 && (
                   <div className="hidden lg:flex absolute top-10 left-full z-20 items-center -translate-x-1/2">
                     <div className={`w-8 h-8 rounded-full bg-white border-2 ${accentRing} flex items-center justify-center shadow-sm`}>
-                      <svg className={`w-3.5 h-3.5 ${isAts ? "text-violet-500" : "text-emerald-500"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className={`w-3.5 h-3.5 ${arrowColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -558,13 +596,23 @@ function HowItWorks() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08 }}
-                  className={`relative flex-1 flex flex-col rounded-2xl bg-white border border-slate-100 p-6 transition-all duration-300 cursor-default group-hover:-translate-y-2 group-hover:shadow-2xl ${isAts ? 'group-hover:border-violet-200 group-hover:shadow-violet-100/80' : 'group-hover:border-emerald-200 group-hover:shadow-emerald-100/80'}`}
+                  className={`relative flex-1 flex flex-col rounded-2xl bg-white border border-slate-100 p-6 transition-all duration-300 cursor-default group-hover:-translate-y-2 group-hover:shadow-2xl ${
+                    isFinance
+                      ? 'group-hover:border-amber-200 group-hover:shadow-amber-100/80'
+                      : isAts
+                      ? 'group-hover:border-violet-200 group-hover:shadow-violet-100/80'
+                      : 'group-hover:border-emerald-200 group-hover:shadow-emerald-100/80'
+                  }`}
                 >
                   <div className="flex items-start justify-between mb-5">
                     <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                       {s.emoji}
                     </div>
-                    <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${isAts ? 'bg-violet-50 text-violet-600 border-violet-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>
+                    <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${
+                      isFinance ? 'bg-amber-50 text-amber-600 border-amber-200'
+                      : isAts ? 'bg-violet-50 text-violet-600 border-violet-200'
+                      : 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                    }`}>
                       STEP {s.step}
                     </span>
                   </div>
@@ -581,11 +629,13 @@ function HowItWorks() {
   );
 }
 
+
+
 // ── Deep Dive Features ────────────────────────────────────────────────────────
 function DeepDiveFeatures() {
   const features = [
     {
-      tag: "AI Chatbot · Modul 01", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
+      tag: "Pulse Chat · Modul 01", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
       title: "Chatbot Pintar Berbasis Dokumen Bisnis Anda",
       desc: "Bukan chatbot generik yang menjawab sembarang. PulseAI menggunakan RAG (Retrieval-Augmented Generation) yang membaca dokumen bisnis Anda — katalog, SOP, FAQ — lalu menjawab pelanggan layaknya karyawan terbaik Anda.",
       image: "/rag_accuracy.png",
@@ -595,7 +645,7 @@ function DeepDiveFeatures() {
       usps: ["Jawaban 100% berbasis data bisnis Anda sendiri", "Tanpa halusinasi atau informasi ngawur", "Update pengetahuan AI cukup dengan upload dokumen baru"],
     },
     {
-      tag: "AI Chatbot · Modul 02", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
+      tag: "Pulse Chat · Modul 02", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
       title: "Lead Generation Otomatis 24/7",
       desc: "PulseAI tidak hanya menjawab pertanyaan — ia memandu percakapan menuju konversi. AI mengumpulkan nama, nomor telepon, dan kebutuhan spesifik pelanggan, lalu menyimpannya ke dashboard Anda secara otomatis.",
       image: "/lead_gen.png",
@@ -605,7 +655,7 @@ function DeepDiveFeatures() {
       usps: ["Kualifikasi prospek otomatis saat Anda tidur", "Pengumpulan data leads yang terstruktur & bersih", "Peningkatan rasio konversi hingga 3x lipat"],
     },
     {
-      tag: "AI HR Tools · Modul 03", tagBg: "bg-violet-100", tagText: "text-violet-700", tagBorder: "border-violet-200",
+      tag: "Pulse Career · Modul 03", tagBg: "bg-violet-100", tagText: "text-violet-700", tagBorder: "border-violet-200",
       title: "AI ATS CV Scanner untuk Rekrutmen Lebih Cerdas",
       desc: "Berhenti membuang waktu membaca ratusan CV secara manual. Upload CV pelamar, dan AI memberikan ATS Score, analisis mendalam, deteksi red flags, serta rekomendasi keputusan HR dalam hitungan detik.",
       image: "/widget_demo.png",
@@ -613,6 +663,16 @@ function DeepDiveFeatures() {
       checkColor: "bg-violet-100 border-violet-200",
       iconColor: "text-violet-600",
       usps: ["ATS Score 0-100 berdasarkan kesesuaian dengan JD", "Deteksi otomatis job hopping, gap kerja & inkonsistensi data", "Draft pesan WhatsApp ke kandidat dibuat otomatis"],
+    },
+    {
+      tag: "Pulse Finance · Modul 04", tagBg: "bg-amber-100", tagText: "text-amber-700", tagBorder: "border-amber-200",
+      title: "Keuangan Bisnis & Estimasi Pajak Tanpa Ribet",
+      desc: "Catat setiap pemasukan dan pengeluaran dalam hitungan detik. PulseAI otomatis menghitung laba/rugi bulanan dan memperkirakan PPh Final UMKM (0,5% x omzet) sesuai PP 23/2018 — tidak perlu akuntan, tidak perlu Excel.",
+      image: "/rag_accuracy.png",
+      reversed: true,
+      checkColor: "bg-amber-100 border-amber-200",
+      iconColor: "text-amber-600",
+      usps: ["Laporan laba/rugi real-time per bulan tanpa formula Excel", "Estimasi PPh Final UMKM otomatis — siap sebelum lapor SPT", "Reminder deadline pajak: PPh masa, SPT 1770S & SPT 1771"],
     },
   ];
 
