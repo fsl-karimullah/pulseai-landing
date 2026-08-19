@@ -30,7 +30,7 @@ function Navbar() {
           </span>
         </div>
         <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
-          {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
+          {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ", "/blog|Blog"].map((item) => {
             const [href, label] = item.split("|");
             return <Link key={href} href={href} className="hover:text-emerald-600 transition-colors duration-200">{label}</Link>;
           })}
@@ -72,12 +72,16 @@ function Hero() {
             </div>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — H1 dengan keyword SEO + tampilan tetap sama */}
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.05]">
-            Satu Platform.{" "}
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700">
-              Semua Otomasi.
+            {/* Teks SEO tersembunyi (screen-reader + search engine) */}
+            <span className="sr-only">PulseAI oleh PT Astra Solusi Digital — Platform Chatbot AI, ATS CV Scanner, dan Keuangan Bisnis untuk Indonesia</span>
+            <span aria-hidden="true">
+              Satu Platform.{" "}
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700">
+                Semua Otomasi.
+              </span>
             </span>
           </motion.h1>
 
@@ -910,15 +914,15 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
-    { q: "Apa itu PulseAI dan apa yang bisa dilakukan?", a: "PulseAI adalah platform automasi bisnis berbasis AI yang dikembangkan oleh PT Astra Solusi Digital, dengan dua modul: (1) AI Chatbot & Lead Generation — asisten penjualan 24/7 di website dan WhatsApp, dan (2) AI HR Tools & ATS Scanner — sistem rekrutmen otomatis yang menilai CV pelamar dalam hitungan detik." },
-    { q: "Bagaimana cara kerja AI Chatbot-nya?", a: "Upload dokumen bisnis (PDF katalog, SOP, FAQ) ke dashboard. AI menggunakan teknologi RAG untuk memahami konten tersebut dan menjawab pelanggan dengan akurasi 100% berbasis data Anda. Tidak ada halusinasi, tidak ada jawaban ngawur." },
-    { q: "Apa itu AI ATS CV Scanner dan cara kerjanya?", a: "AI ATS Scanner membaca PDF CV pelamar dan menghasilkan: Skor ATS (0-100), analisis kelebihan & kekurangan, deteksi red flags (job hopping, gap kerja), rekomendasi keputusan HR, dan draft pesan WhatsApp ke kandidat yang siap kirim." },
-    { q: "Apa itu fitur Bulk CV Scan dan berapa batasannya?", a: "Fitur Bulk CV Scan memungkinkan Anda mengupload dan menganalisis banyak CV sekaligus dalam satu sesi. Untuk pengguna Free, Anda dapat scan hingga 10 CV sekaligus. Pengguna Premium dapat scan lebih dari 20 CV dalam satu sesi — sangat efisien untuk rekrutmen massal!" },
-    { q: "Apakah perlu berlangganan untuk pakai ATS CV Scanner?", a: "Tidak! AI ATS CV Scanner sudah termasuk di semua paket. Pengguna Free mendapat kuota 10 scan CV per bulan. Pengguna Premium mendapat kuota 20+ scan CV per bulan, plus kemampuan Bulk CV Scan lebih dari 20 CV per sesi." },
-    { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! AI Chatbot tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp (scan QR untuk hubungkan nomor bisnis Anda)." },
-    { q: "Apakah data bisnis dan CV pelamar saya aman?", a: "Keamanan data adalah prioritas utama. Dokumen bisnis hanya digunakan sebagai basis pengetahuan chatbot Anda sendiri. Data CV tersimpan di sistem Anda dan tidak pernah dibagikan atau digunakan melatih model AI publik." },
-    { q: "Siapa di balik PulseAI?", a: "PulseAI dikembangkan oleh PT Astra Solusi Digital, perusahaan teknologi AI yang berbasis di Indonesia. Dipimpin oleh Direktur Utama Amir Faisal Karimullah, A.Md.Kom., tim kami berkomitmen menghadirkan solusi AI terbaik yang terjangkau dan mudah digunakan untuk bisnis Indonesia." },
-    { q: "Mengapa harganya sangat murah?", a: "Karena kami baru saja Beta Launch dan ingin Anda menjadi bagian dari perjalanan PulseAI. Harga early adopter ini tidak akan berlaku selamanya — semakin cepat bergabung, semakin besar keuntungan Anda!" },
+    { q: "Apa itu PulseAI dan apa yang bisa dilakukan?", a: "PulseAI adalah platform AI all-in-one yang dikembangkan oleh PT Astra Solusi Digital untuk bisnis Indonesia. Tersedia tiga modul: (1) Pulse Chat — chatbot AI untuk CS & sales 24/7 di WhatsApp dan website, (2) Pulse Career — ATS CV Scanner & rekrutmen AI otomatis, dan (3) Pulse Finance — manajemen keuangan bisnis dan estimasi pajak otomatis." },
+    { q: "Apa itu Pulse Chat dan bagaimana cara kerjanya?", a: "Pulse Chat adalah modul chatbot AI berbasis RAG (Retrieval-Augmented Generation) dari PulseAI. Cara kerja: upload dokumen bisnis Anda (PDF katalog, SOP, FAQ) ke dashboard, lalu AI memahami seluruh konten dan siap menjawab pelanggan 24/7 dengan akurasi 100%. Tersedia di WhatsApp Business dan widget website. Lead (nama & kontak prospek) dikumpulkan otomatis." },
+    { q: "Apa itu Pulse Career dan bagaimana ATS CV Scanner bekerja?", a: "Pulse Career adalah modul rekrutmen AI dari PulseAI. AI membaca PDF CV pelamar dan menghasilkan: Skor ATS 0-100, analisis kelebihan & kekurangan kandidat, deteksi red flags (job hopping, gap kerja, inkonsistensi data), rekomendasi HR (Lolos/Pool/Tolak), dan draft pesan WhatsApp ke kandidat siap kirim. Tersedia fitur Bulk CV Scan: Free hingga 10 CV, Premium lebih dari 20 CV per sesi." },
+    { q: "Apa itu Pulse Finance?", a: "Pulse Finance adalah modul keuangan bisnis dari PulseAI yang membantu UMKM dan perusahaan Indonesia mengelola keuangan bisnis secara otomatis, termasuk estimasi pajak bisnis. Dirancang khusus untuk pemilik bisnis yang ingin memahami kondisi keuangan tanpa perlu keahlian akuntansi mendalam." },
+    { q: "Apa itu fitur Bulk CV Scan dan berapa batasannya?", a: "Fitur Bulk CV Scan di Pulse Career memungkinkan upload dan analisis banyak CV sekaligus dalam satu sesi. Pengguna Free dapat scan hingga 10 CV sekaligus. Pengguna Premium dapat scan lebih dari 20 CV per sesi — efisien untuk rekrutmen massal." },
+    { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! Pulse Chat tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp Business (scan QR untuk hubungkan nomor bisnis Anda). Setup hanya 5 menit, tanpa coding." },
+    { q: "Apakah data bisnis dan CV pelamar saya aman?", a: "Keamanan data adalah prioritas utama PT Astra Solusi Digital. Dokumen bisnis hanya digunakan sebagai basis pengetahuan chatbot Anda sendiri. Data CV tersimpan di sistem Anda dan tidak pernah dibagikan atau digunakan melatih model AI publik manapun." },
+    { q: "Siapa di balik PulseAI?", a: "PulseAI dikembangkan oleh PT Astra Solusi Digital, perusahaan teknologi AI yang berbasis di Indonesia. Dipimpin oleh Direktur Utama Amir Faisal Karimullah, A.Md.Kom., kami berkomitmen menghadirkan solusi AI terjangkau dan mudah digunakan untuk bisnis Indonesia." },
+    { q: "Mengapa harganya sangat murah dibanding produk sejenis?", a: "Karena kami dalam fase Beta Launch dan ingin membangun kepercayaan bersama Anda. Harga early adopter ini tidak berlaku selamanya. Bergabung sekarang dan dapatkan akses ke semua fitur PulseAI — Pulse Chat, Pulse Career, Pulse Finance — dengan harga terbaik." },
   ];
 
   const schemaData = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) };

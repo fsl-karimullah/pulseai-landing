@@ -1,0 +1,43 @@
+import { sql } from "drizzle-orm";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+// ── Posts Table ───────────────────────────────────────────────────────────────
+export const posts = sqliteTable("posts", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  slug: text("slug").unique().notNull(),
+  excerpt: text("excerpt"),
+  content: text("content").notNull().default(""),
+  coverImage: text("cover_image"),
+  author: text("author").notNull().default("Admin"),
+  status: text("status", { enum: ["draft", "published"] })
+    .notNull()
+    .default("draft"),
+  // SEO overrides
+  metaTitle: text("meta_title"),
+  metaDesc: text("meta_desc"),
+  tags: text("tags").default("[]"), // JSON string array
+  views: integer("views").notNull().default(0),
+  createdAt: text("created_at")
+    .notNull()
+    .default(sql`(datetime('now'))`),
+  updatedAt: text("updated_at")
+    .notNull()
+    .default(sql`(datetime('now'))`),
+  publishedAt: text("published_at"),
+});
+
+// ── Admin Users Table ─────────────────────────────────────────────────────────
+export const adminUsers = sqliteTable("admin_users", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  username: text("username").unique().notNull(),
+  password: text("password").notNull(), // bcrypt hash
+  createdAt: text("created_at")
+    .notNull()
+    .default(sql`(datetime('now'))`),
+});
+
+// Types
+export type Post = typeof posts.$inferSelect;
+export type NewPost = typeof posts.$inferInsert;
+export type AdminUser = typeof adminUsers.$inferSelect;
