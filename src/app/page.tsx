@@ -1069,7 +1069,7 @@ export default function LandingPage() {
         <ProductSuite />
         <HowItWorks />
         <DeepDiveFeatures />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <Pricing />
         <FAQ />
         <FinalPitch />
