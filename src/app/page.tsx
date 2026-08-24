@@ -247,8 +247,8 @@ function AboutUs() {
         {/* Company Stats */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
+            { value: "Siap", label: "Melayani", icon: "🤝", desc: "Bisnis Skala UMKM & Enterprise" },
             { value: "2024", label: "Tahun Berdiri", icon: "🏛️" },
-            { value: "100+", label: "Klien Aktif", icon: "🤝" },
             { value: "3", label: "Modul AI Unggulan", icon: "🤖" },
             { value: "Indonesia", label: "Berbasis di", icon: "🇮🇩" },
           ].map((stat, i) => (
@@ -268,8 +268,8 @@ function AboutUs() {
 function StatsBar() {
   const stats = [
     { value: "24/7", label: "Operasi Tanpa Henti", icon: "⚡" },
-    { value: "< 2s", label: "Waktu Respons AI", icon: "🚀" },
-    { value: "100%", label: "Akurasi Data Bisnis", icon: "🎯" },
+    { value: "< 2s", label: "Waktu Respons", icon: "🚀" },
+    { value: "Tinggi", label: "Akurasi", icon: "🎯", desc: "Dirancang untuk Analisis Akurat" },
     { value: "5 Mnt", label: "Waktu Setup", icon: "⏱️" },
   ];
 
@@ -919,7 +919,8 @@ function FAQ() {
     { q: "Apa itu Pulse Career dan bagaimana ATS CV Scanner bekerja?", a: "Pulse Career adalah modul rekrutmen AI dari PulseAI. AI membaca PDF CV pelamar dan menghasilkan: Skor ATS 0-100, analisis kelebihan & kekurangan kandidat, deteksi red flags (job hopping, gap kerja, inkonsistensi data), rekomendasi HR (Lolos/Pool/Tolak), dan draft pesan WhatsApp ke kandidat siap kirim. Tersedia fitur Bulk CV Scan: Free hingga 10 CV, Premium lebih dari 20 CV per sesi." },
     { q: "Apa itu Pulse Finance?", a: "Pulse Finance adalah modul keuangan bisnis dari PulseAI yang membantu UMKM dan perusahaan Indonesia mengelola keuangan bisnis secara otomatis, termasuk estimasi pajak bisnis. Dirancang khusus untuk pemilik bisnis yang ingin memahami kondisi keuangan tanpa perlu keahlian akuntansi mendalam." },
     { q: "Apa itu fitur Bulk CV Scan dan berapa batasannya?", a: "Fitur Bulk CV Scan di Pulse Career memungkinkan upload dan analisis banyak CV sekaligus dalam satu sesi. Pengguna Free dapat scan hingga 10 CV sekaligus. Pengguna Premium dapat scan lebih dari 20 CV per sesi — efisien untuk rekrutmen massal." },
-    { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! Pulse Chat tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp Business (scan QR untuk hubungkan nomor bisnis Anda). Setup hanya 5 menit, tanpa coding." },
+    { q: "Bisa disambungkan ke WhatsApp dan Website?", a: "Tentu! Pulse Chat tersedia dalam dua channel: Widget Website (satu baris kode untuk WordPress, Shopify, atau custom website) dan WhatsApp Business (scan QR untuk hubungkan nomor bisnis Anda)." },
+    { q: "Bagaimana integrasi WhatsApp bekerja dan apakah aman?", a: "PulseAI menyediakan integrasi WhatsApp Business via QR scan menggunakan teknologi non-official API yang praktis untuk digunakan secara langsung. Penting: Terdapat risiko pembatasan atau pemblokiran oleh WhatsApp jika volume pesan sangat tinggi atau mendapat laporan spam dari pelanggan. Kami sangat menyarankan agar Anda menggunakan nomor khusus bisnis (bukan nomor pribadi utama Anda) untuk meminimalkan risiko tersebut." },
     { q: "Apakah data bisnis dan CV pelamar saya aman?", a: "Keamanan data adalah prioritas utama PT Astra Solusi Digital. Dokumen bisnis hanya digunakan sebagai basis pengetahuan chatbot Anda sendiri. Data CV tersimpan di sistem Anda dan tidak pernah dibagikan atau digunakan melatih model AI publik manapun." },
     { q: "Siapa di balik PulseAI?", a: "PulseAI dikembangkan oleh PT Astra Solusi Digital, perusahaan teknologi AI yang berbasis di Indonesia. Dipimpin oleh Direktur Utama Amir Faisal Karimullah, A.Md.Kom., kami berkomitmen menghadirkan solusi AI terjangkau dan mudah digunakan untuk bisnis Indonesia." },
     { q: "Mengapa harganya sangat murah dibanding produk sejenis?", a: "Karena kami dalam fase Beta Launch dan ingin membangun kepercayaan bersama Anda. Harga early adopter ini tidak berlaku selamanya. Bergabung sekarang dan dapatkan akses ke semua fitur PulseAI — Pulse Chat, Pulse Career, Pulse Finance — dengan harga terbaik." },
@@ -1034,8 +1035,8 @@ function Footer() {
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Legal</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
