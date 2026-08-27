@@ -115,7 +115,7 @@ function LiveStats() {
           <span className="text-[10px] font-bold text-white uppercase tracking-widest">LIVE DATA</span>
         </div>
         <p className="text-sm font-semibold text-slate-500">
-          Ribuan bisnis telah mempercayakan otomasinya pada PulseAI
+          Saksikan secara langsung pertumbuhan interaksi dan otomasi bisnis bersama PulseAI
         </p>
       </div>
 
