@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, Variants, AnimatePresence, useSpring, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
 
 // ── Animations ────────────────────────────────────────────────────────────────
 const fadeInUp: Variants = {
@@ -43,6 +43,99 @@ function Navbar() {
         </div>
       </div>
     </header>
+  );
+}
+
+// ── Live Stats Counter ────────────────────────────────────────────────────────
+
+function AnimatedNumber({ value }: { value: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    const duration = 2000; // 2 seconds animation
+    const startValue = 0;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      // Easing function (easeOutExpo)
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(startValue + (value - startValue) * ease);
+      
+      setDisplayValue(current);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [value]);
+
+  return <>{displayValue.toLocaleString('id-ID')}</>;
+}
+
+function LiveStats() {
+  const [stats, setStats] = useState({ users: 0, messages: 0, leads: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.pulseai.biz.id';
+        const res = await fetch(`${API_URL}/api/public/stats`);
+        const result = await res.json();
+        if (result.success) {
+          setStats(result.data);
+          setIsLoaded(true);
+        }
+      } catch (err) {
+        console.error('Failed to fetch live stats', err);
+      }
+    };
+
+    fetchStats();
+    // Poll every 10 seconds
+    const interval = setInterval(fetchStats, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!isLoaded) return null;
+
+  return (
+    <motion.div variants={fadeInUp} className="mt-16 w-full max-w-4xl mx-auto">
+      <div className="flex flex-col items-center mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 shadow-xl mb-4">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
+          <span className="text-[10px] font-bold text-white uppercase tracking-widest">LIVE DATA</span>
+        </div>
+        <p className="text-sm font-semibold text-slate-500">
+          Ribuan bisnis telah mempercayakan otomasinya pada PulseAI
+        </p>
+      </div>
+
+      {/* Counter Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { label: "Bisnis Terdaftar", value: stats.users, icon: "🏢", color: "from-blue-50 to-white", text: "text-blue-900" },
+          { label: "Pesan Dibalas AI", value: stats.messages, icon: "💬", color: "from-emerald-50 to-white", text: "text-emerald-900" },
+          { label: "Leads Terkumpul", value: stats.leads, icon: "🎯", color: "from-rose-50 to-white", text: "text-rose-900" }
+        ].map((stat, i) => (
+          <div key={i} className={`relative overflow-hidden rounded-3xl bg-gradient-to-b ${stat.color} p-6 border border-slate-100 shadow-sm flex flex-col items-center text-center`}>
+            <div className="text-3xl mb-3">{stat.icon}</div>
+            <div className={`text-4xl font-black tracking-tighter mb-1 ${stat.text}`}>
+              <AnimatedNumber value={stat.value} />+
+            </div>
+            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
@@ -120,6 +213,8 @@ function Hero() {
           <motion.p variants={fadeInUp} className="text-slate-400 text-xs tracking-wide">
             Tidak perlu kartu kredit · Setup 5 menit · Kuota gratis tersedia
           </motion.p>
+
+          <LiveStats />
         </motion.div>
       </div>
     </section>
