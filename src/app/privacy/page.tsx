@@ -37,6 +37,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-bold text-slate-900 mb-4">2. Informasi yang Kami Kumpulkan</h2>
               <ul className="list-disc pl-5 mt-2 space-y-2">
                 <li><strong>Data Registrasi:</strong> Nama, alamat email, nomor telepon, dan informasi perusahaan saat Anda membuat akun.</li>
+                <li><strong>Data Interaksi WhatsApp & Meta:</strong> Saat berinteraksi melalui integrasi WhatsApp Business API kami, kami mengumpulkan nomor telepon, nama profil WhatsApp, dan isi pesan untuk memberikan respons chatbot yang akurat. Data yang ditransmisikan melalui WhatsApp diproses sesuai dengan Kebijakan Privasi Meta.</li>
                 <li><strong>Data Interaksi (Pulse Chat):</strong> Riwayat percakapan chatbot, dokumen *knowledge base* yang Anda unggah, dan data calon pelanggan (leads) yang dikumpulkan bot.</li>
                 <li><strong>Data Sensitif (Pulse Career - Data Pelamar/CV):</strong> Dokumen *Curriculum Vitae* (CV) atau resume yang Anda unggah ke dalam sistem untuk keperluan *ATS Scoring* dan analisis kandidat.</li>
               </ul>
