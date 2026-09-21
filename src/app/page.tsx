@@ -155,13 +155,17 @@ function Hero() {
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-7">
 
           {/* Badge */}
-          <motion.div variants={fadeInUp} className="flex justify-center">
+          <motion.div variants={fadeInUp} className="flex justify-center flex-wrap gap-2">
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-300/60 bg-emerald-50 text-emerald-700 text-sm font-semibold shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
               </span>
               Platform AI Otomasi Bisnis #1 Indonesia
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-700 text-xs font-bold shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#1877F2]" />
+              Terintegrasi Meta Official Cloud API (Embedded Signup)
             </div>
           </motion.div>
 
@@ -458,6 +462,8 @@ function ProductSuite() {
   const [activeTab, setActiveTab] = useState<"chatbot" | "ats" | "finance">("chatbot");
 
   const chatbotFeatures = [
+    { icon: "🌐", title: "Meta Official Cloud API", desc: "Integrasi resmi Meta via Embedded Signup. Bebas risiko pemblokiran, gratis 1.000 percakapan Service/bulan." },
+    { icon: "🚀", title: "WhatsApp Blast Official", desc: "Kirim pesan broadcast massal secara langsung & aman via Meta Graph API tanpa risiko dibanned." },
     { icon: "🧠", title: "Akurasi RAG 100%", desc: "AI hanya menjawab dari dokumen yang Anda upload. Zero halusinasi, zero jawaban ngawur." },
     { icon: "📄", title: "Upload PDF Instan", desc: "Upload katalog, SOP, atau FAQ bisnis. AI belajar dan siap melayani dalam detik." },
     { icon: "💬", title: "Widget Website", desc: "Pasang di website apapun dengan satu baris kode. Plug & play tanpa coding." },
