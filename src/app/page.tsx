@@ -29,11 +29,15 @@ function Navbar() {
             <span className="ml-2 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-emerald-200">Beta</span>
           </span>
         </div>
-        <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-slate-500">
           {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ", "/blog|Blog"].map((item) => {
             const [href, label] = item.split("|");
             return <Link key={href} href={href} className="hover:text-emerald-600 transition-colors duration-200">{label}</Link>;
           })}
+          <Link href="/jasa-web" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors duration-200">
+            Jasa Web
+            <span className="bg-orange-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-widest animate-pulse">Kilat 1 Hari Jadi</span>
+          </Link>
         </nav>
         <div className="flex items-center gap-3">
           <Link href="https://dashboard.pulseai.biz.id" className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors hidden sm:block">Login</Link>
