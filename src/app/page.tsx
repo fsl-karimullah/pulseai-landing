@@ -713,21 +713,12 @@ function HowItWorks() {
                       : 'group-hover:border-emerald-200 group-hover:shadow-emerald-100/80'
                   }`}
                 >
-                  <div className="flex items-start justify-between mb-5">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      {s.emoji}
-                    </div>
-                    <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${
-                      isFinance ? 'bg-amber-50 text-amber-600 border-amber-200'
-                      : isAts ? 'bg-violet-50 text-violet-600 border-violet-200'
-                      : 'bg-emerald-50 text-emerald-600 border-emerald-200'
-                    }`}>
-                      STEP {s.step}
-                    </span>
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} text-white font-black text-sm flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform`}>
+                    {s.emoji}
                   </div>
-                  <h4 className="font-black text-slate-900 text-base mb-2 leading-snug">{s.title}</h4>
+                  <div className="text-xs font-bold text-slate-400 mb-1">LANGKAH {s.step}</div>
+                  <h3 className="text-lg font-extrabold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">{s.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed flex-1">{s.desc}</p>
-                  <div className={`mt-5 h-1 rounded-full bg-gradient-to-r ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 </motion.div>
               </div>
             ))}
@@ -738,99 +729,125 @@ function HowItWorks() {
   );
 }
 
-
-
-// ── Deep Dive Features ────────────────────────────────────────────────────────
-function DeepDiveFeatures() {
-  const features = [
+// ── Jasa Pembuatan Website (Cashflow Booster) ────────────────────────────────
+function JasaWebSection() {
+  const tiers = [
     {
-      tag: "Pulse Chat · Modul 01", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
-      title: "Chatbot Pintar Berbasis Dokumen Bisnis Anda",
-      desc: "Bukan chatbot generik yang menjawab sembarang. PulseAI menggunakan RAG (Retrieval-Augmented Generation) yang membaca dokumen bisnis Anda — katalog, SOP, FAQ — lalu menjawab pelanggan layaknya karyawan terbaik Anda.",
-      image: "/rag_accuracy.png",
-      reversed: false,
-      checkColor: "bg-emerald-100 border-emerald-200",
-      iconColor: "text-emerald-600",
-      usps: ["Jawaban 100% berbasis data bisnis Anda sendiri", "Tanpa halusinasi atau informasi ngawur", "Update pengetahuan AI cukup dengan upload dokumen baru"],
+      icon: "⚡",
+      name: "Express Company Profile",
+      price: "Rp 500.000",
+      sla: "2–6 Jam",
+      slaColor: "text-amber-600 bg-amber-50 border-amber-200",
+      features: ["1 Halaman Single-Page Modern", "Hosting gratis di Vercel CDN", "Mobile Responsive + SSL", "Tombol WhatsApp Langsung"],
+      cta: "Pesan Web Kilat",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Company%20Profile%20Kilat%20500k.",
+      highlight: false,
     },
     {
-      tag: "Pulse Chat · Modul 02", tagBg: "bg-emerald-100", tagText: "text-emerald-700", tagBorder: "border-emerald-200",
-      title: "Lead Generation Otomatis 24/7",
-      desc: "PulseAI tidak hanya menjawab pertanyaan — ia memandu percakapan menuju konversi. AI mengumpulkan nama, nomor telepon, dan kebutuhan spesifik pelanggan, lalu menyimpannya ke dashboard Anda secara otomatis.",
-      image: "/lead_gen.png",
-      reversed: true,
-      checkColor: "bg-emerald-100 border-emerald-200",
-      iconColor: "text-emerald-600",
-      usps: ["Kualifikasi prospek otomatis saat Anda tidur", "Pengumpulan data leads yang terstruktur & bersih", "Peningkatan rasio konversi hingga 3x lipat"],
+      icon: "🤖",
+      name: "Company Profile + AI Chatbot",
+      price: "Rp 1.250.000",
+      sla: "1–2 Hari Kerja",
+      slaColor: "text-emerald-600 bg-emerald-50 border-emerald-200",
+      features: ["Semua fitur Express", "Integrasi PulseAI WhatsApp", "Training KB produk & FAQ", "Langganan AI mulai Rp 350rb/bln"],
+      cta: "Pesan Web + AI",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Web%20Company%20Profile%20+%20AI%20Chatbot.",
+      highlight: true,
     },
     {
-      tag: "Pulse Career · Modul 03", tagBg: "bg-violet-100", tagText: "text-violet-700", tagBorder: "border-violet-200",
-      title: "AI ATS CV Scanner untuk Rekrutmen Lebih Cerdas",
-      desc: "Berhenti membuang waktu membaca ratusan CV secara manual. Upload CV pelamar, dan AI memberikan ATS Score, analisis mendalam, deteksi red flags, serta rekomendasi keputusan HR dalam hitungan detik.",
-      image: "/widget_demo.png",
-      reversed: false,
-      checkColor: "bg-violet-100 border-violet-200",
-      iconColor: "text-violet-600",
-      usps: ["ATS Score 0-100 berdasarkan kesesuaian dengan JD", "Deteksi otomatis job hopping, gap kerja & inkonsistensi data", "Draft pesan WhatsApp ke kandidat dibuat otomatis"],
-    },
-    {
-      tag: "Pulse Finance · Modul 04", tagBg: "bg-amber-100", tagText: "text-amber-700", tagBorder: "border-amber-200",
-      title: "Keuangan Bisnis & Estimasi Pajak Tanpa Ribet",
-      desc: "Catat setiap pemasukan dan pengeluaran dalam hitungan detik. PulseAI otomatis menghitung laba/rugi bulanan dan memperkirakan PPh Final UMKM (0,5% x omzet) sesuai PP 23/2018 — tidak perlu akuntan, tidak perlu Excel.",
-      image: "/rag_accuracy.png",
-      reversed: true,
-      checkColor: "bg-amber-100 border-amber-200",
-      iconColor: "text-amber-600",
-      usps: ["Laporan laba/rugi real-time per bulan tanpa formula Excel", "Estimasi PPh Final UMKM otomatis — siap sebelum lapor SPT", "Reminder deadline pajak: PPh masa, SPT 1770S & SPT 1771"],
+      icon: "🏗️",
+      name: "Custom Web & Application",
+      price: "Rp 3.500.000++",
+      sla: "7–21 Hari Kerja",
+      slaColor: "text-slate-600 bg-slate-100 border-slate-200",
+      features: ["Full-stack Laravel / Next.js", "Dashboard & multi-role auth", "Integrasi API & payment gateway", "Dedicated VPS / Cloud Server"],
+      cta: "Konsultasi Gratis",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20ingin%20konsultasi%20kebutuhan%20pembuatan%20website/sistem%20kustom.",
+      highlight: false,
     },
   ];
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        <div className="text-center mb-20">
-          <span className="inline-block mb-4 bg-slate-100 text-slate-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-slate-200">Detail Fitur</span>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-5 leading-tight">Cara Setiap Modul Bekerja</h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">Teknologi enterprise, disederhanakan untuk UMKM dan bisnis berkembang.</p>
-        </div>
+    <section className="py-24 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/5 blur-3xl rounded-full pointer-events-none" />
 
-        <div className="space-y-28">
-          {features.map((f, i) => (
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+        {/* Header */}
+        <motion.div
+          initial="hidden" whileInView="visible" viewport={{ once: true }}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.div variants={fadeInUp}>
+            <span className="inline-flex items-center gap-2 mb-5 bg-orange-500/20 text-orange-300 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-orange-500/30">
+              <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+              Layanan Baru • Jasa Pembuatan Website
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
+              Website Bisnis Siap Tayang{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">dalam 2–6 Jam</span>
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              PT Astra Solusi Digital membuka layanan pembuatan website kilat — hosting gratis di Vercel CDN,
+              tanpa biaya server bulanan. Pilih paket terbaik untuk bisnis Anda.
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Tier Cards */}
+        <div className="grid md:grid-cols-3 gap-6 items-stretch mb-12">
+          {tiers.map((t) => (
             <motion.div
-              key={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className={`flex flex-col lg:flex-row items-center gap-14 ${f.reversed ? "lg:flex-row-reverse" : ""}`}
+              key={t.name}
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className={`flex flex-col rounded-2xl p-7 border transition-all hover:-translate-y-1 ${
+                t.highlight
+                  ? "bg-emerald-600 border-emerald-400 shadow-2xl shadow-emerald-500/20"
+                  : "bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10"
+              }`}
             >
-              <motion.div variants={fadeInUp} className="w-full lg:w-1/2">
-                <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-200 group">
-                  <Image src={f.image} alt={f.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp} className="w-full lg:w-1/2 space-y-6">
-                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border ${f.tagBg} ${f.tagBorder}`}>
-                  <span className={`text-xs font-black uppercase tracking-widest ${f.tagText}`}>{f.tag}</span>
-                </div>
-                <h3 className="text-3xl font-black text-slate-900 leading-tight">{f.title}</h3>
-                <p className="text-slate-600 text-base leading-relaxed">{f.desc}</p>
-                <ul className="space-y-3">
-                  {f.usps.map((usp, j) => (
-                    <li key={j} className="flex items-start gap-3">
-                      <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 border ${f.checkColor}`}>
-                        <svg className={`w-3 h-3 ${f.iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-slate-700 font-medium text-sm">{usp}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              <div className="text-3xl mb-4">{t.icon}</div>
+              <h3 className={`text-lg font-black mb-1 ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.name}</h3>
+              <div className={`text-2xl font-extrabold mb-3 ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.price}</div>
+              <span className={`self-start text-xs font-bold px-2.5 py-1 rounded-lg border mb-5 ${t.slaColor}`}>⏱ {t.sla}</span>
+              <ul className="space-y-2.5 flex-1 mb-6">
+                {t.features.map((f) => (
+                  <li key={f} className={`flex items-center gap-2 text-sm ${ t.highlight ? "text-emerald-50" : "text-slate-300" }`}>
+                    <svg className={`w-4 h-4 shrink-0 ${ t.highlight ? "text-emerald-200" : "text-emerald-400" }`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={t.ctaHref}
+                target="_blank"
+                className={`block text-center py-3 px-4 rounded-xl font-bold text-sm transition-all ${
+                  t.highlight
+                    ? "bg-white text-emerald-700 hover:bg-slate-50 shadow-sm"
+                    : "bg-white/10 hover:bg-white/20 text-white border border-white/20"
+                }`}
+              >
+                {t.cta} →
+              </Link>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom CTA strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="text-center"
+        >
+          <p className="text-slate-400 text-sm mb-4">Lihat seluruh paket, portofolio template, & FAQ lengkap di halaman khusus</p>
+          <Link
+            href="/jasa-web"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl border border-white/20 transition-all hover:-translate-y-px"
+          >
+            Lihat Semua Paket & Portofolio →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -1174,7 +1191,7 @@ export default function LandingPage() {
         <ProblemBreakdown />
         <ProductSuite />
         <HowItWorks />
-        <DeepDiveFeatures />
+        <JasaWebSection />
         {/* <Testimonials /> */}
         <Pricing />
         <FAQ />
