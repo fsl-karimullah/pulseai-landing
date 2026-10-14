@@ -733,35 +733,67 @@ function HowItWorks() {
 function JasaWebSection() {
   const tiers = [
     {
-      icon: "⚡",
-      name: "Express Company Profile",
+      icon: "🛍️",
+      name: "Web Toko & Katalog Express",
+      target: "UMKM, Toko, Kuliner, Fashion & Olshop yang butuh etalase produk aktif",
       price: "Rp 500.000",
-      sla: "2–6 Jam",
-      slaColor: "text-amber-600 bg-amber-50 border-amber-200",
-      features: ["1 Halaman Single-Page Modern", "Hosting gratis di Vercel CDN", "Mobile Responsive + SSL", "Tombol WhatsApp Langsung"],
-      cta: "Pesan Web Kilat",
-      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Company%20Profile%20Kilat%20500k.",
+      period: "/ Sekali Bayar",
+      note: "Beli Putus • Tanpa Biaya Bulanan",
+      sla: "Selesai 1–2 Hari Kerja",
+      slaColor: "text-amber-300 bg-amber-500/10 border-amber-500/30",
+      features: [
+        "Website Toko & Etalase Dinamis (Hero Promo, Profil Toko, Katalog Produk, Kontak & Peta Maps)",
+        "Halaman Admin Khusus: Login HP/Laptop untuk Tambah, Edit Harga, Upload Foto & Hapus Produk sendiri",
+        "Fast Checkout WhatsApp: Pembeli klik 'Beli', format rincian order otomatis terisi rapi langsung ke WA",
+        "Kapasitas hingga 15 – 20 Produk aktif",
+        "Sudah Termasuk Domain Resmi: Free domain .my.id (aktif 1 tahun) atau pasang domain sendiri",
+        "Hosting Cloud Cepat & Stabil (Bebas Biaya Server Bulanan / Beli Putus)",
+      ],
+      cta: "Pesan Web Katalog 500k",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Katalog%20Dinamis%20500k.",
       highlight: false,
     },
     {
-      icon: "🤖",
-      name: "Company Profile + AI Chatbot",
+      badge: "Paling Populer / Best Value",
+      icon: "🚀",
+      name: "Business Catalog Pro & Marketing",
+      target: "Bisnis berkembang, distributor, fashion & toko dengan banyak varian produk",
       price: "Rp 1.250.000",
-      sla: "1–2 Hari Kerja",
-      slaColor: "text-emerald-600 bg-emerald-50 border-emerald-200",
-      features: ["Semua fitur Express", "Integrasi PulseAI WhatsApp", "Training KB produk & FAQ", "Langganan AI mulai Rp 350rb/bln"],
-      cta: "Pesan Web + AI",
-      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Web%20Company%20Profile%20+%20AI%20Chatbot.",
+      period: "/ Sekali Bayar",
+      note: "Beli Putus • Tanpa Biaya Bulanan",
+      sla: "Selesai 2–3 Hari Kerja",
+      slaColor: "text-emerald-100 bg-emerald-700/60 border-emerald-400/40",
+      features: [
+        "Semua fitur lengkap di Paket Web Katalog Express",
+        "🔥 BONUS: Gratis 1 Bulan Widget AI Chatbot Website (Otomatis jawab pembeli 24/7 di web tanpa ribet WA Meta)",
+        "Kapasitas Produk UNLIMITED (Tanpa batas produk) + Filter Kategori Bertingkat & Fitur Search",
+        "Halaman Khusus Tiap Produk + Rich Preview WhatsApp (Saat link di-share ke WA, muncul foto, judul & harga)",
+        "Halaman Admin Pro: Kelola promo diskon, label produk (Best Seller/Promo), & rekap pesanan masuk",
+        "Banner / Slider Promo Berjalan di halaman utama untuk flash sale & event",
+        "Termasuk Domain Resmi (.my.id gratis atau opsi upgrade domain .com/.id)",
+        "Setup Google Maps Bisnis & Pasang Tracking Iklan (Meta Pixel & Google Analytics)",
+        "Opsi perpanjangan AI Chatbot fleksibel setelah 1 bulan (mulai Rp 150.000/bln — tanpa paksaan)",
+      ],
+      cta: "Pesan Paket Business Pro",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Business%20Catalog%20Pro%201.25jt.",
       highlight: true,
     },
     {
       icon: "🏗️",
       name: "Custom Web & Application",
+      target: "Perusahaan yang butuh portal internal, sistem kustom, atau fitur skala besar",
       price: "Rp 3.500.000++",
+      period: "Mulai",
+      note: "Sesuai Kompleksitas Sistem",
       sla: "7–21 Hari Kerja",
-      slaColor: "text-slate-600 bg-slate-100 border-slate-200",
-      features: ["Full-stack Laravel / Next.js", "Dashboard & multi-role auth", "Integrasi API & payment gateway", "Dedicated VPS / Cloud Server"],
-      cta: "Konsultasi Gratis",
+      slaColor: "text-slate-300 bg-slate-800 border-slate-700",
+      features: [
+        "Full-stack kustom (Laravel / Next.js + PostgreSQL)",
+        "Autentikasi multi-role & dashboard panel mandiri",
+        "Integrasi API pihak ketiga (Payment Gateway, Bank, CRM, Webhook)",
+        "Pengaturan Dedicated VPS / Cloud Server mandiri",
+      ],
+      cta: "Konsultasi Custom Project",
       ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20ingin%20konsultasi%20kebutuhan%20pembuatan%20website/sistem%20kustom.",
       highlight: false,
     },
@@ -783,16 +815,24 @@ function JasaWebSection() {
           <motion.div variants={fadeInUp}>
             <span className="inline-flex items-center gap-2 mb-5 bg-orange-500/20 text-orange-300 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-orange-500/30">
               <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-              Layanan Baru • Jasa Pembuatan Website
+              Layanan Kilat • PT Astra Solusi Digital
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
-              Website Bisnis Siap Tayang{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">dalam 2–6 Jam</span>
+              Website Bisnis &amp; Katalog Dinamis{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Siap Jualan</span>
             </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              PT Astra Solusi Digital membuka layanan pembuatan website kilat — hosting gratis di Vercel CDN,
-              tanpa biaya server bulanan. Pilih paket terbaik untuk bisnis Anda.
+            <p className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed mb-6">
+              Tingkatkan penjualan dan kredibilitas bisnis Anda dengan website katalog dinamis, halaman admin mandiri untuk kelola produk, dan integrasi checkout langsung ke WhatsApp.{" "}
+              <strong className="text-emerald-400 font-bold">Tanpa biaya sewa server bulanan (Sistem Beli Putus).</strong>
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm font-semibold text-slate-400">
+              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', 'Bebas Biaya Server Bulanan'].map((t) => (
+                <span key={t} className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                  <svg className="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {t}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
@@ -802,30 +842,46 @@ function JasaWebSection() {
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className={`flex flex-col rounded-2xl p-7 border transition-all hover:-translate-y-1 ${
+              className={`flex flex-col rounded-3xl p-7 md:p-8 border transition-all hover:-translate-y-1 relative ${
                 t.highlight
-                  ? "bg-emerald-600 border-emerald-400 shadow-2xl shadow-emerald-500/20"
+                  ? "bg-emerald-600 border-2 border-emerald-400 shadow-2xl shadow-emerald-500/30"
                   : "bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10"
               }`}
             >
-              <div className="text-3xl mb-4">{t.icon}</div>
-              <h3 className={`text-lg font-black mb-1 ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.name}</h3>
-              <div className={`text-2xl font-extrabold mb-3 ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.price}</div>
-              <span className={`self-start text-xs font-bold px-2.5 py-1 rounded-lg border mb-5 ${t.slaColor}`}>⏱ {t.sla}</span>
-              <ul className="space-y-2.5 flex-1 mb-6">
+              {t.badge && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[11px] font-black uppercase tracking-wider rounded-full shadow-md whitespace-nowrap">
+                  {t.badge}
+                </div>
+              )}
+              <div className="text-3xl mb-3">{t.icon}</div>
+              <h3 className={`text-xl font-black mb-1.5 leading-snug ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.name}</h3>
+              <p className={`text-xs leading-relaxed mb-4 ${ t.highlight ? "text-emerald-100" : "text-slate-400" }`}>{t.target}</p>
+
+              <div className="mb-4">
+                <div className="flex items-baseline gap-1.5">
+                  <span className={`text-3xl font-extrabold tracking-tight ${ t.highlight ? "text-white" : "text-slate-100" }`}>{t.price}</span>
+                  <span className={`text-xs font-semibold ${ t.highlight ? "text-emerald-200" : "text-slate-400" }`}>{t.period}</span>
+                </div>
+                <div className={`text-[11px] font-medium mt-1 ${ t.highlight ? "text-emerald-200" : "text-emerald-400" }`}>{t.note}</div>
+              </div>
+
+              <span className={`self-start text-xs font-bold px-3 py-1 rounded-lg border mb-6 ${t.slaColor}`}>⏱ {t.sla}</span>
+
+              <ul className="space-y-3 flex-1 mb-8">
                 {t.features.map((f) => (
-                  <li key={f} className={`flex items-center gap-2 text-sm ${ t.highlight ? "text-emerald-50" : "text-slate-300" }`}>
-                    <svg className={`w-4 h-4 shrink-0 ${ t.highlight ? "text-emerald-200" : "text-emerald-400" }`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    {f}
+                  <li key={f} className={`flex items-start gap-2.5 text-xs md:text-sm leading-relaxed ${ t.highlight ? "text-emerald-50" : "text-slate-300" }`}>
+                    <svg className={`w-4 h-4 shrink-0 mt-0.5 ${ t.highlight ? "text-emerald-200" : "text-emerald-400" }`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
+
               <Link
                 href={t.ctaHref}
                 target="_blank"
-                className={`block text-center py-3 px-4 rounded-xl font-bold text-sm transition-all ${
+                className={`block text-center py-3.5 px-4 rounded-xl font-bold text-sm transition-all mt-auto ${
                   t.highlight
-                    ? "bg-white text-emerald-700 hover:bg-slate-50 shadow-sm"
+                    ? "bg-white text-emerald-800 hover:bg-slate-50 shadow-md hover:shadow-lg"
                     : "bg-white/10 hover:bg-white/20 text-white border border-white/20"
                 }`}
               >
@@ -840,12 +896,12 @@ function JasaWebSection() {
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-slate-400 text-sm mb-4">Lihat seluruh paket, portofolio template, & FAQ lengkap di halaman khusus</p>
+          <p className="text-slate-400 text-sm mb-4">Lihat seluruh katalog paket, portofolio template live demo, &amp; panduan alur kerja</p>
           <Link
             href="/jasa-web"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl border border-white/20 transition-all hover:-translate-y-px"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl border border-white/20 transition-all hover:-translate-y-px shadow-lg"
           >
-            Lihat Semua Paket & Portofolio →
+            Lihat Semua Template &amp; Detail Lengkap →
           </Link>
         </motion.div>
       </div>
