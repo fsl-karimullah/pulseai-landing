@@ -186,12 +186,14 @@ export default async function JasaWebPage() {
                   <ul className="space-y-4 text-sm text-emerald-50">
                     {[
                       'Semua fitur lengkap di Paket Web Katalog Express',
+                      '🔥 BONUS: Gratis 1 Bulan Widget AI Chatbot Website (Otomatis jawab pertanyaan pembeli 24/7 di web tanpa ribet WhatsApp Meta)',
                       'Kapasitas Produk UNLIMITED (Tanpa batas jumlah produk) + Filter Kategori Bertingkat & Fitur Search',
                       'Halaman Khusus Tiap Produk + Rich Preview WhatsApp (Saat link produk di-share ke WA, otomatis muncul foto, judul & harganya di chat)',
                       'Halaman Admin Pro: Dashboard kelola promo diskon, label produk (Best Seller/Promo), & rekap pesanan masuk',
                       'Banner / Slider Promo Berjalan di halaman utama untuk flash sale & event',
                       'Termasuk Domain Pilihan (.my.id gratis atau opsi upgrade domain .com/.id)',
                       'Setup Google Maps Bisnis & Pasang Tracking Iklan (Meta Pixel FB/IG Ads & Google Analytics)',
+                      'Opsi perpanjangan AI Chatbot setelah 1 bulan fleksibel sesuai paket PulseAI (mulai Rp 150.000/bln — tanpa paksaan)',
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-2.5"><CheckIcon color="text-emerald-300" /><span>{f}</span></li>
                     ))}
@@ -370,6 +372,10 @@ export default async function JasaWebPage() {
                 {
                   q: 'Bagaimana cara klien mengelola produk dan menerima pesanan?',
                   a: 'Kami sediakan Halaman Admin khusus yang bisa Anda akses langsung lewat HP atau laptop. Di sana Anda bisa menambah produk baru, mengganti harga, mengunggah foto, dan mengatur stok kapan saja tanpa perlu paham koding. Setiap kali pengunjung website mengklik "Beli/Pesan", rincian pesanan akan otomatis terformat rapi dan dikirim langsung ke WhatsApp Anda.',
+                },
+                {
+                  q: 'Bagaimana dengan bonus Widget AI Chatbot pada Paket Business Pro?',
+                  a: 'Setiap pemesanan Paket Business Pro langsung mendapatkan bonus 1 bulan gratis Widget AI Chatbot (PulseAI Engine) yang terpasang langsung di website Anda. AI ini otomatis dilatih mengenali produk dan FAQ bisnis Anda untuk menjawab pertanyaan pengunjung secara cerdas 24/7 di web tanpa memerlukan verifikasi rumit WhatsApp Meta. Setelah 1 bulan, perpanjangan bersifat opsional sesuai tarif langganan PulseAI (mulai Rp 150.000/bln). Jika tidak diperpanjang, website katalog dan checkout WhatsApp Anda tetap aktif selamanya tanpa terganggu.',
                 },
               ].map((faq, i) => (
                 <details key={i} className="group bg-slate-50 rounded-2xl border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
