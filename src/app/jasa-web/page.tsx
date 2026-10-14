@@ -99,11 +99,11 @@ export default async function JasaWebPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">2–6 Jam</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Tingkatkan kredibilitas bisnis Anda dengan website berkecepatan tinggi, tampilan modern, dan siap terhubung ke WhatsApp atau AI CS.{' '}
-              <strong>Tanpa biaya sewa server bulanan yang mahal.</strong>
+              Tingkatkan penjualan dan kredibilitas bisnis Anda dengan website katalog dinamis, halaman admin mandiri, dan integrasi checkout langsung ke WhatsApp.{' '}
+              <strong>Tanpa biaya sewa server bulanan (Sistem Beli Putus).</strong>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-slate-500">
-              {['Hosted on High-Speed Vercel Global CDN', 'Mobile Responsive', 'Free SSL HTTPS', '100% Siap Pakai'].map((t) => (
+              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', 'Bebas Biaya Server Bulanan'].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
                   <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   {t}
@@ -117,8 +117,8 @@ export default async function JasaWebPage() {
         <section id="pricing" className="py-24 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">Pilihan Paket Website</h2>
-              <p className="text-slate-500 max-w-2xl mx-auto">Kami menyediakan opsi dari company profile cepat saji hingga aplikasi web custom terintegrasi AI.</p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Pilihan Paket Website Siap Jualan</h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">Mulai dari web katalog produk kilat dengan admin panel mandiri hingga sistem aplikasi bisnis kustom.</p>
             </div>
 
             {/* 3 equal-height cards — use items-stretch so all cards fill the row */}
@@ -127,76 +127,82 @@ export default async function JasaWebPage() {
               {/* Paket 1 */}
               <div className="flex flex-col bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-all">
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">Express Company Profile</h3>
-                  <p className="text-sm text-slate-500">Target: UMKM, Toko, Kontraktor, Klinik, &amp; Portofolio Legalitas Tender.</p>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">Web Toko &amp; Katalog Express</h3>
+                  <p className="text-sm text-slate-500">Target: UMKM, Toko, Kuliner, Fashion &amp; Olshop yang butuh etalase produk aktif.</p>
                 </div>
                 <div className="mb-6">
                   <span className="text-slate-500 text-sm font-medium">Mulai</span>
                   <div className="flex items-baseline gap-1 mt-1">
                     <span className="text-4xl font-extrabold text-slate-900">Rp 500.000</span>
+                    <span className="text-slate-500 text-xs font-semibold">/ Sekali Bayar</span>
                   </div>
                 </div>
                 <div className="flex-1 mb-8">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-200/50 mb-5">
-                    ⏱️ SLA: Selesai 2 – 6 Jam (Maks. 1 Hari)
+                    ⏱️ SLA: Selesai 1 – 2 Hari Kerja
                   </div>
                   <ul className="space-y-4 text-sm text-slate-600">
                     {[
-                      '1 Halaman Modern Single-Page (Hero, Tentang Kami, Layanan/Produk, Galeri/Portofolio, Kontak/Alamat)',
-                      'Desain ultra responsif (Mobile & Desktop)',
-                      'Hosting gratis, aman, dan ngebut di Vercel CDN (Bebas biaya server bulanan)',
-                      'Integrasi tombol CTA langsung ke WhatsApp Admin',
-                      'Setup domain klien (Biaya domain dibeli sendiri oleh klien)',
+                      'Website Toko & Etalase Dinamis (Hero Promo, Profil Toko, Katalog Produk, Kontak & Alamat Maps)',
+                      'Halaman Admin Khusus: Pemilik bisa login lewat HP/Laptop untuk Tambah, Edit Harga, Upload Foto, & Hapus Produk sendiri',
+                      'Fast Checkout WhatsApp: Pembeli klik "Beli", format rincian pesanan otomatis terisi rapi langsung ke WhatsApp penjual',
+                      'Kapasitas hingga 15 – 20 Produk aktif',
+                      'Sudah Termasuk Domain Resmi: Bebas pilih domain (.my.id aktif 1 tahun) atau pasang domain sendiri',
+                      'Hosting Cloud Cepat & Stabil (Bebas Biaya Server Bulanan / Beli Putus)',
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-2.5"><CheckIcon /><span>{f}</span></li>
                     ))}
                   </ul>
                 </div>
                 <Link
-                  href="https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Company%20Profile%20Kilat%20500k."
+                  href="https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Katalog%20Dinamis%20500k."
                   target="_blank"
                   className="block w-full py-3.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-center rounded-xl transition-colors mt-auto"
                 >
-                  Pesan Web Kilat 500k
+                  Pesan Web Katalog 500k
                 </Link>
               </div>
 
-              {/* Paket 2 — Most Popular (no negative margin, just a ring + shadow to stand out) */}
+              {/* Paket 2 — Most Popular */}
               <div className="flex flex-col bg-emerald-600 rounded-3xl p-8 border-2 border-emerald-400 shadow-2xl shadow-emerald-500/30 relative hover:-translate-y-1 transition-all">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-black uppercase tracking-wider rounded-full shadow-md whitespace-nowrap">
                   Paling Populer / Best Value
                 </div>
                 <div className="mb-6 mt-2">
-                  <h3 className="text-xl font-bold text-white mb-2">Company Profile + AI Chatbot</h3>
-                  <p className="text-sm text-emerald-100">Target: Bisnis yang ingin otomatisasi penuh antara web dan CS WhatsApp.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Business Catalog Pro &amp; Marketing</h3>
+                  <p className="text-sm text-emerald-100">Target: Bisnis berkembang, distributor, fashion &amp; toko dengan banyak varian produk.</p>
                 </div>
                 <div className="mb-6">
                   <div className="flex items-baseline gap-1 mt-1">
                     <span className="text-4xl font-extrabold text-white">Rp 1.250.000</span>
+                    <span className="text-emerald-200 text-xs font-semibold">/ Sekali Bayar</span>
                   </div>
-                  <p className="text-emerald-200 text-xs mt-1.5 font-medium">+ Biaya Langganan AI</p>
+                  <p className="text-emerald-200 text-xs mt-1.5 font-medium">Beli Putus • Tanpa Biaya Bulanan</p>
                 </div>
                 <div className="flex-1 mb-8">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-700/50 text-emerald-100 text-xs font-bold rounded-lg border border-emerald-500/50 mb-5">
-                    ⏱️ SLA: Selesai 1 – 2 Hari Kerja
+                    ⏱️ SLA: Selesai 2 – 3 Hari Kerja
                   </div>
                   <ul className="space-y-4 text-sm text-emerald-50">
                     {[
-                      'Semua fitur di Paket Express Company Profile (Vercel CDN)',
-                      'Setup & Integrasi Asisten WhatsApp AI resmi (PulseAI Engine) pada nomor WhatsApp klien',
-                      'Training Knowledge Base AI sesuai profil produk, jasa, dan FAQ bisnis klien',
-                      'Biaya Pemeliharaan & Kuota Token AI: Berlangganan mulai Rp 350.000/bulan',
+                      'Semua fitur lengkap di Paket Web Katalog Express',
+                      'Kapasitas Produk UNLIMITED (Tanpa batas jumlah produk) + Filter Kategori Bertingkat & Fitur Search',
+                      'Halaman Khusus Tiap Produk + Rich Preview WhatsApp (Saat link produk di-share ke WA, otomatis muncul foto, judul & harganya di chat)',
+                      'Halaman Admin Pro: Dashboard kelola promo diskon, label produk (Best Seller/Promo), & rekap pesanan masuk',
+                      'Banner / Slider Promo Berjalan di halaman utama untuk flash sale & event',
+                      'Termasuk Domain Pilihan (.my.id gratis atau opsi upgrade domain .com/.id)',
+                      'Setup Google Maps Bisnis & Pasang Tracking Iklan (Meta Pixel FB/IG Ads & Google Analytics)',
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-2.5"><CheckIcon color="text-emerald-300" /><span>{f}</span></li>
                     ))}
                   </ul>
                 </div>
                 <Link
-                  href="https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Web%20Company%20Profile%20+%20AI%20Chatbot."
+                  href="https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Business%20Catalog%20Pro%201.25jt."
                   target="_blank"
                   className="block w-full py-3.5 px-4 bg-white hover:bg-slate-50 text-emerald-700 font-bold text-center rounded-xl transition-colors shadow-sm mt-auto"
                 >
-                  Pesan Paket Web + AI
+                  Pesan Paket Business Pro
                 </Link>
               </div>
 
@@ -329,7 +335,7 @@ export default async function JasaWebPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 { n: '1', title: 'Kirim Materi', desc: 'Kirimkan logo, profil usaha, deskripsi layanan, dan kontak Anda via WhatsApp.', accent: false },
-                { n: '2', title: 'Proses Kilat', desc: 'Tim ahli kami merakit dan men-deploy web Anda langsung ke Vercel CDN dalam hitungan jam.', accent: true },
+                { n: '2', title: 'Setup & Input Data', desc: 'Tim kami menyiapkan website, halaman admin, menginput produk awal Anda, dan menghubungkannya ke WhatsApp.', accent: true },
                 { n: '3', title: 'Web Live & Siap Jualan!', desc: 'Website Anda tayang, responsif, super cepat, dan langsung siap menerima orderan pelanggan.', accent: false },
               ].map((s) => (
                 <div key={s.n} className={`rounded-2xl p-8 border relative shadow-sm ${s.accent ? 'bg-emerald-50/50 border-emerald-100' : 'bg-white border-slate-100'}`}>
@@ -354,16 +360,16 @@ export default async function JasaWebPage() {
             <div className="space-y-4">
               {[
                 {
-                  q: 'Kenapa tidak ada biaya sewa server bulanan untuk paket Express?',
-                  a: 'Website Anda dideploy ke infrastruktur Vercel global CDN yang menyediakan kuota gratis yang sangat besar, stabil, dan super cepat untuk website statis / Single-Page Application. Sehingga Anda bebas dari beban biaya langganan server bulanan.',
+                  q: 'Kenapa tidak ada biaya sewa server bulanan?',
+                  a: 'Website Anda dikelola pada infrastruktur cloud server modern yang dioptimasi khusus untuk katalog dinamis ringan. Seluruh biaya hosting sudah kami gratiskan selamanya, sehingga Anda bebas dari beban biaya langganan bulanan (sistem beli putus).',
                 },
                 {
                   q: 'Bagaimana dengan domainnya?',
-                  a: 'Klien bisa menggunakan domain yang sudah dimiliki dan kami akan membantu menghubungkannya ke server. Jika belum punya, kami bisa memandu Anda membelinya sendiri (agar kepemilikan 100% di tangan Anda) atau kami bantu daftarkan sebagai layanan tambahan.',
+                  a: 'Setiap paket sudah termasuk domain resmi (pilihan gratis domain lokal seperti .my.id aktif selama 1 tahun) atau Anda bisa menghubungkan domain yang sudah Anda miliki. Jika ingin upgrade ke domain internasional seperti .com atau .id, Anda cukup menambah selisih biaya registrasi domain resmi tersebut.',
                 },
                 {
-                  q: 'Bagaimana cara kerja AI Chatbot WhatsApp pada paket ke-2?',
-                  a: 'Setelah website selesai, kami akan mengintegrasikan engine PulseAI ke nomor WhatsApp bisnis Anda. AI kami akan dilatih (ditraining) membaca informasi website, daftar harga, dan katalog produk Anda. AI asisten ini akan otomatis membalas pertanyaan pelanggan Anda 24/7 di WhatsApp resmi.',
+                  q: 'Bagaimana cara klien mengelola produk dan menerima pesanan?',
+                  a: 'Kami sediakan Halaman Admin khusus yang bisa Anda akses langsung lewat HP atau laptop. Di sana Anda bisa menambah produk baru, mengganti harga, mengunggah foto, dan mengatur stok kapan saja tanpa perlu paham koding. Setiap kali pengunjung website mengklik "Beli/Pesan", rincian pesanan akan otomatis terformat rapi dan dikirim langsung ke WhatsApp Anda.',
                 },
               ].map((faq, i) => (
                 <details key={i} className="group bg-slate-50 rounded-2xl border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
