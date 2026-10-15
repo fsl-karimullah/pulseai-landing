@@ -132,11 +132,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://pulseai.biz.id"),
   title: {
     default:
-      "PulseAI — Chatbot AI, ATS CV Scanner & Keuangan Bisnis | PT Astra Solusi Digital",
+      "PulseAI — Chatbot AI, Jasa Website Kilat & ATS CV Scanner | PT Astra Solusi Digital",
     template: "%s | PulseAI — PT Astra Solusi Digital",
   },
   description:
-    "PulseAI by PT Astra Solusi Digital: platform AI all-in-one untuk bisnis Indonesia. Pulse Chat (chatbot AI WhatsApp & CS 24/7), Pulse Career (ATS scanner CV otomatis, rekrutmen AI), Pulse Finance (keuangan & pajak bisnis). Mulai gratis!",
+    "PulseAI by PT Astra Solusi Digital: platform automasi bisnis & jasa pembuatan website kilat 1 hari jadi. Dilengkapi Pulse Chat (chatbot AI WhatsApp & CS 24/7), Pulse Career (ATS CV Scanner), Pulse Finance, dan paket website siap pakai bergaransi.",
   keywords: [
     // Brand keywords
     "PulseAI",
@@ -180,6 +180,12 @@ export const metadata: Metadata = {
     "AI Indonesia",
     "software bisnis AI Indonesia",
     "transformasi digital UMKM",
+    "jasa pembuatan website",
+    "jasa website kilat",
+    "bikin website 1 hari jadi",
+    "jasa web UMKM",
+    "website company profile murah",
+    "jasa landing page profesional",
   ],
   authors: [
     { name: "PT Astra Solusi Digital", url: "https://pulseai.biz.id" },
@@ -201,9 +207,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "PulseAI — Chatbot AI, ATS CV Scanner & Keuangan Bisnis | PT Astra Solusi Digital",
+      "PulseAI — Chatbot AI, Jasa Website Kilat & ATS CV Scanner | PT Astra Solusi Digital",
     description:
-      "Platform AI all-in-one dari PT Astra Solusi Digital. Pulse Chat: chatbot AI WhatsApp & CS 24/7. Pulse Career: ATS CV Scanner rekrutmen otomatis. Pulse Finance: keuangan & pajak bisnis. Setup 5 menit, mulai gratis!",
+      "Platform automasi bisnis & jasa pembuatan website kilat 1 hari jadi dari PT Astra Solusi Digital. Dilengkapi Pulse Chat, Pulse Career, Pulse Finance, dan garansi website cepat siap tayang.",
     url: "https://pulseai.biz.id",
     siteName: "PulseAI — PT Astra Solusi Digital",
     images: [
@@ -221,9 +227,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PulseAI — Chatbot AI, ATS CV Scanner & Keuangan Bisnis",
+    title: "PulseAI — Chatbot AI, Jasa Website Kilat & ATS CV Scanner",
     description:
-      "Platform AI all-in-one dari PT Astra Solusi Digital. Pulse Chat, Pulse Career, Pulse Finance. Automasi bisnis Indonesia dalam 5 menit!",
+      "Solusi automasi bisnis & jasa pembuatan website kilat 1 hari jadi dari PT Astra Solusi Digital. Chatbot AI, ATS CV Scanner, dan website bergaransi.",
     images: ["/og-image.png"],
     creator: "@pulseai_id",
     site: "@pulseai_id",

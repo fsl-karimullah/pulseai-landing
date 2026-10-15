@@ -1,10 +1,28 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const metadata = {
-  title: "Jasa Pembuatan Website Kilat | PulseAI",
-  description: "Website Bisnis & Company Profile Siap Tayang dalam 2–6 Jam oleh PT Astra Solusi Digital.",
+export const metadata: Metadata = {
+  title: "Jasa Pembuatan Website Kilat 1 Hari Jadi | Free AI Chatbot 1 Bulan",
+  description: "Jasa pembuatan website profesional, landing page & company profile siap tayang kilat dalam 2–6 jam oleh PT Astra Solusi Digital. Bonus gratis 1 bulan langganan AI Chatbot, Career & Finance!",
+  alternates: { canonical: "https://pulseai.biz.id/jasa-web" },
+  keywords: [
+    "jasa pembuatan website",
+    "jasa website kilat",
+    "bikin website 1 hari jadi",
+    "website company profile murah",
+    "jasa landing page UMKM",
+    "pembuatan website profesional",
+    "PT Astra Solusi Digital",
+    "PulseAI",
+  ],
+  openGraph: {
+    title: "Jasa Pembuatan Website Kilat 1 Hari Jadi — Bonus Free AI Suite 1 Bulan",
+    description: "Website bisnis, landing page, dan company profile siap tayang dalam hitungan jam. Gratis 1 bulan akses penuh Chatbot AI, ATS CV Scanner, dan Manajemen Keuangan.",
+    url: "https://pulseai.biz.id/jasa-web",
+    type: "website",
+  },
 };
 
 // ── Types ──────────────────────────────────────────────────────────────────────
