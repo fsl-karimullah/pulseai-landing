@@ -30,7 +30,7 @@ function Navbar() {
           </span>
         </div>
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-slate-500">
-          {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ", "/blog|Blog"].map((item) => {
+          {["#tentang-kami|Tentang Kami", "#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "/berita|Berita AI", "#faq|FAQ", "/blog|Blog"].map((item) => {
             const [href, label] = item.split("|");
             return <Link key={href} href={href} className="hover:text-emerald-600 transition-colors duration-200">{label}</Link>;
           })}
@@ -913,6 +913,142 @@ function JasaWebSection() {
   );
 }
 
+// ── News & Tech Updates Section ────────────────────────────────────────────────
+interface NewsCardItem {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  author: string;
+  tags: string | null;
+  category: string;
+  sourceUrl: string | null;
+  publishedAt: string | null;
+  createdAt: string;
+}
+
+function NewsSection() {
+  const [news, setNews] = useState<NewsCardItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/news?limit=3")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.data)) {
+          setNews(data.data);
+        }
+      })
+      .catch((err) => console.error("Failed to load news:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <section id="berita" className="py-24 bg-[#faf9f6] border-y border-stone-200/80 relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            Update Otomatis Harian Jam 10 Pagi
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-black text-stone-900 tracking-tight leading-tight mb-4">
+            Kilas Berita &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700">Tren AI Terkini</span>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-stone-600 text-base md:text-lg leading-relaxed">
+            Kurasi harian seputar inovasi Artificial Intelligence dan teknologi global. Disajikan dalam format teks yang nyaman dibaca dan lengkap dengan sumber rujukan utama.
+          </motion.p>
+        </motion.div>
+
+        {loading ? (
+          <div className="grid md:grid-cols-3 gap-6 animate-pulse">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-64 bg-stone-200/60 rounded-3xl" />
+            ))}
+          </div>
+        ) : news.length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-3xl border border-stone-200 max-w-xl mx-auto p-6">
+            <p className="text-stone-500 text-sm">Berita hari ini sedang dikurasi oleh AI Radar PulseAI. Diperbarui setiap hari jam 10 pagi.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {news.map((item) => {
+              const tags = (() => {
+                try { return JSON.parse(item.tags || "[]"); } catch { return []; }
+              })();
+              const domain = item.sourceUrl ? (() => {
+                try { return new URL(item.sourceUrl).hostname.replace(/^www\./, ""); } catch { return null; }
+              })() : null;
+
+              return (
+                <article
+                  key={item.id}
+                  className="bg-white rounded-3xl border border-stone-200/90 hover:border-emerald-500/40 p-6 md:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/5 group hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-stone-500 mb-3 gap-2">
+                      <span className="font-semibold text-stone-700 bg-stone-100 px-2 py-0.5 rounded">
+                        {new Date(item.publishedAt || item.createdAt).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}
+                      </span>
+                      {domain && (
+                        <span className="text-[11px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 truncate max-w-[130px]">
+                          🌐 {domain}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="text-lg md:text-xl font-bold text-stone-900 group-hover:text-emerald-700 transition-colors leading-snug mb-3">
+                      <Link href={`/berita/${item.slug}`}>
+                        {item.title}
+                      </Link>
+                    </h3>
+
+                    {item.excerpt && (
+                      <p className="text-stone-600 text-sm leading-relaxed line-clamp-3 mb-6 font-normal">
+                        {item.excerpt}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="pt-4 border-t border-stone-100 flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1">
+                      {tags.slice(0, 2).map((t: string) => (
+                        <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-stone-100 text-stone-600 font-medium">
+                          #{t}
+                        </span>
+                      ))}
+                    </div>
+                    <Link
+                      href={`/berita/${item.slug}`}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-transform group-hover:translate-x-1"
+                    >
+                      Baca Berita →
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+
+        <div className="text-center mt-12">
+          <Link
+            href="/berita"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold text-sm rounded-2xl shadow-lg transition-all hover:-translate-y-px"
+          >
+            Lihat Seluruh Berita AI (Update Harian) →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Pricing ───────────────────────────────────────────────────────────────────
 function Pricing() {
   const tiers = [
@@ -1208,7 +1344,7 @@ function Footer() {
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Produk</h4>
             <ul className="space-y-3 text-sm">
-              {["#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "#faq|FAQ"].map((item) => {
+              {["#solusi|Solusi", "#fitur|Fitur", "#harga|Harga", "/berita|Berita AI", "/blog|Blog", "#faq|FAQ"].map((item) => {
                 const [href, label] = item.split("|");
                 return <li key={href}><Link href={href} className="hover:text-white transition-colors">{label}</Link></li>;
               })}
@@ -1253,6 +1389,7 @@ export default function LandingPage() {
         <HowItWorks />
         <JasaWebSection />
         {/* <Testimonials /> */}
+        <NewsSection />
         <Pricing />
         <FAQ />
         <FinalPitch />
