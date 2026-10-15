@@ -733,6 +733,7 @@ function HowItWorks() {
 function JasaWebSection() {
   const tiers = [
     {
+      badge: "🎁 Free 1 Bulan AI",
       icon: "🛍️",
       name: "Web Toko & Katalog Express",
       target: "UMKM, Toko, Kuliner, Fashion & Olshop yang butuh etalase produk aktif",
@@ -748,9 +749,11 @@ function JasaWebSection() {
         "Kapasitas hingga 15 – 20 Produk aktif",
         "Sudah Termasuk Domain Resmi: Free domain .my.id (aktif 1 tahun) atau pasang domain sendiri",
         "Hosting Cloud Cepat & Stabil (Bebas Biaya Server Bulanan / Beli Putus)",
+        "🎁 BONUS FREE 1 BULAN: Akses Full Suite PulseAI (AI Chatbot 24/7, Pulse Career ATS CV Scanner, & Pulse Finance Rekap Keuangan/Pajak)",
+        "Opsi perpanjang AI setelah 1 bulan fleksibel (tanpa paksaan, website toko tetap aktif selamanya)",
       ],
       cta: "Pesan Web Katalog 500k",
-      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Katalog%20Dinamis%20500k.",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20mau%20order%20Website%20Katalog%20Dinamis%20500k%20(Free%201%20Bulan%20AI).",
       highlight: false,
     },
     {
@@ -765,17 +768,17 @@ function JasaWebSection() {
       slaColor: "text-emerald-100 bg-emerald-700/60 border-emerald-400/40",
       features: [
         "Semua fitur lengkap di Paket Web Katalog Express",
-        "🔥 BONUS: Gratis 1 Bulan Widget AI Chatbot Website (Otomatis jawab pembeli 24/7 di web tanpa ribet WA Meta)",
+        "🎁 BONUS FREE 1 BULAN: Akses Full Suite PulseAI Pro (AI Chatbot Website & WA, Pulse Career ATS Screening Pelamar, & Pulse Finance Rekap Omzet/Pajak)",
         "Kapasitas Produk UNLIMITED (Tanpa batas produk) + Filter Kategori Bertingkat & Fitur Search",
         "Halaman Khusus Tiap Produk + Rich Preview WhatsApp (Saat link di-share ke WA, muncul foto, judul & harga)",
         "Halaman Admin Pro: Kelola promo diskon, label produk (Best Seller/Promo), & rekap pesanan masuk",
         "Banner / Slider Promo Berjalan di halaman utama untuk flash sale & event",
         "Termasuk Domain Resmi (.my.id gratis atau opsi upgrade domain .com/.id)",
         "Setup Google Maps Bisnis & Pasang Tracking Iklan (Meta Pixel & Google Analytics)",
-        "Opsi perpanjangan AI Chatbot fleksibel setelah 1 bulan (mulai Rp 150.000/bln — tanpa paksaan)",
+        "Opsi perpanjangan AI fleksibel setelah 1 bulan (mulai Rp 150.000/bln — tanpa paksaan, web tetap aktif)",
       ],
       cta: "Pesan Paket Business Pro",
-      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Business%20Catalog%20Pro%201.25jt.",
+      ctaHref: "https://wa.me/6287826563459?text=Halo%20Astra%20Solusi%20Digital,%20saya%20tertarik%20dengan%20paket%20Business%20Catalog%20Pro%201.25jt%20(Free%201%20Bulan%20AI).",
       highlight: true,
     },
     {
@@ -818,15 +821,16 @@ function JasaWebSection() {
               Layanan Kilat • PT Astra Solusi Digital
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
-              Website Bisnis &amp; Katalog Dinamis{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Siap Jualan</span>
+              Bikin Website Toko Siap Jualan{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Free Langganan AI 1 Bulan</span>
             </h2>
             <p className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed mb-6">
-              Tingkatkan penjualan dan kredibilitas bisnis Anda dengan website katalog dinamis, halaman admin mandiri untuk kelola produk, dan integrasi checkout langsung ke WhatsApp.{" "}
-              <strong className="text-emerald-400 font-bold">Tanpa biaya sewa server bulanan (Sistem Beli Putus).</strong>
+              Tingkatkan penjualan dan otomatisasi bisnis Anda: miliki website katalog dinamis, halaman admin mandiri kelola produk, checkout WhatsApp, dan{" "}
+              <strong className="text-emerald-400 font-bold">GRATIS 1 Bulan Full Akses PulseAI (AI Chatbot CS 24/7, Pulse Career ATS CV Scanner, &amp; Pulse Finance Pajak UMKM).</strong>{" "}
+              Sistem Beli Putus tanpa biaya server bulanan.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm font-semibold text-slate-400">
-              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', 'Bebas Biaya Server Bulanan'].map((t) => (
+              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', '🎁 Free 1 Bulan Chatbot, Career & Finance'].map((t) => (
                 <span key={t} className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
                   <svg className="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   {t}

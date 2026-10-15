@@ -90,20 +90,21 @@ export default async function JasaWebPage() {
         <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 bg-gradient-to-b from-white to-slate-50 overflow-hidden relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-400/10 blur-3xl rounded-full pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100/50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Layanan Kilat • PT Astra Solusi Digital
+              Promo Spesial • Free Langganan AI 1 Bulan
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
-              Website Bisnis &amp; Company Profile Siap Tayang dalam{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">2–6 Jam</span>
+              Bikin Website Toko Siap Jualan{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Free Langganan AI 1 Bulan</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Tingkatkan penjualan dan kredibilitas bisnis Anda dengan website katalog dinamis, halaman admin mandiri, dan integrasi checkout langsung ke WhatsApp.{' '}
-              <strong>Tanpa biaya sewa server bulanan (Sistem Beli Putus).</strong>
+              Tingkatkan omzet dan otomatisasi operasional bisnis Anda: miliki website katalog dinamis, halaman admin mandiri, checkout WhatsApp, dan{' '}
+              <strong className="text-slate-900">GRATIS 1 Bulan Full Akses PulseAI (AI Chatbot CS 24/7, Pulse Career ATS CV Scanner, &amp; Pulse Finance Pajak UMKM).</strong>{' '}
+              Tanpa biaya sewa server bulanan (Sistem Beli Putus).
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-slate-500">
-              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', 'Bebas Biaya Server Bulanan'].map((t) => (
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm font-semibold text-slate-600">
+              {['Website Dinamis + Halaman Admin', 'Fast Checkout ke WhatsApp', 'Free Domain Resmi .my.id', '🎁 Free 1 Bulan Chatbot, Career & Finance'].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
                   <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   {t}
@@ -117,8 +118,11 @@ export default async function JasaWebPage() {
         <section id="pricing" className="py-24 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider rounded-full mb-3 shadow-sm">
+                🎁 Paket Website Termasuk Free 1 Bulan Full Akses PulseAI (Chatbot + Career + Finance)
+              </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Pilihan Paket Website Siap Jualan</h2>
-              <p className="text-slate-500 max-w-2xl mx-auto">Mulai dari web katalog produk kilat dengan admin panel mandiri hingga sistem aplikasi bisnis kustom.</p>
+              <p className="text-slate-500 max-w-2xl mx-auto">Mulai dari web katalog produk kilat hingga sistem bisnis kustom — semuanya bebas biaya server bulanan dan berbonus akses aplikasi AI.</p>
             </div>
 
             {/* 3 equal-height cards — use items-stretch so all cards fill the row */}
@@ -149,6 +153,8 @@ export default async function JasaWebPage() {
                       'Kapasitas hingga 15 – 20 Produk aktif',
                       'Sudah Termasuk Domain Resmi: Bebas pilih domain (.my.id aktif 1 tahun) atau pasang domain sendiri',
                       'Hosting Cloud Cepat & Stabil (Bebas Biaya Server Bulanan / Beli Putus)',
+                      '🎁 BONUS FREE 1 BULAN: Akses Full Suite PulseAI (AI Chatbot CS 24/7, Pulse Career ATS Scan CV Pelamar, & Pulse Finance Rekap Keuangan/Pajak UMKM)',
+                      'Opsi perpanjang AI setelah 1 bulan fleksibel (tanpa paksaan, website toko tetap aktif selamanya)',
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-2.5"><CheckIcon /><span>{f}</span></li>
                     ))}
@@ -186,14 +192,14 @@ export default async function JasaWebPage() {
                   <ul className="space-y-4 text-sm text-emerald-50">
                     {[
                       'Semua fitur lengkap di Paket Web Katalog Express',
-                      '🔥 BONUS: Gratis 1 Bulan Widget AI Chatbot Website (Otomatis jawab pertanyaan pembeli 24/7 di web tanpa ribet WhatsApp Meta)',
+                      '🎁 BONUS FREE 1 BULAN: Akses Full Suite PulseAI Pro (AI Chatbot Website & WA, Pulse Career ATS Screening Pelamar, & Pulse Finance Rekap Omzet & Pajak UMKM)',
                       'Kapasitas Produk UNLIMITED (Tanpa batas jumlah produk) + Filter Kategori Bertingkat & Fitur Search',
                       'Halaman Khusus Tiap Produk + Rich Preview WhatsApp (Saat link produk di-share ke WA, otomatis muncul foto, judul & harganya di chat)',
                       'Halaman Admin Pro: Dashboard kelola promo diskon, label produk (Best Seller/Promo), & rekap pesanan masuk',
                       'Banner / Slider Promo Berjalan di halaman utama untuk flash sale & event',
                       'Termasuk Domain Pilihan (.my.id gratis atau opsi upgrade domain .com/.id)',
                       'Setup Google Maps Bisnis & Pasang Tracking Iklan (Meta Pixel FB/IG Ads & Google Analytics)',
-                      'Opsi perpanjangan AI Chatbot setelah 1 bulan fleksibel sesuai paket PulseAI (mulai Rp 150.000/bln — tanpa paksaan)',
+                      'Opsi perpanjangan AI fleksibel setelah 1 bulan sesuai paket PulseAI (mulai Rp 150.000/bln — tanpa paksaan, web tetap aktif)',
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-2.5"><CheckIcon color="text-emerald-300" /><span>{f}</span></li>
                     ))}
@@ -374,8 +380,8 @@ export default async function JasaWebPage() {
                   a: 'Kami sediakan Halaman Admin khusus yang bisa Anda akses langsung lewat HP atau laptop. Di sana Anda bisa menambah produk baru, mengganti harga, mengunggah foto, dan mengatur stok kapan saja tanpa perlu paham koding. Setiap kali pengunjung website mengklik "Beli/Pesan", rincian pesanan akan otomatis terformat rapi dan dikirim langsung ke WhatsApp Anda.',
                 },
                 {
-                  q: 'Bagaimana dengan bonus Widget AI Chatbot pada Paket Business Pro?',
-                  a: 'Setiap pemesanan Paket Business Pro langsung mendapatkan bonus 1 bulan gratis Widget AI Chatbot (PulseAI Engine) yang terpasang langsung di website Anda. AI ini otomatis dilatih mengenali produk dan FAQ bisnis Anda untuk menjawab pertanyaan pengunjung secara cerdas 24/7 di web tanpa memerlukan verifikasi rumit WhatsApp Meta. Setelah 1 bulan, perpanjangan bersifat opsional sesuai tarif langganan PulseAI (mulai Rp 150.000/bln). Jika tidak diperpanjang, website katalog dan checkout WhatsApp Anda tetap aktif selamanya tanpa terganggu.',
+                  q: 'Bagaimana dengan bonus Gratis 1 Bulan PulseAI (Chatbot, Career, dan Finance)?',
+                  a: 'Setiap pemesanan Paket Web Katalog Express (500k) maupun Business Catalog Pro (1.25jt) otomatis mendapatkan BONUS FREE 1 bulan penuh akses seluruh modul PulseAI Suite: (1) AI Chatbot untuk menjawab pertanyaan pelanggan 24/7 di web & WhatsApp, (2) Pulse Career (AI ATS Scanner) untuk screening & rangking CV pelamar kerja otomatis, dan (3) Pulse Finance untuk rekap pemasukan/pengeluaran serta estimasi pajak UMKM. Setelah 1 bulan, perpanjangan AI bersifat opsional sesuai tarif langganan PulseAI (tanpa paksaan). Jika tidak diperpanjang, website toko dinamis, halaman admin, dan checkout WhatsApp Anda tetap aktif selamanya tanpa terganggu!',
                 },
               ].map((faq, i) => (
                 <details key={i} className="group bg-slate-50 rounded-2xl border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
