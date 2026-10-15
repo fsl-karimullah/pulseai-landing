@@ -44,7 +44,7 @@ const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || "sk-a089d4b8585c4b6b858
 const DEEPSEEK_BASE_URL = process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
 const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL || "deepseek-chat";
 const NEWS_API_SECRET = process.env.NEWS_API_SECRET || "pulseai-news-cron-sec-8f92a1c0";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL = process.env.NEWS_API_URL || (process.env.PORT ? `http://localhost:${process.env.PORT}` : "http://localhost:8000");
 
 // Curated pool of high-impact AI & Tech themes and verified primary publication sources
 const TECH_AI_TOPICS = [
