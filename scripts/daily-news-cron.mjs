@@ -168,9 +168,42 @@ STRUKTUR JSON YANG DIHARUSKAN:
   
   // Clean possible markdown code fences
   const cleanedText = rawText.replace(/^```json\s*/i, "").replace(/^```\s*/, "").replace(/```$/, "").trim();
-  const parsedArticle = JSON.parse(cleanedText);
+  let parsedArticle;
+  try {
+    parsedArticle = JSON.parse(cleanedText);
+  } catch (e) {
+    console.error("Raw LLM output:", rawText);
+    throw new Error(`Gagal parse respons AI: ${e.message}`);
+  }
 
-  return parsedArticle;
+  // Handle nested objects if LLM wrapped in article / news / data / articles
+  let obj = parsedArticle;
+  if (parsedArticle.article && typeof parsedArticle.article === "object") obj = parsedArticle.article;
+  else if (parsedArticle.news && typeof parsedArticle.news === "object") obj = parsedArticle.news;
+  else if (parsedArticle.data && typeof parsedArticle.data === "object") obj = parsedArticle.data;
+  else if (Array.isArray(parsedArticle) && parsedArticle[0]) obj = parsedArticle[0];
+  else if (Array.isArray(parsedArticle.articles) && parsedArticle.articles[0]) obj = parsedArticle.articles[0];
+
+  const title = obj.title || obj.Title || obj.judul || obj.Judul || "Terobosan AI & Teknologi Terkini";
+  const rawSlug = obj.slug || obj.Slug || title;
+  const slug = String(rawSlug).toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-");
+  const excerpt = obj.excerpt || obj.Excerpt || obj.ringkasan || obj.summary || "";
+  const content = obj.content || obj.Content || obj.isi || obj.body || excerpt;
+  const sourceUrl = obj.sourceUrl || obj.source_url || obj.SourceUrl || obj.source || obj.url || "https://techcrunch.com/category/artificial-intelligence";
+  const tags = Array.isArray(obj.tags) ? obj.tags : ["AI", "Teknologi"];
+  const metaTitle = obj.metaTitle || obj.meta_title || title;
+  const metaDesc = obj.metaDesc || obj.meta_desc || excerpt;
+
+  return {
+    title,
+    slug,
+    excerpt,
+    content,
+    sourceUrl,
+    tags,
+    metaTitle,
+    metaDesc
+  };
 }
 
 /**
@@ -222,7 +255,8 @@ async function submitNewsPost(article) {
   db.pragma("journal_mode = WAL");
 
   const now = new Date().toISOString();
-  let finalSlug = article.slug.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-");
+  let rawSlug = article.slug || article.title || "berita-ai-terkini";
+  let finalSlug = String(rawSlug).toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-");
 
   const existing = db.prepare("SELECT id FROM posts WHERE slug = ?").get(finalSlug);
   if (existing) {
