@@ -52,8 +52,31 @@ export default function BeritaPage() {
     .orderBy(desc(posts.publishedAt))
     .all();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Beranda",
+        item: "https://pulseai.biz.id",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Berita AI",
+        item: "https://pulseai.biz.id/berita",
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#faf9f6] text-slate-800 selection:bg-emerald-500 selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header / Navbar */}
       <header className="sticky top-0 z-50 w-full border-b border-stone-200/80 bg-[#faf9f6]/90 backdrop-blur-xl">
         <div className="container mx-auto px-4 md:px-8 h-16 flex items-center justify-between">

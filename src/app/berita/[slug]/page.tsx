@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { posts } from "@/schema/posts";
-import { eq, and } from "drizzle-orm";
+import { eq, and, ne } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -109,6 +109,25 @@ export default async function BeritaDetailPage({ params }: Params) {
 
   if (!post) notFound();
 
+  // Query 3 related articles for internal linking and bounce-rate reduction
+  const relatedNews = db
+    .select({
+      id: posts.id,
+      title: posts.title,
+      slug: posts.slug,
+      excerpt: posts.excerpt,
+      content: posts.content,
+      publishedAt: posts.publishedAt,
+      createdAt: posts.createdAt,
+      sourceUrl: posts.sourceUrl,
+      tags: posts.tags,
+    })
+    .from(posts)
+    .where(and(eq(posts.status, "published"), eq(posts.category, "news"), ne(posts.id, post.id)))
+    .orderBy(post.publishedAt ? posts.publishedAt : posts.createdAt)
+    .limit(3)
+    .all();
+
   // Increment views
   try {
     db.update(posts).set({ views: post.views + 1 }).where(eq(posts.id, post.id)).run();
@@ -119,6 +138,32 @@ export default async function BeritaDetailPage({ params }: Params) {
   const tags: string[] = JSON.parse(post.tags || "[]");
   const minutes = readingTime(post.content);
   const sourceDomain = getSourceDomain(post.sourceUrl);
+
+  // Google BreadcrumbList Schema for enhanced SERP navigation
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Beranda",
+        item: "https://pulseai.biz.id",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Berita AI",
+        item: "https://pulseai.biz.id/berita",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://pulseai.biz.id/berita/${slug}`,
+      },
+    ],
+  };
 
   // Article Schema for Google SEO
   const articleSchema = {
@@ -154,6 +199,10 @@ export default async function BeritaDetailPage({ params }: Params) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Header / Navbar */}
@@ -320,6 +369,61 @@ export default async function BeritaDetailPage({ params }: Params) {
             </Link>
           </div>
         </div>
+
+        {/* Related News Section for SEO & Engagement */}
+        {relatedNews.length > 0 && (
+          <section className="mt-16 pt-12 border-t border-stone-200">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-1">
+                  Rekomendasi Bacaan
+                </span>
+                <h3 className="text-2xl font-black text-stone-900 tracking-tight">
+                  Berita AI Terkini Lainnya
+                </h3>
+              </div>
+              <Link
+                href="/berita"
+                className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
+              >
+                Lihat Semua Berita →
+              </Link>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-5">
+              {relatedNews.map((item) => {
+                const itemMinutes = readingTime(item.content);
+                const domain = getSourceDomain(item.sourceUrl);
+                return (
+                  <article
+                    key={item.id}
+                    className="p-5 bg-white rounded-2xl border border-stone-200/90 hover:border-emerald-500/40 flex flex-col justify-between transition-all duration-200 hover:shadow-md group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between text-[11px] text-stone-400 mb-2.5">
+                        <span>⏱️ {itemMinutes} mnt baca</span>
+                        {domain && (
+                          <span className="truncate max-w-[100px] text-stone-500 font-medium bg-stone-50 px-1.5 py-0.5 rounded border border-stone-200/60">
+                            {domain}
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="text-sm font-bold text-stone-900 group-hover:text-emerald-700 transition-colors leading-snug line-clamp-3 mb-2">
+                        <Link href={`/berita/${item.slug}`}>{item.title}</Link>
+                      </h4>
+                    </div>
+                    <Link
+                      href={`/berita/${item.slug}`}
+                      className="text-xs font-bold text-emerald-700 group-hover:text-emerald-800 inline-flex items-center gap-1 pt-3 border-t border-stone-100 mt-2"
+                    >
+                      Baca Berita →
+                    </Link>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Back navigation */}
         <div className="mt-10 text-center">
