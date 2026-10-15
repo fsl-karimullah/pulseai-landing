@@ -212,41 +212,51 @@ STRUKTUR JSON YANG DIHARUSKAN:
 async function submitNewsPost(article) {
   console.log(`📤 Mempublikasikan berita: "${article.title}"...`);
 
-  // 1. Coba lewat API endpoint (HTTP)
-  try {
-    const apiUrl = `${SITE_URL}/api/news`;
-    console.log(`📡 Mencoba posting ke API: ${apiUrl}`);
+  // 1. Coba lewat API endpoints (Localhost atau Live Production Domain)
+  const candidateUrls = [
+    process.env.NEWS_API_URL,
+    SITE_URL ? `${SITE_URL}/api/news` : null,
+    "http://localhost:8000/api/news",
+    "https://pulseai.biz.id/api/news"
+  ].filter(Boolean);
 
-    const res = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": NEWS_API_SECRET,
-      },
-      body: JSON.stringify({
-        title: article.title,
-        slug: article.slug,
-        excerpt: article.excerpt,
-        content: article.content,
-        sourceUrl: article.sourceUrl,
-        tags: article.tags,
-        metaTitle: article.metaTitle,
-        metaDesc: article.metaDesc,
-        author: "PulseAI Tech Radar",
-        status: "published"
-      }),
-    });
+  // Deduplicate candidate URLs
+  const endpoints = [...new Set(candidateUrls)];
 
-    if (res.ok) {
-      const json = await res.json();
-      console.log("✅ Berhasil submit via API!");
-      console.log(`🔗 Slug: ${json.data?.slug || article.slug}`);
-      return json.data;
-    } else {
-      console.warn(`⚠️ API response not OK (${res.status}), beralih ke direct DB insertion...`);
+  for (const apiUrl of endpoints) {
+    try {
+      console.log(`📡 Mencoba posting ke API: ${apiUrl}`);
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": NEWS_API_SECRET,
+        },
+        body: JSON.stringify({
+          title: article.title,
+          slug: article.slug,
+          excerpt: article.excerpt,
+          content: article.content,
+          sourceUrl: article.sourceUrl,
+          tags: article.tags,
+          metaTitle: article.metaTitle,
+          metaDesc: article.metaDesc,
+          author: "PulseAI Tech Radar",
+          status: "published"
+        }),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        console.log("✅ Berhasil submit via API live!");
+        console.log(`🔗 Slug: ${json.data?.slug || article.slug}`);
+        return json.data;
+      } else {
+        console.warn(`⚠️ API ${apiUrl} status: ${res.status}`);
+      }
+    } catch (err) {
+      console.warn(`⚠️ API ${apiUrl} dilewati: ${err.message}`);
     }
-  } catch (err) {
-    console.warn("⚠️ API endpoint tidak terjangkau (mungkin server belum up), beralih ke direct DB insertion:", err.message);
   }
 
   // 2. Direct SQLite insertion fallback
