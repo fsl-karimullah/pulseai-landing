@@ -91,6 +91,62 @@ function getRandomTopic() {
 /**
  * Panggil DeepSeek untuk merangkum dan menghasilkan artikel berita komprehensif
  */
+
+/**
+ * Ambil berita AI terbaru langsung secara live dari Google News RSS
+ */
+async function fetchGoogleNewsHeadline() {
+  console.log("🔍 Menelusuri berita terkini secara real-time dari Google News RSS...");
+
+  const feeds = [
+    // 1. Google News Indonesia (AI & Teknologi)
+    "https://news.google.com/rss/search?q=Artificial+Intelligence+OR+AI+teknologi+when:2d&hl=id&gl=ID&ceid=ID:id",
+    // 2. Google News Global (AI & Generative Tech)
+    "https://news.google.com/rss/search?q=Artificial+Intelligence+OR+Generative+AI+technology+when:2d&hl=en-US&gl=US&ceid=US:en"
+  ];
+
+  const items = [];
+
+  for (const feedUrl of feeds) {
+    try {
+      const res = await fetch(feedUrl, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+      });
+      if (!res.ok) continue;
+      const xml = await res.text();
+      const itemMatches = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
+
+      for (const item of itemMatches.slice(0, 8)) {
+        const rawTitle = (item.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "";
+        const link = (item.match(/<link>([\s\S]*?)<\/link>/) || [])[1] || "";
+        const pubDate = (item.match(/<pubDate>([\s\S]*?)<\/pubDate>/) || [])[1] || "";
+        const source = (item.match(/<source[^>]*>([\s\S]*?)<\/source>/) || [])[1] || "";
+
+        const title = rawTitle.replace(/<!\[CDATA\[|\]\]>/g, "").trim();
+        if (title && link) {
+          items.push({ title, link, pubDate, source: source || "Google News" });
+        }
+      }
+    } catch (err) {
+      console.warn("Peringatan fetch Google News:", err.message);
+    }
+  }
+
+  if (items.length === 0) {
+    console.warn("⚠️ Google News feed kosong, beralih ke kurasi tema internal.");
+    return null;
+  }
+
+  // Pilih satu dari berita teratas Google News
+  const selectedIndex = Math.floor(Math.random() * Math.min(items.length, 6));
+  const picked = items[selectedIndex];
+  console.log(`📰 Berita Terpilih dari Google News: "${picked.title}" (Sumber: ${picked.source})`);
+  console.log(`🌐 URL Google News: ${picked.link}`);
+  return picked;
+}
+
 async function generateAINewsArticle() {
   const selectedTopic = getRandomTopic();
   const todayStr = new Date().toLocaleDateString("id-ID", {
@@ -100,7 +156,42 @@ async function generateAINewsArticle() {
     year: "numeric"
   });
 
-  const prompt = `Anda adalah Redaktur Utama Teknologi & AI untuk PulseAI Radar Berita (pulseai.biz.id), portal wawasan AI nomor 1 di Indonesia.
+  const googleNews = await fetchGoogleNewsHeadline();
+  const prompt = googleNews ? `Anda adalah Redaktur Utama Teknologi & AI untuk PulseAI Radar Berita (pulseai.biz.id), portal wawasan AI nomor 1 di Indonesia.
+Hari ini adalah: ${todayStr}.
+
+BERITA RESMI TERKINI LANGSUNG DARI GOOGLE NEWS:
+- Judul Laporan Google News: "${googleNews.title}"
+- Media / Penerbit Asli: "${googleNews.source}"
+- Link URL Rujukan Google News: "${googleNews.link}"
+- Tanggal Publikasi: "${googleNews.pubDate}"
+
+Tugas Anda:
+Buatlah SATU artikel berita teknologi & Artificial Intelligence yang mendalam, berbobot, akurat, dan sangat nyaman dibaca (text-first, bebas gangguan gambar) berdasarkan laporan fakta resmi Google News di atas.
+Artikel ini ditujukan bagi profesional bisnis, developer, dan pelaku UMKM di Indonesia.
+
+PANDUAN PENULISAN:
+1. Judul: Terjemahkan/olah judul Google News di atas ke dalam Bahasa Indonesia yang lugas, berbobot, dan menarik tanpa clickbait.
+2. Ringkasan Eksekutif (Excerpt): 2 kalimat padat yang merangkum fakta utama dari laporan media ${googleNews.source} tersebut.
+3. Struktur Konten (Markdown):
+   - ## Latar Belakang & Fakta Utama: Apa yang dilaporkan oleh ${googleNews.source}?
+   - ## Rincian Teknis & Dampak Inovasi: Bagaimana terobosan ini bekerja dan mengapa signifikan?
+   - ## Implikasi bagi Pelaku Bisnis & UMKM Indonesia: Bagaimana relevansi dan peluangnya bagi industri di Indonesia?
+   - ## Kesimpulan & Prospek ke Depan: Ringkasan proyeksi ke depan.
+4. Sumber Rujukan Asli (sourceUrl): WAJIB gunakan URL rujukan Google News persis berikut: "${googleNews.link}".
+5. Format Respons: WAJIB HANYA berupa JSON murni tanpa markdown triple-backtick di luarnya.
+
+STRUKTUR JSON YANG DIHARUSKAN:
+{
+  "title": "Judul Berita Bahasa Indonesia",
+  "slug": "judul-berita-seo-friendly-lowercase",
+  "excerpt": "Ringkasan 2 kalimat untuk cuplikan berita.",
+  "content": "Isi lengkap artikel dalam format Markdown rapi...",
+  "sourceUrl": "${googleNews.link}",
+  "tags": ["AI", "Teknologi", "Google News", "${googleNews.source}"],
+  "metaTitle": "Judul SEO Maksimal 60 Karakter",
+  "metaDesc": "Deskripsi meta untuk mesin pencari Google (140-155 karakter)..."
+}` : `Anda adalah Redaktur Utama Teknologi & AI untuk PulseAI Radar Berita (pulseai.biz.id), portal wawasan AI nomor 1 di Indonesia.
 Hari ini adalah: ${todayStr}.
 Topik Utama Berita: ${selectedTopic.focus}.
 Referensi domain publikasi resmi: ${selectedTopic.exampleSources.join(", ")}.
